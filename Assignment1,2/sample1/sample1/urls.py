@@ -1,5 +1,5 @@
 """
-URL configuration for project_arms project.
+URL configuration for sample1 project.
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/4.2/topics/http/urls/
@@ -16,19 +16,10 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from sample_app  import views
-import os
-from django.http import HttpResponse
-# def user(x):
-#     a = "Hellow"
-#     return HttpResponse(a)
-def per_env_var(request):
-    res = os.environ.get("a")
-    return HttpResponse(res)
+from sample11 import views
 
 urlpatterns = [
-    path('admin/',admin.site.urls),
-    path("hari",views.per_env_var)
-    path("some",views.greet),
+    path('admin/', admin.site.urls),
+    path("h",views.get_harini),
+     path("hari",views.get_hello),
 ]
-
