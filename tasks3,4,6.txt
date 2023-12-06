@@ -1,0 +1,166 @@
+3) In an Organization, have four django projects. 80% project settings are same. only 20% project settings are different.
+    I want to maintain a one settings file, that can be accessed in to your project. add your own settings to it.
+
+-> First separate the which are uncommon files from the different projects
+-> In the main setting.py file call which project is used that time the uncommon files will override into the project
+
+
+
+
+4) Read about commands of pdb console. n, b, c, s, l, l with sart and end line, w, u, q, quit
+
+import pdb;pdb.set_trace()
+pdb --> Python Debugger offers a console interface to interactively debug python programs
+
+n -> next
+Execute the current line and stop at the next line in the current function 
+
+b -> break 
+Set a breakpoint
+`b <line_no>` 
+`b <function_name>`
+
+c -> continue
+Continue execution until next breakpoint is encountered or the program finishes
+
+s -> step
+Step into the function called in the currenrt line. If the current line does not call a function 
+does not call a function,it acts like'n'
+
+l -> list 
+Show the current code context. Without arguments
+It displays the source code around the current line.
+`l <start> <end>`
+
+w -> where
+Show the current code position in the stack, displaying the call stack with the lines currently 
+executed in each frame.
+
+u -> up
+Move up the call stack to the caller's frame.
+
+q -> quit or exit
+Quit the debugger.
+
+EOF -> Simulate an EOF (End-of-File) condition, which can be useful in some debugging scenarios.
+
+a -> args
+Print the arguments of the current function.
+
+alias
+Define an alias for a command.
+
+bt -> backtrace
+Print the traceback of the current execution.
+
+cl -> clear
+Clear a breakpoint.
+
+d -> down
+Move the current frame down the stack trace.
+
+debug
+Enter a recursive debugger.
+
+disable
+Disable a breakpoint.
+
+display
+Add an expression to the list of display expressions.
+
+enable
+Enable a breakpoint.
+
+exit
+Exit the debugger and stop the execution.
+
+
+ignore
+Ignore a number of hits for a breakpoint.
+
+interact
+Start an interactive interpreter.
+
+j -> jump 
+Set the next line that will be executed.
+
+ll -> longlist 
+List the source code for the current function or frame.
+
+p -> print 
+Evaluate and print an expression.
+
+pp -> Pretty-print an expression.
+
+retval
+Print the return value of the last-executed function.
+
+r -> return 
+Continue execution until the current function returns.
+
+restart -> Restart the debugged Python program.
+
+return -> Continue execution until the current function returns.
+
+run -> Restart the debugged Python program.
+
+source -> Print the source code of a specified function.
+
+tbreak -> Set a temporary breakpoint.
+
+unalias -> Remove an alias.
+
+undisplay -> Remove an expression from the list of display expressions.
+
+unt -> until  
+Continue execution until a given line number is reached.
+
+whatis -> Print the type of a Python expression.
+
+h -> help
+It shows the all commands
+
+
+6) Write a parent class to each model field
+
+Field
+DateTimeCheckMixin
+PositiveIntegerRelDbTypeMixin
+AutoFieldMixin
+BooleanField(Field)
+CharField(Field)
+CommaSeparatedIntegerField(CharField)
+DateField(DateTimeCheckMixin, Field)
+DateTimeField(DateField)
+DecimalField(Field)
+DurationField(Field)
+EmailField(CharField)
+FilePathField(Field)
+FloatField(Field)
+IntegerField(Field)
+BigIntegerField(IntegerField)
+SmallIntegerField(IntegerField)
+IPAddressField(Field)
+NullBooleanField(BooleanField)
+PositiveBigIntegerField(PositiveIntegerRelDbTypeMixin, BigIntegerField)
+PositiveIntegerField(PositiveIntegerRelDbTypeMixin, IntegerField)
+PositiveSmallIntegerField(PositiveIntegerRelDbTypeMixin, SmallIntegerField)
+SlugField(CharField)
+TextField(Field)
+TimeField(DateTimeCheckMixin, Field)
+URLField(CharField)
+BinaryField(Field)
+UUIDField(Field)
+AutoFieldMeta(type)
+AutoField(AutoFieldMixin, IntegerField, metaclass=AutoFieldMeta)
+SmallAutoField(AutoFieldMixin, SmallIntegerField)
+
+
+
+
+
+
+
+
+
+
