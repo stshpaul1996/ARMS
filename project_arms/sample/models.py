@@ -1,5 +1,9 @@
 from django.db import models
 
+def fun(x:int, y:float):
+    print(x,y)
+fun(1.2,3)
+
 # Create your models here.
 class Customer(models.Model):
 

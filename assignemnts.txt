@@ -11,3 +11,5 @@
     /os. add this url in project.urls. write the definition of function in application.views. return os name of your machine as response
     /ncores. add this url in project.urls. write the definition of function in application.own_views. return number of cores of your machine as response
     /users. add this url in project.urls. write the definition of function in project.own_views. return some html code as response
+6) write a parent class to each model field 
+
