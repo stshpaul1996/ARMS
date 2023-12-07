@@ -1,0 +1,74 @@
+1.AutoField:
+Usage: Used for an automatically incremented primary key.
+Default Value: None (It will be automatically incremented by the database).
+Default Validator: N/A
+
+2.BigIntegerField:
+Usage: Integer field for large integers.
+Default Value: 0.
+Default Validator: Validates that the value is a valid integer.
+
+3.BooleanField:
+Usage: Boolean (True/False) field.
+Default Value: False.
+Default Validator: Validates that the value is a valid boolean.
+
+4.CharField:
+Usage: String field with a specified maximum length.
+Default Value: '' (empty string).
+Default Validator: Validates that the value is a valid string within the specified length.
+
+5.DateField:
+Usage: Date field.
+Default Value: None.
+Default Validator: Validates that the value is a valid date.
+
+6.DateTimeField:
+Usage: Date and time field.
+Default Value: None.
+Default Validator: Validates that the value is a valid date and time.
+
+7.DecimalField:
+Usage: Decimal number field.
+Default Value: 0.
+Default Validator: Validates that the value is a valid decimal number.
+
+8.EmailField:
+Usage: Email field.
+Default Value: '' (empty string).
+Default Validator: Validates that the value is a valid email address.
+
+9.FileField:
+Usage: File upload field.
+Default Value: None.
+Default Validator: N/A
+
+10.FloatField:
+Usage: Floating-point number field.
+Default Value: 0.0.
+Default Validator: Validates that the value is a valid floating-point number.
+
+11.ImageField:
+Usage: Image upload field.
+Default Value: None.
+Default Validator: N/A
+
+12.IntegerField:
+Usage: Integer field.
+Default Value: 0.
+Default Validator: Validates that the value is a valid integer.
+
+13.PositiveIntegerField:
+Usage: Positive integer field (value must be greater than or equal to 0).
+Default Value: 0.
+Default Validator: Validates that the value is a valid positive integer.
+
+14.TextField:
+Usage: Text field for larger amounts of text.
+Default Value: '' (empty string).
+Default Validator: Validates that the value is a valid text.
+
+15.TimeField:
+Usage: Time field.
+Default Value: None.
+Default Validator: Validates that the value is a valid time.

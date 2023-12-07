@@ -1,0 +1,72 @@
+PS C:\Users\DELL\Desktop\django_projects\ARMS\django\encryptionfield> py manage.py shell    
+Python 3.12.0 (tags/v3.12.0:0fb18b0, Oct  2 2023, 13:03:39) [MSC v.1935 64 bit (AMD64)] on win32
+Type "help", "copyright", "credits" or "license" for more information.
+(InteractiveConsole)
+>>> from app.models import Coustmer
+Traceback (most recent call last):
+  File "<console>", line 1, in <module>
+ImportError: cannot import name 'Coustmer' from 'app.models' (C:\Users\DELL\Desktop\django_projects\ARMS\django\encryptionfield\app\models.py)
+>>> from app.models import Costomer 
+Traceback (most recent call last):
+  File "<console>", line 1, in <module>
+ImportError: cannot import name 'Costomer' from 'app.models' (C:\Users\DELL\Desktop\django_projects\ARMS\django\encryptionfield\app\models.py)
+>>> from app.models import Customer
+>>> name=Customer(name=shravan,address=3-5,email=dasari.shravan1996@gmail.com,adhar=458792456987)
+Traceback (most recent call last):
+  File "<console>", line 1, in <module>
+NameError: name 'shravan' is not defined
+>>> name=Customer(name='shravan',address='3-5',email='dasari.shravan1996@gmail.com',adhar=458792456987) 
+>>> name.save()
+>>> Customer.object.all()
+Traceback (most recent call last):
+  File "<console>", line 1, in <module>
+AttributeError: type object 'Customer' has no attribute 'object'. Did you mean: 'objects'?
+>>> Customer.objects.all() 
+<QuerySet [<Customer: Customer object (1)>, <Customer: Customer object (2)>, <Customer: Customer object (3)>]>
+>>> instance=Customer.objects.get(id=1)
+>>> instance.full_clean()
+<cryptography.fernet.Fernet object at 0x00000123DEAC8CE0>
+shravan kumar
+>>> instance=Customer.objects.get(id=2) 
+>>> instance.full_clean()
+<cryptography.fernet.Fernet object at 0x00000123DEAC8CE0>
+5reszdhxfghuiytredtuihuioytrf5fhujiytyghjuytr5tdcghbjuytr5dcghjui8ytgfvhb
+>>> instance=Customer.objects.get(id=3) 
+>>> instance.full_clean()
+<cryptography.fernet.Fernet object at 0x00000123DE7FF680>
+
+Traceback (most recent call last):
+  File "<console>", line 1, in <module>
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\base.py", line 1502, in full_clean
+    raise ValidationError(errors)
+django.core.exceptions.ValidationError: {'phoneno': ['This field cannot be blank.'], 'data': ['This field cannot be blank.']}
+>>> name=Customer(name='shravan',address='3-5',email='dasari.shravan1996@gmail.com',adhar=458792456987,value_less_zero=-52,phoneno=8099171145,data=bhadurpally)
+Traceback (most recent call last):
+  File "<console>", line 1, in <module>     
+NameError: name 'bhadurpally' is not defined
+>>> name=Customer(name='shravan',address='3-5',email='dasari.shravan1996@gmail.com',adhar=458792456987,value_less_zero=-52,phoneno=8099171145,data='bhadurpally')
+>>> instance=Customer.objects.get(id=4) 
+Traceback (most recent call last):
+  File "<console>", line 1, in <module>
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\query.py", line 637, in get
+    raise self.model.DoesNotExist(
+app.models.Customer.DoesNotExist: Customer matching query does not exist.
+>>> instance=Customer.objects.get(id=3) 
+>>> instance.full_clean()
+<cryptography.fernet.Fernet object at 0x00000123DEBA9BE0>
+
+Traceback (most recent call last):
+  File "<console>", line 1, in <module>
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\base.py", line 1502, in full_clean
+    raise ValidationError(errors)
+django.core.exceptions.ValidationError: {'phoneno': ['This field cannot be blank.'], 'data': ['This field cannot be blank.']}
+>>> instance.save()
+>>> name=Customer(name='shravan',address='3-5',email='dasari.shravan1996@gmail.com',adhar=458792456987,value_less_zero=-52,phoneno=8099171145,data='bhadurpally')
+>>> name.save()
+>>> instance=Customer.objects.get(id=4)
+>>> instance.full_clean()
+<cryptography.fernet.Fernet object at 0x00000123DEBA9BE0>
+bhadurpally
