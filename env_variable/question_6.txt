@@ -1,0 +1,33 @@
+Parent classes :-----
+
+Classes ---------------------------   Parent Classes 
+
+BoolenField ------------------------  Field 
+CharField  -------------------------  Field 
+CommaSeparatedIntegerField ---------  CharField
+DateTimeCheckMixin  ----------------  
+DateField  -------------------------  DateTimeCheckMixin, Field
+DateTimeField  ---------------------  DateField
+DecimalField  ----------------------  Field
+DurationField ----------------------  Field
+EmailField    ----------------------  CharField
+FilePathField ----------------------  Field
+FloatField    ----------------------  Field
+IntegerField  ----------------------  Field
+BigIntegerField --------------------  IntegerField
+SmallIntegerField ------------------  IntegerField
+IPAddressField ---------------------  (Field)
+GenericIPAddressField --------------  (Field)
+NullBooleanField -------------------  (BooleanField)
+PositiveBigIntegerField ------------  (PositiveIntegerRelDbTypeMixin, BigIntegerField)
+PositiveIntegerField ---------------  (PositiveIntegerRelDbTypeMixin, IntegerField)
+TextField  -------------------------  (Field)
+TimeField  -------------------------  (DateTimeCheckMixin, Field)
+URLField   -------------------------  (CharField)
+BinaryField ------------------------  (Field)
+UUIDField   ------------------------  (Field)
+AutoFieldMixin --------------------- 
+AutoFieldMeta  ---------------------  (type)
+AutoField  -------------------------  (AutoFieldMixin, IntegerField, metaclass=AutoFieldMeta)
+BigAutoField -----------------------  (AutoFieldMixin, BigIntegerField)
+SmallAutoField ---------------------(AutoFieldMixin, SmallIntegerField)
