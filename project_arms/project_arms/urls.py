@@ -59,14 +59,14 @@ def get_users(request):
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    # path("pern", per_env_var),
-    # path("sess", ses_env_var),
-    # path("set/", set_env),
-    # path("get/", get_env),
-    # path("ram/", get_ram),
-    # path("os/", get_os),
-    # path("cores", get_cores),
-    # path("user/", get_users),
+    path("pern", per_env_var),
+    path("sess", ses_env_var),
+    path("set/", set_env),
+    path("get/", get_env),
+    path("ram/", get_ram),
+    path("os/", get_os),
+    path("cores", get_cores),
+    path("user/", get_users),
     path("resources/", include("resourcesApp.urls"))
 
 ]

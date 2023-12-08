@@ -1,0 +1,26 @@
+{% extends "image.html" %} 
+{% block data%}
+<html>
+    <body>
+    <table border="2">
+        <tr>
+            <th>Name</th>
+            <th>Image</th>
+            <th>Video</th>
+        </tr>
+        {% for i in data %}
+        <tr>
+            <td>{{i.name}}</td>
+            <td><img src="/media/{{i.image}}" height="150" width="150" /></td>
+            <td>
+               <video width="150" height="150" controls>
+                <source src="/media/{{i.video}}" type="video/mp4" />
+               </video>
+            </td>
+            
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+     </html>
+{% endblock %}
