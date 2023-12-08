@@ -16,4 +16,5 @@
 8) write a notes for each field in the django.db.models.fields_all,  default value. default validator
 9) define models for your project, write some validators to your model fields, Migrate those models to database.
 10) prepare some shell notes, to insert some rows in to database tables. call full_clean method to show the validations.
+11) Prepare abstract models for your project
 

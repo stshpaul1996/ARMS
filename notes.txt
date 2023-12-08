@@ -1,0 +1,42 @@
+Understand the basic models 
+Things to keep in mind while working with basic models 
+1) validators  attribute
+2) clean 
+3) django.core.validators 
+4) django.core.exceptions
+5) full_clean 
+6) clean () 
+7) clean_ 
+8) cleaned_data 
+Things to keep in mind while working with own field classes 
+    class MyCustomField(models.Field):
+        def __init__(self, *args, **kwargs):
+            super().__init__(*args, **kwargs)
+            # Your custom initialization code goes here
+
+        def from_db_value(self, value, expression, connection):
+            # Convert the database value to Python value
+            # This method is used when retrieving data from the database
+            return value
+
+        def to_python(self, value):
+            # Convert the value to the appropriate Python data type
+            # This method is used when accessing the field in Python code
+            return value
+
+        def get_prep_value(self, value):
+            # Prepare the value for saving to the database
+            # This method is called before saving the data to the database
+            return value
+
+        def value_to_string(self, obj):
+            # Convert the field's value to a string representation
+            # This is used when serializing the model to a string
+            return str(self.value_from_object(obj))
+Types of models: 
+    1)Standard Model
+    2) Abstract Model: class Meta: abstract = True
+    3) Proxy Model: class Meta:proxy = True, we can not add columns, only methods 
+    4) inherited models
+    5) importanace of one to one relationship
+    6) inline models
