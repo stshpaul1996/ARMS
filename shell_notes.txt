@@ -1,0 +1,550 @@
+Microsoft Windows [Version 10.0.22621.2792]
+(c) Microsoft Corporation. All rights reserved.
+
+C:\Users\chbhagavaan98\ARMS>django-admin startproject validation1
+
+C:\Users\chbhagavaan98\ARMS>cd validation1
+
+C:\Users\chbhagavaan98\ARMS\validation1>py manage.py runserver
+Watching for file changes with StatReloader
+Performing system checks...
+
+System check identified no issues (0 silenced).
+
+You have 18 unapplied migration(s). Your project may not work properly until you apply the migrations for app(s): admin, auth, contenttypes, sessions.
+Run 'python manage.py migrate' to apply them.
+December 10, 2023 - 18:44:58
+Django version 4.1, using settings 'validation1.settings'
+Starting development server at http://127.0.0.1:8000/
+Quit the server with CTRL-BREAK.
+[10/Dec/2023 18:45:01] "GET / HTTP/1.1" 200 10681
+Not Found: /favicon.ico
+[10/Dec/2023 18:45:02] "GET /favicon.ico HTTP/1.1" 404 2115
+
+C:\Users\chbhagavaan98\ARMS\validation1>py manage.py startapp application
+
+C:\Users\chbhagavaan98\ARMS\validation1>code .
+
+C:\Users\chbhagavaan98\ARMS\validation1>py manage.py makemigrations
+Migrations for 'application':
+  application\migrations\0001_initial.py
+    - Create model Customer
+
+C:\Users\chbhagavaan98\ARMS\validation1>py manage.py migrate
+Operations to perform:
+  Apply all migrations: admin, application, auth, contenttypes, sessions
+Running migrations:
+  Applying contenttypes.0001_initial... OK
+  Applying auth.0001_initial... OK
+  Applying admin.0001_initial... OK
+  Applying admin.0002_logentry_remove_auto_add... OK
+  Applying admin.0003_logentry_add_action_flag_choices... OK
+  Applying application.0001_initial... OK
+  Applying contenttypes.0002_remove_content_type_name... OK
+  Applying auth.0002_alter_permission_name_max_length... OK
+  Applying auth.0003_alter_user_email_max_length... OK
+  Applying auth.0004_alter_user_username_opts... OK
+  Applying auth.0005_alter_user_last_login_null... OK
+  Applying auth.0006_require_contenttypes_0002... OK
+  Applying auth.0007_alter_validators_add_error_messages... OK
+  Applying auth.0008_alter_user_username_max_length... OK
+  Applying auth.0009_alter_user_last_name_max_length... OK
+  Applying auth.0010_alter_group_name_max_length... OK
+  Applying auth.0011_update_proxy_permissions... OK
+  Applying auth.0012_alter_user_first_name_max_length... OK
+  Applying sessions.0001_initial... OK
+
+C:\Users\chbhagavaan98\ARMS\validation1>py manage.py shell
+Python 3.10.0 (tags/v3.10.0:b494f59, Oct  4 2021, 19:00:18) [MSC v.1929 64 bit (AMD64)]
+Type 'copyright', 'credits' or 'license' for more information
+IPython 8.11.0 -- An enhanced Interactive Python. Type '?' for help.
+
+In [2]: from application.models import Customer
+
+In [3]: c=Customer(name="bhagavaan",address="hyderabad",email="bhagavaan@gmail.com")
+
+In [4]: c.full_clean()
+
+In [5]: c.save()
+
+In [6]: c=Customer(name="eshwar",address="mumbai",email="eshwar@gmail.com")
+
+In [7]: c.full_clean()
+
+In [8]: c.save()
+
+In [9]: c=Customer(name="eshwar",address="mumbai",email="eshwargmail.com")
+
+In [10]: c.full_clean()
+---------------------------------------------------------------------------
+ValidationError                           Traceback (most recent call last)
+Cell In[10], line 1
+----> 1 c.full_clean()
+
+File ~\AppData\Local\Programs\Python\Python310\lib\site-packages\django\db\models\base.py:1496, in Model.full_clean(self, exclude, validate_unique, validate_constraints)
+   1493         errors = e.update_error_dict(errors)
+   1495 if errors:
+-> 1496     raise ValidationError(errors)
+
+ValidationError: {'email': ['Enter a valid email address.']}
+
+id      name            address         email
+1	bhagavaan	hyderabad	bhagavaan@gmail.com
+2	eshwar	        mumbai	        eshwar@gmail.com
+
+
+C:\Users\chbhagavaan98\ARMS\validation1>py manage.py makemigrations
+It is impossible to add a non-nullable field 'aadhar' to customer without specifying a default. This is because the database needs something to populate existing rows.
+Please select a fix:
+ 1) Provide a one-off default now (will be set on all existing rows with a null value for this column)
+ 2) Quit and manually define a default value in models.py.
+Select an option: 1
+Please enter the default value as valid Python.
+The datetime and django.utils.timezone modules are available, so it is possible to provide e.g. timezone.now as a value.
+Type 'exit' to exit this prompt
+>>> 12356478956432
+Migrations for 'application':
+  application\migrations\0002_customer_aadhar.py
+    - Add field aadhar to customer
+
+C:\Users\chbhagavaan98\ARMS\validation1>py manage.py migrate
+Operations to perform:
+  Apply all migrations: admin, application, auth, contenttypes, sessions
+Running migrations:
+  Applying application.0002_customer_aadhar... OK
+
+id      name            address         email                   aadhar
+1	bhagavaan	hyderabad	bhagavaan@gmail.com	12356478956432
+2	eshwar	        mumbai	        eshwar@gmail.com	12356478956432
+
+
+C:\Users\chbhagavaan98\ARMS\validation1>py manage.py shell
+Python 3.10.0 (tags/v3.10.0:b494f59, Oct  4 2021, 19:00:18) [MSC v.1929 64 bit (AMD64)]
+Type 'copyright', 'credits' or 'license' for more information
+IPython 8.11.0 -- An enhanced Interactive Python. Type '?' for help.
+
+In [1]: from application.models import Customer
+
+In [2]: c=Customer(name="pavan",address="vizag",email="pavan@gmail.com",aadhar=12354698766545)
+
+In [3]: c.full_clean()
+
+In [4]: c.save()
+
+In [5]: c=Customer(name="sravan",address="amp",email="sravan@gmail.com",aadhar=6554298766545)
+
+In [6]: c.full_clean()
+
+In [7]: c.save()
+
+id      name            address         email                   aadhar
+1	bhagavaan	hyderabad	bhagavaan@gmail.com	12356478956432
+2	eshwar	        mumbai	        eshwar@gmail.com	12356478956432
+3	pavan	        vizag	        pavan@gmail.com	        12354698766545
+4	sravan	        amp	        sravan@gmail.com	6554298766545
+
+In [13]: c=Customer(name="sravan",address="amp",email="sravangmail.com",aadhar=2*64-2)
+
+In [14]: c.full_clean()
+---------------------------------------------------------------------------
+ValidationError                           Traceback (most recent call last)
+Cell In[14], line 1
+----> 1 c.full_clean()
+
+File ~\AppData\Local\Programs\Python\Python310\lib\site-packages\django\db\models\base.py:1496, in Model.full_clean(self, exclude, validate_unique, validate_constraints)
+   1493         errors = e.update_error_dict(errors)
+   1495 if errors:
+-> 1496     raise ValidationError(errors)
+
+ValidationError: {'email': ['Enter a valid email address.']}
+
+In [15]: quit()
+
+from django.db import models
+
+# Create your models here.
+def check_negative(value):
+    if value>0:
+        raise Exception('expecting negative values only')
+    
+class NegativeIntegerField(models.IntegerField):
+    default_validators=[check_negative]
+
+class Customer(models.Model):
+    name=models.CharField(max_length=250)
+    address=models.CharField(max_length=250)
+    email=models.EmailField(max_length=100)
+    aadhar=models.BigIntegerField()
+    value_less_zero=NegativeIntegerField()
+
+C:\Users\chbhagavaan98\ARMS\validation1>py manage.py makemigrations
+It is impossible to add a non-nullable field 'value_less_zero' to customer without specifying a default. This is because the database needs something to populate existing rows.
+Please select a fix:
+ 1) Provide a one-off default now (will be set on all existing rows with a null value for this column)
+ 2) Quit and manually define a default value in models.py.
+Select an option: 2
+
+from django.db import models
+
+# Create your models here.
+def check_negative(value):
+    if value>0:
+        raise Exception('expecting negative values only')
+    
+class NegativeIntegerField(models.IntegerField):
+    default_validators=[check_negative]
+
+class Customer(models.Model):
+    name=models.CharField(max_length=250)
+    address=models.CharField(max_length=250)
+    email=models.EmailField(max_length=100)
+    aadhar=models.BigIntegerField()
+    value_less_zero=NegativeIntegerField(default=-1)
+
+C:\Users\chbhagavaan98\ARMS\validation1>py manage.py makemigrations
+Migrations for 'application':
+  application\migrations\0003_customer_value_less_zero.py
+    - Add field value_less_zero to customer
+
+C:\Users\chbhagavaan98\ARMS\validation1>py manage.py migrate
+Operations to perform:
+  Apply all migrations: admin, application, auth, contenttypes, sessions
+Running migrations:
+  Applying application.0003_customer_value_less_zero... OK
+
+
+id      name            address         email                   aadhar          value_less_zero
+1	bhagavaan	hyderabad	bhagavaan@gmail.com	12356478956432	-1
+2	eshwar	        mumbai	        eshwar@gmail.com	12356478956432	-1
+3	pavan	        vizag	        pavan@gmail.com	        12354698766545	-1
+4	sravan	        amp	        sravan@gmail.com	6554298766545	-1
+5	sravan	        amp	        sravan@gmail.com	126	        -1
+
+
+C:\Users\chbhagavaan98\ARMS\validation1>py manage.py shell
+Python 3.10.0 (tags/v3.10.0:b494f59, Oct  4 2021, 19:00:18) [MSC v.1929 64 bit (AMD64)]
+Type 'copyright', 'credits' or 'license' for more information
+IPython 8.11.0 -- An enhanced Interactive Python. Type '?' for help.
+
+In [1]: from application.models import Customer
+
+In [2]: c=Customer(name="pratap",address="rjy",email="pratap@gmail.com",aadhar=1*64-2,value_less_zero=-5)
+
+In [3]: c.full_clean()
+
+In [4]: c.save()
+
+In [5]: c=Customer(name="pratap",address="rjy",email="pratap@gmail.com",aadhar=1*64-2,value_less_zero=25)
+
+In [6]: c.save()
+
+id      name            address         email                   aadhar          value_less_zero
+1	bhagavaan	hyderabad	bhagavaan@gmail.com	12356478956432	-1
+2	eshwar	        mumbai	        eshwar@gmail.com	12356478956432	-1
+3	pavan	        vizag	        pavan@gmail.com  	12354698766545	-1
+4	sravan	        amp	        sravan@gmail.com	6554298766545	-1
+5	sravan	        amp	        sravan@gmail.com	126	        -1
+6	pratap	        rjy	        pratap@gmail.com	62	        -5
+7	pratap	        rjy	        pratap@gmail.com	62	        25
+
+
+In [9]: c=Customer(name="rajesh",address="vijayawada",email="rajesh@gmail.com",aadhar=1*32-2,value_less_zero=50)
+
+In [10]: c.full_clean()
+---------------------------------------------------------------------------
+Exception                                 Traceback (most recent call last)
+Cell In[10], line 1
+----> 1 c.full_clean()
+
+File ~\AppData\Local\Programs\Python\Python310\lib\site-packages\django\db\models\base.py:1464, in Model.full_clean(self, exclude, validate_unique, validate_constraints)
+   1461     exclude = set(exclude)
+   1463 try:
+-> 1464     self.clean_fields(exclude=exclude)
+   1465 except ValidationError as e:
+   1466     errors = e.update_error_dict(errors)
+
+File ~\AppData\Local\Programs\Python\Python310\lib\site-packages\django\db\models\base.py:1516, in Model.clean_fields(self, exclude)
+   1514     continue
+   1515 try:
+-> 1516     setattr(self, f.attname, f.clean(raw_value, self))
+   1517 except ValidationError as e:
+   1518     errors[f.name] = e.error_list
+
+File ~\AppData\Local\Programs\Python\Python310\lib\site-packages\django\db\models\fields\__init__.py:756, in Field.clean(self, value, model_instance)
+    754 value = self.to_python(value)
+    755 self.validate(value, model_instance)
+--> 756 self.run_validators(value)
+    757 return value
+
+File ~\AppData\Local\Programs\Python\Python310\lib\site-packages\django\db\models\fields\__init__.py:708, in Field.run_validators(self, value)
+    706 for v in self.validators:
+    707     try:
+--> 708         v(value)
+    709     except exceptions.ValidationError as e:
+    710         if hasattr(e, "code") and e.code in self.error_messages:
+
+File ~\ARMS\validation1\application\models.py:6, in check_negative(value)
+      4 def check_negative(value):
+      5     if value>0:
+----> 6         raise Exception('expecting negative values only')
+
+Exception: expecting negative values only
+
+quit()
+
+
+from django.db import models
+
+# Create your models here.
+def check_negative(value):
+    if value>0:
+        raise Exception('expecting negative values only')
+    
+class NegativeIntegerField(models.IntegerField):
+    default_validators=[check_negative]
+
+class UppercaseField(models.CharField):
+    def __init__(self,*args,**kwargs):
+        super().__init__(*args,**kwargs)
+    
+    def get_prep_value(self,value):
+        # prepare the value for saving to the database
+        # this method is called before saving the data to the database
+        return value.upper()
+
+class Customer(models.Model):
+    name=models.CharField(max_length=250)
+    address=models.CharField(max_length=250)
+    email=models.EmailField(max_length=100)
+    aadhar=models.BigIntegerField()
+    value_less_zero=NegativeIntegerField(default=-1)
+    name_upper=UppercaseField(max_length=250)
+
+C:\Users\chbhagavaan98\ARMS\validation1>py manage.py makemigrations
+It is impossible to add a non-nullable field 'name_upper' to customer without specifying a default. This is because the database needs something to populate existing rows.
+Please select a fix:
+ 1) Provide a one-off default now (will be set on all existing rows with a null value for this column)
+ 2) Quit and manually define a default value in models.py.
+Select an option: 2
+
+from django.db import models
+
+# Create your models here.
+def check_negative(value):
+    if value>0:
+        raise Exception('expecting negative values only')
+    
+class NegativeIntegerField(models.IntegerField):
+    default_validators=[check_negative]
+
+class UppercaseField(models.CharField):
+    def __init__(self,*args,**kwargs):
+        super().__init__(*args,**kwargs)
+    
+    def get_prep_value(self,value):
+        # prepare the value for saving to the database
+        # this method is called before saving the data to the database
+        return value.upper()
+
+class Customer(models.Model):
+    name=models.CharField(max_length=250)
+    address=models.CharField(max_length=250)
+    email=models.EmailField(max_length=100)
+    aadhar=models.BigIntegerField()
+    value_less_zero=NegativeIntegerField(default=-1)
+    name_upper=UppercaseField(max_length=250,default="")
+
+
+C:\Users\chbhagavaan98\ARMS\validation1>py manage.py makemigrations
+Migrations for 'application':
+  application\migrations\0004_customer_name_upper.py
+    - Add field name_upper to customer
+
+C:\Users\chbhagavaan98\ARMS\validation1>py manage.py migrate
+Operations to perform:
+  Apply all migrations: admin, application, auth, contenttypes, sessions
+Running migrations:
+  Applying application.0004_customer_name_upper... OK
+
+id      name            address         email                   aadhar          value_less_zero   name_upper
+1	bhagavaan	hyderabad	bhagavaan@gmail.com	12356478956432	-1	
+2	eshwar	        mumbai	        eshwar@gmail.com	12356478956432	-1	
+3	pavan	        vizag	        pavan@gmail.com	        12354698766545	-1	
+4	sravan	        amp	        sravan@gmail.com	6554298766545	-1	
+5	sravan	        amp	        sravan@gmail.com	126	        -1	
+6	pratap	        rjy	        pratap@gmail.com	62	        -5	
+7	pratap	        rjy	        pratap@gmail.com	62	        25	
+
+C:\Users\chbhagavaan98\ARMS\validation1>py manage.py shell
+Python 3.10.0 (tags/v3.10.0:b494f59, Oct  4 2021, 19:00:18) [MSC v.1929 64 bit (AMD64)]
+Type 'copyright', 'credits' or 'license' for more information
+IPython 8.11.0 -- An enhanced Interactive Python. Type '?' for help.
+
+In [1]: from application.models import Customer
+
+In [2]: c=Customer(name="vadeppa",address="srnagar",email="vadeppa@gmail.com",aadhar=1*32-2,value_less_zero=-10,name_upper="VADDEPPA")
+
+In [3]: c.full_clean()
+
+In [4]: c.save()
+
+id      name            address         email                   aadhar           value_less_zero   name_upper
+1	bhagavaan	hyderabad	bhagavaan@gmail.com	12356478956432	-1	
+2	eshwar	        mumbai	        eshwar@gmail.com	12356478956432	-1	
+3	pavan	        vizag	        pavan@gmail.com	        12354698766545	-1	
+4	sravan	        amp	        sravan@gmail.com	6554298766545	-1	
+5	sravan	        amp	        sravan@gmail.com	126	        -1	
+6	pratap	        rjy	        pratap@gmail.com	62	        -5	
+7	pratap	        rjy	        pratap@gmail.com	62	        25	
+8	vadeppa	        srnagar	        vadeppa@gmail.com	30	       -10	            VADDEPPA
+
+
+In [5]: c=Customer(name="suma",address="raidurgam",email="suma@gmail.com",aadhar=2*32-2,value_less_zero=-15,name_upper="suma")
+
+In [6]: c.full_clean()
+
+In [7]: c.save()
+
+quit()
+
+id      name            address         email                   aadhar          value_less_zero    name_upper
+1	bhagavaan	hyderabad	bhagavaan@gmail.com	12356478956432	-1	
+2	eshwar	        mumbai	        eshwar@gmail.com	12356478956432	-1	
+3	pavan	        vizag	        pavan@gmail.com	        12354698766545	-1	
+4	sravan	        amp	        sravan@gmail.com	6554298766545	-1	
+5	sravan	        amp	        sravan@gmail.com	126	        -1	
+6	pratap	        rjy	        pratap@gmail.com	62	        -5	
+7	pratap	        rjy	        pratap@gmail.com	62	         25	
+8	vadeppa  	srnagar	        vadeppa@gmail.com	30	        -10	          VADDEPPA
+9	suma	        raidurgam	suma@gmail.com	        62	        -15	          SUMA
+
+
+from django.db import models
+from django.core.validators import MinValueValidator
+
+# Create your models here.
+def check_negative(value):
+    if value>0:
+        raise Exception('expecting negative values only')
+    
+class NegativeIntegerField(models.IntegerField):
+    default_validators=[check_negative]
+
+class UppercaseField(models.CharField):
+    def __init__(self,*args,**kwargs):
+        super().__init__(*args,**kwargs)
+    
+    def get_prep_value(self,value):
+        # prepare the value for saving to the database
+        # this method is called before saving the data to the database
+        return value.upper()
+
+class Customer(models.Model):
+    name=models.CharField(max_length=250)
+    address=models.CharField(max_length=250)
+    email=models.EmailField(max_length=100)
+    aadhar=models.BigIntegerField()
+    value_less_zero=NegativeIntegerField(default=-1)
+    name_upper=UppercaseField(max_length=250,default="")
+    min_value_id=models.SmallIntegerField(default=25,
+                                          validators=[MinValueValidator(
+                                              limit_value=25,
+                                              message="value should greater than zero"
+                                          ),])
+
+
+C:\Users\chbhagavaan98\ARMS\validation1>py manage.py makemigrations
+Migrations for 'application':
+  application\migrations\0005_customer_min_value_id.py
+    - Add field min_value_id to customer
+
+C:\Users\chbhagavaan98\ARMS\validation1>py manage.py migrate
+Operations to perform:
+  Apply all migrations: admin, application, auth, contenttypes, sessions
+Running migrations:
+  Applying application.0005_customer_min_value_id... OK
+
+C:\Users\chbhagavaan98\ARMS\validation1>py manage.py shell
+Python 3.10.0 (tags/v3.10.0:b494f59, Oct  4 2021, 19:00:18) [MSC v.1929 64 bit (AMD64)]
+Type 'copyright', 'credits' or 'license' for more information
+IPython 8.11.0 -- An enhanced Interactive Python. Type '?' for help.
+
+In [1]: from application.models import Customer
+
+In [2]: c=Customer(name="satish",address="ameerpeta",email="satish@gmail.com",aadhar=2*33-2,value_less_zero=-14,name_upper="satish",min_value_id=26)
+
+In [3]: c.full_clean()
+
+In [4]: c.save()
+
+id      name            address         email                   aadhar         value_less_zero  name_upper   min_value_id
+1	bhagavaan	hyderabad	bhagavaan@gmail.com	12356478956432	-1		              25
+2	eshwar	        mumbai	        eshwar@gmail.com	12356478956432	-1		              25
+3	pavan	        vizag	        pavan@gmail.com	        12354698766545	-1		              25
+4	sravan	        amp	        sravan@gmail.com	6554298766545	-1		              25
+5	sravan	        amp	        sravan@gmail.com	126	        -1	               	      25
+6	pratap	        rjy	        pratap@gmail.com	62	        -5	                      25
+7	pratap	        rjy	        pratap@gmail.com	62	        25		              25
+8	vadeppa	        srnagar	        vadeppa@gmail.com	30	       -10	         VADDEPPA     25
+9	suma	        raidurgam	suma@gmail.com	        62	       -15	         SUMA	      25
+10	satish	        ameerpeta	satish@gmail.com	64	       -14	         SATISH	      26
+
+
+In [5]: c=Customer(name="satish",address="ameerpeta",email="satish@gmail.com",aadhar=2*33-2,value_less_zero=-14,name_upper="satish",min_value_id=10)
+
+In [6]: c.full_clean()
+---------------------------------------------------------------------------
+ValidationError                           Traceback (most recent call last)
+Cell In[6], line 1
+----> 1 c.full_clean()
+
+File ~\AppData\Local\Programs\Python\Python310\lib\site-packages\django\db\models\base.py:1496, in Model.full_clean(self, exclude, validate_unique, validate_constraints)
+   1493         errors = e.update_error_dict(errors)
+   1495 if errors:
+-> 1496     raise ValidationError(errors)
+
+ValidationError: {'min_value_id': ['value should greater than zero']}
+
+
+
+In [7]: c=Customer(name="vamshi",address="balanagar",email="vamshi@gmail.com",aadhar=2*34-2,value_less_zero=-16,name_upper="vamshi",min_value_id=30)
+
+In [8]: c.full_clean()
+
+In [9]: c.save()
+
+id      name            address         email                   aadhar         value_less_zero  name_upper   min_value_id
+1	bhagavaan	hyderabad	bhagavaan@gmail.com	12356478956432	-1		              25
+2	eshwar	        mumbai	        eshwar@gmail.com	12356478956432	-1		              25
+3	pavan	        vizag	        pavan@gmail.com	        12354698766545	-1		              25
+4	sravan	        amp	        sravan@gmail.com	6554298766545	-1		              25
+5	sravan	        amp	        sravan@gmail.com	126	        -1	               	      25
+6	pratap	        rjy	        pratap@gmail.com	62	        -5	                      25
+7	pratap	        rjy	        pratap@gmail.com	62	        25		              25
+8	vadeppa	        srnagar	        vadeppa@gmail.com	30	       -10	         VADDEPPA     25
+9	suma	        raidurgam	suma@gmail.com	        62	       -15	         SUMA	      25
+10	satish	        ameerpeta	satish@gmail.com	64	       -14	         SATISH	      26
+11	vamshi	        balanagar	vamshi@gmail.com	66	       -16	         VAMSHI	      30
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
