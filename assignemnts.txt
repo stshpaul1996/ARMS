@@ -17,4 +17,8 @@
 9) define models for your project, write some validators to your model fields, Migrate those models to database.
 10) prepare some shell notes, to insert some rows in to database tables. call full_clean method to show the validations.
 11) Prepare abstract models for your project
+12) develope a sample project which has three applications.
+        seperate urls
+        seperate templeates with the same template name in each application templates folder.
+        if I call app1/url, that has to render app1/templates/a.html
 
