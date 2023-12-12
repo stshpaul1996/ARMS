@@ -15,17 +15,25 @@ def check_negative(value):
 class EncryptionField(models.TextField):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
+    
+    def from_db_value(self, value, expression, connection):
+            # Convert the database value to Python value
+            # This method is used when retrieving data from the database
+            if value is not None:
+                fernet = Fernet(settings.SECRET_KEY.encode('utf-8'))
+                decrypted_value = fernet.decrypt(value[len('$encrypted$'):].encode('utf-8')).decode('utf-8')
+                return decrypted_value
+            print(value)
+            return value
 
-    def to_python(self, value):
+    # def to_python(self, value):
         
-        if value is not None and value.startswith('$encrypted$'):
-            fernet = Fernet(settings.SECRET_KEY.encode('utf-8'))
-            print(fernet)
-            decrypted_value = fernet.decrypt(value[len('$encrypted$'):].encode('utf-8')).decode('utf-8')
-            print(decrypted_value)
-            return decrypted_value
-        print(value)
-        return value
+    #     if value is not None and value.startswith('$encrypted$'):
+    #         fernet = Fernet(settings.SECRET_KEY.encode('utf-8'))
+    #         decrypted_value = fernet.decrypt(value[len('$encrypted$'):].encode('utf-8')).decode('utf-8')
+    #         return decrypted_value
+    #     print(value)
+    #     return value
         
 
     def get_prep_value(self, value):
