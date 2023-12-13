@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>{{result.name}}</title>
+
+        <style>
+            .bg{
+                background-image: url("/static/app/images/bg1.jpg");
+                
+                background-size: cover;
+                text-align: center;
+            }
+            .background{
+                background-color:rgba(60, 51, 102, 0.533);
+                padding:10px;
+                margin: 300px;
+            }
+            .head{
+                color:red;
+            }
+            .para{
+                color:white;
+            }
+        </style>
+    </head>
+    <body>
+        {% if result %}
+        <div class="bg">
+         <div class="background">   
+        <h1 class="head">{{result.name1}}</h1>
+        <img src={{result.img}} height="350" width="250" />
+        <p class="para">{{result.content}}</p>
+        {% else %}
+        <h1> {{result.name}}</h1>
+        {% endif %}
+        </div>
+       </div>
+        
+        
+    </body>
+</html>

@@ -1,0 +1,5 @@
+travel_details={"taj":{"name1":"Tajmahal","img":"/static/app/images/img1_taj.png",
+               "content":"Taj Mahal, mausoleum complex in Uttar Pradesh in northern India,built by the Mughal emperor Shah Jahan in the 17th century. The complex houses the tombs of Shah Jahan and one of his wives, known as Mumtaz Mahal. Its stunning architecture has made it one of the most iconic monuments in the world today."},
+        "effiel":{"name1":"Effiel Tower","img":"/static/app/images/img2_effiel.png","content":"The Eiffel Tower is a famous monument in Paris that symbolizes the city and France. It was constructed in the late 19th century for a world exhibition"},
+        "sob":{"name1":"Statue Of Liberty","img":"/static/app/images/img3_sob.png","content":"Statue of Liberty, colossal statue in New York City, U.S., commemorating the friendship of the peoples of the United States and France. Standing 305 feet high, it represents a woman holding a torch in her raised right hand and a tablet bearing the adoption date of the Declaration of Independence in her left."}
+}
