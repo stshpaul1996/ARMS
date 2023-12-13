@@ -1,0 +1,71 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="{% static 'app1/style/index.css' %}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous" />
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+    
+
+</head>
+
+<body>
+    {% include 'app1/header.html' %}
+    <div class="d-flex flex-row justify-content-center bg-dark">
+    <div class="bg-home-page home-height" id="sectionHome">
+        <h1 class="home-head m-5">
+            Empower Yourself
+        </h1>
+        <p class="home-para">
+            By learning new courses from worlds leading experts
+        </p>
+       
+            <div class="d-flex flex-row">
+                <a href="/app1/tech/">
+                <div class="home-cont1 d-flex flex-column justify-content-center" onclick="display('sectionTechnolgy')">
+                    <img src="https://assets.ccbp.in/frontend/static-website/articles-technology-icon-img.png" class="image-cont1" />
+                    <h1 class="head-cont1">
+                        Technology
+                   </h1>
+                </a></div>
+                <a href="/app1/science/">
+                    <div class="home-cont1 d-flex flex-column justify-content-center" onclick="display('sectionScience')">
+                        <img src="https://assets.ccbp.in/frontend/static-website/articles-science-icon-img.png" class="image-cont1" />
+                        <h1 class="head-cont1">
+                            Science
+                        </h1>
+                    </div>
+
+                </a>
+                
+
+            </div>
+        
+        
+        <div class="d-flex flex-row">
+            <a href="/app1/health/">
+                <div class="home-cont1 d-flex flex-column justify-content-center" onclick="display('sectionHealthCare')">
+                    <img src="https://assets.ccbp.in/frontend/static-website/articles-healthcare-icon-img.png" class="image-cont1" />
+                    <h1 class="head-cont1">
+                        Healthcare
+                    </h1>
+                </div>
+            </a>
+           <a href="/app1/business/">
+            <div class="home-cont1 d-flex flex-column justify-content-center" onclick="display('sectionBusiness')">
+                <img src="https://assets.ccbp.in/frontend/static-website/articles-business-icon-img.png" class="image-cont1" />
+                <h1 class="head-cont1">
+                    Business
+                </h1>
+            </div>
+           </a>
+            
+        </div>
+    </div>
+</div>
+</body>
+
+</html>
