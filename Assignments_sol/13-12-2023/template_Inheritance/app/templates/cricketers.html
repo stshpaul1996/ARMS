@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{name}}</title>
+</head>
+<body>
+<img src=" {% static image %}">
+<p>{{content}} </p>
+{%block data%}
+<h1> i am crickter</h1>
+<img src=" {% static image %}">
+<p>{{content}} </p>
+{% endblock%}
+</body>
+</html>

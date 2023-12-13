@@ -1,0 +1,2 @@
+14) Design a URL app1/name:  app1/kohli  name: kohli: load kohli image from static and kohli data from constants.py
+                name: rohit: load rohit image from static and rohit data from constants.py
