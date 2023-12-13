@@ -1,4 +1,4 @@
-"""three_app URL Configuration
+"""templates_project URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/4.1/topics/http/urls/
@@ -18,7 +18,5 @@ from django.urls import path,include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('app1/',include('application1.urls')),
-    path('app2/',include('application2.urls')),
-    path('app3/',include('application3.urls')),
+    path('',include('application.urls'))
 ]

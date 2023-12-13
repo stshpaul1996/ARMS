@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        {% block title_block %}
+            home page
+        {% endblock %}
+    </title>
+</head>
+<body>
+    <img src="/static/app1/images/movie.jfif" alt="image is not available">
+    <h1>This site explains about the movies</h1>
+    <ul>
+        <li><a href="animal">animal</a></li>
+        <li><a href="hi">hi nanna</a></li>
+        <li><a href="kota">kotabomalli</a></li>
+        <li><a href="extra">extra:ordinary man</a></li>
+    </ul>
+    {% block body_block %}
+    {% endblock %}
+</body>
+</html>
