@@ -1,0 +1,20 @@
+<html>
+    <head>
+        
+    </head>
+    <body>
+        {% if details %}
+        <div text:center>
+          <h1>NAME: {{details.name}}</h1>
+          <img src ={{details.img}} height = 200 width = 200/>
+          <h2>EMP_ID: {{details.emp_id}}</h2>
+          <h3>LOCATION: {{details.location}} </h3>
+        </div>
+        {% else %}
+          <h1>{{ name }}</h1>
+          
+      
+        {% endif %}
+
+    </body>
+</html>
