@@ -1,0 +1,1 @@
+data = {"kohli": {"content": "", "image_path": ""}}
