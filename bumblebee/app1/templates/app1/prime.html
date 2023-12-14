@@ -1,13 +1,24 @@
+{%extends "app1/home.html"%}
+{% block title %}
+  Optimus Prime
+{% endblock %}
+{% block content %}
+{% load static %}
+<a href="../">BACK</a>
 <html>
-  <head> </head>
   <body> 
-    <h1>Optimus Pime</h1>
-    <img width="200" height="200" src="\static\app1\images\prime.jpg">
-    <ul> 
-      <li>He is the chief of Autobots</li>
-      <li>He can tranform into Truck</li>
-      <li>His main weapon is Sword</li>
-      <a href="../">BACK</a>
-    </ul>
+    <h1>Optimus Prime</h1>
+    <img width="300" height="300" src="{% static data1.prime.image %}">
+    <p>{{data1.prime.context}}</p>
+    <!-- <h1>Optimus Prime</h1>
+    <img width="300" height="300" src="\static\app1\images\prime.jpg">
+    <p>Optimus Prime (formerly known as Orion Pax) is constantly, if not always, depicted as having strong moral character, 
+      excellent leadership, and sound decision-making skills, and possesses brilliant military tactics, 
+      powerful martial arts, and advanced extraterrestrial weaponry. Optimus Prime has a strong sense of honor and justice, 
+      being dedicated to building peaceful and mutually beneficial co-existence with humans, the protection of life and liberty of all sentient species. 
+      As the current Matrix of Leadership bearer, Optimus Prime is the de facto leader of the Autobots, 
+      a faction of a transforming species of synthetic intelligence from the planet Cybertron. 
+      The Autobots are constantly waging civil war against a rival faction of transforming robots called Decepticons.</p> -->
   </body>
 </html>
+{% endblock %}

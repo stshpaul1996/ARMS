@@ -1,13 +1,23 @@
+{%extends "app1/home.html"%}
+{% block title %}
+  Bumblebee
+{% endblock %}
+{% block content %}
+{% load static %}
+<a href="../">BACK</a>
 <html>
-  <head> </head>
   <body> 
     <h1>Bumblebee</h1>
-    <img width="200" height="200" src="\static\app1\images\bumblebee.jpeg">
-    <ul> 
-      <li>He is friend of Optimus Prime</li>
-      <li>He can tranform into car</li>
-      <li>His main weapon is gun</li>
-      <a href="../">BACK</a>
+    <img width="300" height="300" src="{% static data.bumble.image %}">
+    <p>{{data.bumble.context}}</p>
+    <!-- <img width="300" height="300" src="\static\app1\images\bumblebee.jpeg">
+    <p>Bumblebee (known as Abejorro in Mexico, Bumble in Japan, Moscardo in Portugal, Űrdongó in Hungary, Maggiolino in Italy) 
+      is the "little brother" of the heroic Autobots and a mascot, constantly striving to prove himself in the eyes of the other 
+      robots—especially his leader, Optimus Prime. This often causes him to take risks and put himself in danger. 
+      He is portrayed as a smart aleck, a capable, reliable messenger and spy, and his small size allows him to go places that his larger 
+      commanders cannot. He is highly fuel-efficient, has great visual acuity, is particularly adaptable to undersea environments, and 
+      transforms into a Saturn yellow Volkswagen Beetle.</p> -->
     </ul>
   </body>
 </html>
+{% endblock %}
