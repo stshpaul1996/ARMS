@@ -1,7 +1,13 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from app1.models import Cricketers
+#from .constants import data
 
 # Create your views here.
+def cricketers_view(request):
+    data = Cricketers.objects.all()
+    return render(request, "app1/cricketers.html", 
+                  {"cricketers_data": data, "header": "LIST OF CRICKETERS"})
 
 def cricketer_view_id(request, cricketer_id):
     import pdb;pdb.set_trace()

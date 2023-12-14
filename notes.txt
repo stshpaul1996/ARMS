@@ -83,3 +83,11 @@ How Django knows to UPDATE vs. INSERT
 specify which fields to update:
     product.name = "Name changed again"
     product.save(update_fields=["name"])
+
+
+urlpatterns = [
+    re_path(r"^index/$", views.index, name="index"),
+    re_path(r"^bio/(?P<username>\w+)/$", views.bio, name="bio"),
+    re_path(r"^blog/", include("blog.urls")),
+    ...,
+]
