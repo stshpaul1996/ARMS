@@ -1,0 +1,28 @@
+{% load static%}
+{% include 'navbar.html' %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Details</title>
+</head>
+<body>
+    <div class='container'>
+    <h3>{{ header }}</h3>
+    <table class="table table-striped">
+        <tr class="table-primary">
+            <th>Name</th>
+            <th>Price</th>
+            <th>Image</th>
+        </tr>
+        {% for product in data  %}
+        <tr>
+            <td>{{product.name}}</td>
+            <td>{{product.price}}</td>
+            <td><img src="{{ product.img }}"></td>
+        </tr>
+        {% endfor %}
+    </div>
+    </table>
+</body>
+</html>

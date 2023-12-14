@@ -1,0 +1,13 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ name }} Details</title>
+</head>
+<body>
+    <h1>{{ name }} Details</h1>
+    <img src="{% static data.image_path %}" alt="{{ name }} Image">
+    <p>{{ data.content }}</p>
+    
+</body>
+</html>
