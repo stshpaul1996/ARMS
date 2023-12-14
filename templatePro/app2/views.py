@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 # Create your views here.
-from .constants import data
+from .models import Person
 
 
 def home_view(request):
@@ -9,19 +9,16 @@ def home_view(request):
     return HttpResponse(data)
 
 def details_view(request, name):
-    
-    for i,j in data.items():
-        persons = ['patal', 'ambedkar', 'apj', 'atal', 'baba', 'teresa', 'nehru', 'chari', 'gandhi']
-        
-        if i == name:
-            var = j
-            persons.remove(i)
-        
-            #persons_str = ','.join(persons)
-            
-            return render(request, "app2/index.html",{'var':var, 'name':name, 'persons':persons})
-        
-       
 
+    get_persons = Person.objects.all()
+
+    # for i,j in enumerate(get_persons):
+    #     persons = [ 'ambedkar', 'apj', 'gandhi', 'chari', 'patal', 'nehru', 'teresa','atal', 'baba']
+        
+    #     if name == persons[i]:
+
+    #         persons.remove(name)
+            
+    return render(request, "app2/index.html", {'content': get_persons})
+        
     
-    return HttpResponse(name)

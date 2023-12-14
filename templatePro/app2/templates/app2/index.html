@@ -2,19 +2,35 @@
 <html>
     <head>
         <title>{{name}}</title>
+        <style>
+            .bg{
+                background-image: linear-gradient(#d56712, #f1f3ec,#457c49);
+                text-align: center;
+                height: 100vh;
+                color: rgb(68, 54, 54);
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+            }
+
+            .img{
+                border-radius: 100%;
+            }
+
+            p{
+                font-size: 20px;
+            }
+        </style>
     </head>
     <body>
-        
-        <div style="text-align: center;">
         {% include 'app2/base.html' %}
-        <h1>You can try these names also:- {{persons}}</h1>
-      
-        <img src={{var.img}} height="350" width="250" />
-        <h1>{{var.name}}</h1>
-        <p>{{var.content}}</p>
-
+        {% for i in content %}
+        <div class="bg">
+            <img src={{i.img}} class="img" height="350" width="350" />
+            <h1>{{i.name}}</h1>
+            <p>{{i.content}}</p>
         </div>
-        
-        
+        {% endfor %}
     </body>
 </html>
