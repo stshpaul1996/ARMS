@@ -15,7 +15,7 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path,include
 from django.http import HttpResponse
 
 import os
@@ -59,14 +59,14 @@ def get_users(request):
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path("pern", per_env_var),
-    path("sess", ses_env_var),
-    path("set/", set_env),
-    path("get/", get_env),
-    path("ram/", get_ram),
-    path("os/", get_os),
-    path("cores", get_cores),
-    path("user/", get_users)
+    # path("pern", per_env_var),
+    # path("sess", ses_env_var),
+    # path("set/", set_env),
+    # path("get/", get_env),
+    # path("ram/", get_ram),
+    # path("os/", get_os),
+    # path("cores", get_cores),
+    # path("user/", get_users),
+    path("resources/", include("resourcesApp.urls"))
+
 ]
-
-
