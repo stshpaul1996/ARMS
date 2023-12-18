@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Father's Name</th>
+      <th>Designation</th>
+      <th>Address</th>
+      <th>Phone Number</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for employee in data %}
+      <tr>
+        <td>{{ employee.name }}</td>
+        <td>{{ employee.father_name }}</td>
+        <td>{{ employee.designation }}</td>
+        <td>{{ employee.address }}</td>
+        <td>{{ employee.phone_number }}</td>
+      </tr>
+    {% endfor %}
+  </tbody>
+</table>
+<!--<table>-->
+<!-- data.as_table(header_list=["Name", 'father_name',"Designation",'address', "Phone Number"]) -->
+<!--</table>-->
+</body>
+</html>

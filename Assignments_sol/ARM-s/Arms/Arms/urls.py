@@ -1,5 +1,5 @@
 """
-URL configuration for template_Inheritance project.
+URL configuration for Arms project.
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/4.2/topics/http/urls/
@@ -15,10 +15,13 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path,include
+from django.urls import path
+from arm import views
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('app1',include('app1.urls')),
-    path('app/',include('app.urls')),
+    path('employee/',views.register_employee,name='register_employee' ),
+    path('pricipal/',views.register_principal_consultant,name='register_principal_consultant'),
+    path('exit/', views.register_Employee_exit, name='register_Employee_exit'),
+    path('deployed/', views.register_Deployed, name='register_Deployed'),
 
 ]
