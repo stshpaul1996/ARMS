@@ -1,0 +1,39 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>aspirant form</title>
+</head>
+<body>
+    <form method="post">
+        {% csrf_token %}
+        
+        full_name:<input type="text" name="full_name"><br><br>
+        email:<input type="text" name="email"><br><br>
+        phone_no:<input type="number" name="phone_no"><br><br>
+        gradution:<input type="text" name="gradution"><br><br>
+        post_gradution:<input type="text" name="post_gradution"><br><br>
+        stream:<input type="text" name="stream"><br><br>
+        passed_out_year:<input type="number" name="passed_out_year"><br><br>
+        trained_on_technology:<input type="text" name="trained_on_technology"><br><br>
+        trained_institue:<input type="text" name="trained_institue"><br><br>
+        duration_of_course:<input type="text" name="duration_of_course"><br><br>
+        reference_name:<input type="number" name="reference_name"><br><br>
+        hear_about_interview:<input type="text" name="hear_about_interview"><br><br>
+        experience:<input type="text" name="experience"><br><br>
+        Previous_company_name:<input type="text" name="Previous_company_name"><br><br>
+        current_ctc:<input type="number" name="current_ctc"><br><br>
+        expected_ctc:<input type="number" name="expected_ctc"><br><br>
+        last_company:<input type="text" name="last_company"><br><br>
+        years_of_experience:<input type="text" name="years_of_experience"><br><br>
+        created_at:<input type="text" name="created_at"><br><br>
+    
+        <input type="submit">
+        <h3>{{message}}</h3>
+        <!-- <h4>{{ins.application_no}}</h4> -->
+        <h4>{{l}}</h4>
+
+
+    </form>
+</body>
+</html>

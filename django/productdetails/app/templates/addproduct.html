@@ -1,0 +1,20 @@
+{% load static %}
+{% include 'navbar.html' %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Product</title>
+</head>
+<body>
+    <form method="post" action="">
+        {% csrf_token %}
+        Name:<input type="text" name="product_name"><br>
+        Price:<input type="text" name="product_price"><br>
+        Image:<input type="text" name="product_img"><br>
+        <input type="submit">
+
+    </form>
+    <h3>{{message}}</h3>
+</body>
+</html>

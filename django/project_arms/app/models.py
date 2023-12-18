@@ -2,7 +2,6 @@ from django.db import models
 
 # Create your models here.
 class Aspirant(models.Model):
-    application_no = models.IntegerField(null=True,verbose_name='Appliation_Number')
     full_name = models.CharField(max_length=50,null=True,verbose_name='Full Name')
     email = models.EmailField(max_length=50,null=True,verbose_name='Email_ID')
     phone_no = models.CharField(max_length=13,null=True,verbose_name='Phone Number')
@@ -35,8 +34,8 @@ class Rounds(models.Model):
     feedback_technical=models.TextField(max_length=52)
     isselected = models.BooleanField(default=False)
     feedback=models.TextField(max_length=250)
-    aspirantsid=models.ForeignKey(Aspirant,on_delete=models.CASCADE)
+    aspirantsid=models.ForeignKey(Aspirant,on_delete=models.PROTECT)
 
 class Onboared(models.Model):
     Onboarded=models.BooleanField(default=False)
-    Aspirantid=models.ForeignKey(Aspirant,on_delete=models.CASCADE)
+    Aspirantid=models.ForeignKey(Aspirant,on_delete=models.PROTECT)
