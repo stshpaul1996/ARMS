@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>UPLOAD PAGE</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        header {
+            background-color: skyblue;
+            padding: 20px;
+            text-align: center;
+        }
+
+        footer {
+            background-color: lightbrown;
+            padding: 10px;
+            text-align: center;
+        }
+
+        form {
+            margin: 20px;
+        }
+
+        input {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Welcome to aja registration portal</h1>
+    </header>
+    <form method="post" novalidate>
+        {% csrf_token %}
+        {{form.as_p}}
+        <input type="submit">
+        {{message}}
+    </form>
+</body>
+</html>
