@@ -1,9 +1,39 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from app1.models import Cricketers
+from app1.forms import CricketerForm, CricketerModelForm
 #from .constants import data
 
 # Create your views here.
+def cricketer_add_view(request):
+    message = ""
+    errors = ""
+    if request.method == "POST":
+        #data = request.POST
+        # print(data['cricketer_name'])
+        # print(data['cricketer_image_path'])
+        # cricketer_inst = Cricketers(name=data['cricketer_name'], 
+        # 
+        #                             image_path=data['cricketer_image_path'])
+        """
+        cricketer_inst = Cricketers(name=data['name'], 
+                                    image_path=data['image_path'])
+        cricketer_inst.save()# this line insert data in to database
+        message = "Cricketer created successfully"
+        
+        """
+        form = CricketerModelForm(data=request.POST)
+        if form.is_valid():
+            form.save()
+        else:
+            errors = form.errors
+            return render(request, "app1/add_cricketer.html", {"message": message, "form": form, "errors": errors})
+        return redirect("/app1/cricketers/")
+    else:
+        message=""
+        form = CricketerModelForm()
+    return render(request, "app1/add_cricketer.html", {"message": message, "form": form})
+
 def cricketers_view(request):
     data = Cricketers.objects.all()
     return render(request, "app1/cricketers.html", 
