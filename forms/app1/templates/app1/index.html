@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+  <head> 
+    <title>
+        {{ var.first_name }}
+    </title>
+    <style>
+      body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+      }
+
+      header {
+        background-color: skyblue;
+        padding: 20px;
+        text-align: center;
+      }
+
+      footer {
+        background-color: lightbrown;
+        padding: 10px;
+        text-align: center;
+      }
+
+      table {
+        border-collapse: collapse;
+        width: 100%;
+      }
+
+      th, td {
+        border: 1px solid black;
+        padding: 8px;
+        text-align: left;
+      }
+    </style>
+  </head>
+  <body> 
+    <header>
+      <h1>Details of the Registered Person </h1>
+    </header>
+
+    <table>
+      <tr>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Email ID</th>
+        <th>Phone Number</th>
+      </tr>
+      {% for i in data1 %}
+        <tr>
+          <td>{{ i.first_name }}</td>
+          <td>{{ i.last_name }}</td>
+          <td>{{ i.email_ID }}</td>
+          <td>{{ i.phone_No }}</td>
+        </tr>
+      {% endfor %}
+    </table>
+
+    <footer>
+      <p>Your Footer Content Here</p>
+    </footer>
+  </body>
+</html>

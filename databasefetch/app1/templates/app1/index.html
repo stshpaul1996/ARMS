@@ -1,0 +1,29 @@
+<html>
+  <head> 
+    <title>
+        {{ data.i.name }}
+    </title>
+  </head>
+  <body> 
+    <table>
+      {% for i in data1 %}
+        <tr>
+          <td>
+            <img src="{{ i.image_path }}" height="400" width="400">
+          </td>
+        </tr>
+        <tr>
+          <td>
+            {{i.name}}
+          </td>
+        </tr>
+        <tr>
+          <td>
+            {{ i.description }}
+          </td>
+        </tr>
+      {% endfor %}
+    </table>
+  </body>
+</html>
+

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>UPLOAD PAGE</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        header {
+            background-color: skyblue;
+            padding: 20px;
+            text-align: center;
+        }
+
+        footer {
+            background-color: lightbrown;
+            padding: 10px;
+            text-align: center;
+        }
+
+        form {
+            margin: 20px;
+        }
+
+        input {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Welcome to aja registration portal</h1>
+    </header>
+
+    <form method="post">
+        {% csrf_token %}
+
+        first_name: <input type="text" name="First Name"><br>
+        last_name: <input type="text" name="Last Name/Surname"><br>
+        email_ID: <input type="text" name="Email"><br>
+        phone_No: <input type="text" name="Phone Number"><br>
+        graduation: <input type="text" name="Graduation"><br>
+        stream: <input type="text" name="Graduation Stream"><br>
+        grad_yop: <input type="text" name="Graduation Passed out year"><br>
+        post_graduation: <input type="text" name="Post Graduation"><br>
+        Pg_Stream: <input type="text" name="Post Graduation Stream"><br>
+        Pg_Passed_Out_Year: <input type="text" name="Post Graduation Graduation Passed out year"><br>
+        Trained_On_Technology: <input type="text" name="Trained On Technology"><br>
+        Institute_Name: <input type="text" name="Institute Name"><br>
+        Duration_of_course: <input type="text" name="Duration of course"><br>
+        Reference_Name: <input type="text" name="Reference Name"><br>
+        hear_about_the_interview: <input type="text" name="Where did you heard about the interview"><br>
+        Experience: <input type="text" name="Experience"><br>
+        Previous_company_Name: <input type="text" name="Previous company Name"><br>
+        Current_CTC: <input type="text" name="Current CTC"><br>
+        Expected_CTC: <input type="text" name="Expected CTC"><br>
+        PF_in_Last_Company: <input type="text" name="PF in Last Company"><br>
+        <input type="submit">
+        {{message}}
+    </form>
+</body>
+</html>
