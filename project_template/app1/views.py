@@ -22,8 +22,10 @@ def cricketer_add_view(request):
         message = "Cricketer created successfully"
         
         """
-        form = CricketerModelForm(data=request.POST)
+        form = CricketerModelForm(data=request.POST, files=request.FILES)
+        #import pdb;pdb.set_trace()
         if form.is_valid():
+            # it will call the validators of models
             form.save()
         else:
             errors = form.errors

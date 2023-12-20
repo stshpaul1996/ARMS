@@ -11,7 +11,4 @@ urlpatterns = [
     path("<str:cricketer>/", cricketer_view), #/app1/rohit: cricketer_view(request_obj, cricketer='rohit')
     path("<int:cricketer_id>/", cricketer_view_id), #/app1/rohit: cricketer_view(request_obj, cricketer='rohit')
     path("kohli/", kohli_view),
-    
-    
-
 ] 

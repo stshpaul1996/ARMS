@@ -2,7 +2,7 @@
 {% block data%}
 <h3>{{ message }}</h3>
 <h4> {{ errors }}</h4>
-<form method="post">
+<form method="post" enctype='multipart/form-data'>
     {% csrf_token %}
     <!-- name: <input type="text" name="cricketer_name"><br>
     image_path: <input type="text" name="cricketer_image_path"><br>
