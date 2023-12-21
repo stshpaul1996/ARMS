@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>UPLOAD PAGE</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        header {
+            background-color: skyblue;
+            padding: 20px;
+            text-align: center;
+        }
+
+        footer {
+            background-color: lightbrown;
+            padding: 10px;
+            text-align: center;
+        }
+
+        form {
+            margin: 20px;
+        }
+
+        input {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <img src="/media/images/cricket_logo.jpg" alt="Logo" height="200" width="200">
+        <h1>Welcome to Upload Page of Cricketer</h1>
+    </header>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{form.as_p}}
+        <input type="submit">
+        {{message}}
+    </form>
+</body>
+</html>

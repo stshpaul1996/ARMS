@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+        }
+
+        #logo {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 0 auto; /* Center the logo */
+        }
+
+        table {
+            width: 80%;
+            margin: 20px auto;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 10px;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+
+        th {
+            background-color: #333;
+            color: #fff;
+        }
+
+        p {
+            text-align: justify;
+            margin: 0 20px; /* Adjust the margin as needed */
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <img src="/media/images/cricket_logo.jpg" alt="Logo" height="200" width="200">
+    <h1>Welcome to IPL cricket</h1>
+</header>
+
+<p>
+    The Indian Premier League (IPL) stands as a pinnacle of cricketing excitement, captivating audiences worldwide since its inception in 2008. 
+    This professional Twenty20 cricket league in India has become a global phenomenon, renowned for its electrifying matches and star-studded 
+    line-ups featuring top international and Indian players. More than a sporting event, the IPL is a celebration of athleticism and entertainment,
+    showcasing iconic franchises like Mumbai Indians and Chennai Super Kings. The tournament's dynamic format, combining fierce competition with 
+    a festive atmosphere, has elevated it to the status of a cricketing carnival.
+</p>
+
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Image</th>
+            <th>Video</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for i in data1 %}
+            <tr>
+                <td>{{ i.name }}</td>
+                <td><img src="/media/{{ i.image_path }}" height="200" width="200" alt="Cricketer Image"></td>
+                <!-- <p>{{ i.image_path }}</p>
+                <p>{{ i.video }}</p> -->
+                <td>
+                    <video width="320" height="240" controls>
+                        <source src="/media/{{ i.video }}" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<!-- Your page content goes here -->
+
+</body>
+</html>
