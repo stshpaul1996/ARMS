@@ -27,7 +27,7 @@ def aspirant_view(request):
     errors=''
     if request.method=='POST':
         data=request.POST
-        if data.get('experience', '') == 'No':
+        if data.get('experience', '') == 'NO':
             
             excluded_fields = ['Previous_company_name', 'current_ctc', 'expected_ctc', 'last_company', 'years_of_experience']
             form = AspirantForm(data=request.POST, exclude_fields = excluded_fields)
