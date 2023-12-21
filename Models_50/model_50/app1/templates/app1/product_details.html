@@ -1,0 +1,25 @@
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<center><h1>welcome to my page</h1></center>
+{% for i in obj %}
+<center><table>
+<tr>
+    <th> Product_name</th>
+    <th> Product_price</th>
+    <th> Product_image</th></tr>
+<tr>
+    <td>{{ i.product_name}}</td>
+    <td>{{ i.product_price}}</td>
+<td><img src="{{ i.product_img }}" alt="{{ product.product_name }}" width="100" height="100"></td>
+</tr>
+    </table></center>
+
+{% endfor %}
+
+</body>
+</html>

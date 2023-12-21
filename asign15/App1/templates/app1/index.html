@@ -1,0 +1,27 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<center><h1>welcome to my page</h1>
+
+<table border = "1">
+<thead>
+    <th> name</th>
+    <th> company_name</th>
+    <th> Entrepreneur_image</th></thead>
+{% for i in details %}
+<tr>
+    <td>{{ i.name}}</td>
+    <td>{{ i.company_name}}</td>
+<td><img src="{{ i.img_path }}"  width="100" height="100"></td>
+</tr>
+    
+
+{% endfor %}
+</table>
+</center>
+
+</body>
+</html>

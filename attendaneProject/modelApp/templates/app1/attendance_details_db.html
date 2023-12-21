@@ -1,0 +1,26 @@
+{% extends "navbar.html" %}
+{%block data %}
+        <form method = "POST">
+            {% csrf_token %}
+            <table border = "1">
+                <thead>
+                    <th>Emp_id</th>
+                    <th>Date</th>
+                    <th>Check_in</th>
+                    <th>Check_out</th>
+                    <th>Status</th>
+                </thead>
+                {% for i in data %}
+                <tr>
+                    
+                    <td>{{i.employee_id}}</td>
+                    <td>{{i.date}}</td>
+                    <td>{{i.check_in}}</td>
+                    <td>{{i.check_out}}</td>
+                    <td>{{i.status}}</td>
+                    
+                </tr>
+                {% endfor %}
+            </table>
+        </form>
+    {%endblock%}
