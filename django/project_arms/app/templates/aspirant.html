@@ -5,10 +5,10 @@
     <title>aspirant form</title>
 </head>
 <body>
-    <form method="post">
+    <form method="post" novalidate>
         {% csrf_token %}
-        
-        full_name:<input type="text" name="full_name"><br><br>
+        {{form.as_p}}
+        <!-- full_name:<input type="text" name="full_name"><br><br>
         email:<input type="text" name="email"><br><br>
         phone_no:<input type="number" name="phone_no"><br><br>
         gradution:<input type="text" name="gradution"><br><br>
@@ -26,12 +26,13 @@
         expected_ctc:<input type="number" name="expected_ctc"><br><br>
         last_company:<input type="text" name="last_company"><br><br>
         years_of_experience:<input type="text" name="years_of_experience"><br><br>
-        created_at:<input type="text" name="created_at"><br><br>
+        created_at:<input type="text" name="created_at"><br><br> -->
     
         <input type="submit">
         <h3>{{message}}</h3>
+        
         <!-- <h4>{{ins.application_no}}</h4> -->
-        <h4>{{l}}</h4>
+        <!-- <h4>{{l}}</h4> -->
 
 
     </form>

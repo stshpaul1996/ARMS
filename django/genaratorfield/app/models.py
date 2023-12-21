@@ -9,7 +9,7 @@ class Generator(models.Model):
     profit=models.IntegerField()
     discount=models.IntegerField()
     sellingprice = models.GeneratedField(
-        expression=models.F("costprice") + models.F("profit") + models.F("discount"),
+        expression=F("costprice") + F("profit") + F("discount"),
         output_field=models.FloatField(),
         db_persist=True,
     )
