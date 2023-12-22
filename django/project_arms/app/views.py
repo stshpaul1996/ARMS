@@ -22,7 +22,7 @@ from .forms import AspirantForm
 #         message=''
 #     return render(request,'aspirant.html',{'message':message})
 
-def aspirant_view(request):
+def add_aspirant_view(request):
     message=''
     errors=''
     if request.method=='POST':
@@ -48,4 +48,6 @@ def aspirant_view(request):
         print(request)
     return render(request,'aspirant.html',{'message':message,'form':form,'errors':errors})
 
-    
+def get_aspirant_view(request):
+    data=Aspirant.objects.all()
+    return render(request,'aspirantget.html',{'data':data})

@@ -4,5 +4,6 @@ from app import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('aspirant/',views.aspirant_view)
+    path('aspirant/',views.add_aspirant_view),
+    path('aspirantget/',views.get_aspirant_view)
 ]
