@@ -1,0 +1,38 @@
+<html>
+<form method='POST' enctype='multipart/form-data' >
+    
+    {%csrf_token%}
+    {% comment %} employee_id:<input type='text' name='employeee_id'><br>
+    first_name:<input type='text' name='first_name'><br>
+    last_name:<input type='text' name='last_name'><br>
+    email:<input type='text' name='email'><br>
+    date_of_join:<input type='date' name='date_of_join'><br>
+    technology_id:<input type='number' name='technology_id'><br>
+    mobile_no:<input type='number' name='mobile_no'><br> {% endcomment %}
+    {{form.as_p}}
+     <input type='submit' value='submit' />
+
+
+     {% comment %} <table border="1">
+    <tr>
+        <th>employee_id</th>
+        <th>first_name</th>
+        <th>last_name</th>
+        <th>email</th>
+        <th>date_of_join</th>
+        <th>technology_id</th>
+        <th>mobile_no</th>
+    </tr>
+    <tr>
+        {%for emp in res%}
+        <td>{{emp.employee_id}}</td>
+        <td>{{emp.first_name}}</td>
+        <td>{{emp.last_name}}</td>
+        <td>{{emp.email}}</td>
+        <td>{{emp.date_of_join}}</td>
+        <td>{{emp.technology_id}}</td>
+        <td>{{emp.mobile_no}}</td>
+        </tr>
+     {%endfor%} {% endcomment %}
+</form>
+</html>

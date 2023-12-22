@@ -1,0 +1,33 @@
+<table border="1">
+    <tr>
+        <th>employee_id</th>
+        <th>first_name</th>
+        <th>last_name</th>
+        <th>email</th>
+        <th>date_of_join</th>
+        <th>technology_id</th>
+        <th>mobile_no</th>
+        <th>image</th>
+        <th>video</th>
+    </tr>
+    <tr>
+        {%for emp in res%}
+        <td>{{emp.employee_id}}</td>
+        <td>{{emp.first_name}}</td>
+        <td>{{emp.last_name}}</td>
+        <td>{{emp.email}}</td>
+        <td>{{emp.date_of_join}}</td>
+        <td>{{emp.technology_id}}</td>
+        <td>{{emp.mobile_no}}</td>
+
+        <td> <img src="/media/{{emp.file}}" width = "500" height="300"/>  </td>
+        <td><video width='200' height='200' controls>
+            <source src="/media/{{emp.video}}" type='video/mp4'>
+        </video>
+        </td>
+        </tr>
+     {%endfor%}
+
+
+
+     
