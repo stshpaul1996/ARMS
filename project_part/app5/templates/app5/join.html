@@ -1,0 +1,37 @@
+<html>
+    <head>
+        <body>
+            <form method="POST">
+            {%csrf_token%}
+            is_joined:<input type="text" name="is_joined" ><br>
+            user_id:<input type="text" name="user_id"><br>
+           <input type="submit" value="submit">
+       
+            
+            <table border="1">
+                <tr>
+
+                    <th>is_joined</th>
+                    <th>user_id</th>
+                    
+                </tr>
+        {% for i in res2 %}
+            <tr>
+       
+        <td>    
+            <p>{{i.is_joined}}</p>
+        </td>    
+        <td>
+            <p>{{i.user_id}}</p>
+        </td>    
+        
+           
+        </tr>
+            {% endfor %}
+        </table>
+        </form>
+        {%csrf_token%}
+        
+        </body>
+    </head>
+</html> 

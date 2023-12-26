@@ -1,0 +1,79 @@
+<html>
+    <head>
+        <body>
+            <form method="POST">
+            {%csrf_token%}
+            online_marks:<input type="text" name="online_marks"><br>
+            online_status:<input type="text" name="online_status"><br>
+            online_feedback :<input type="text" name="online_feedback"><br>
+            tech_marks:<input type="text" name="tech_marks"><br>
+            tech_status:<input type="text" name="tech_status"><br>
+            tech_feedback:<input type="text" name="tech_feedback"><br>
+            comm_marks:<input type="text" name="comm_marks"><br>
+            comm_status:<input type="text" name="comm_status"><br>
+            comm_feedback:<input type="text" name="comm_feedback"><br>
+            is_selected:<input type="text" name="is_selected"><br>
+            <!-- user_id:<input type="text" name="user_id"><br> -->
+            <input type="submit" value="submit">
+       
+<!--             
+            <table border="1">
+                <tr>
+                    <th>online_marks</th>
+                    <th>online_status</th>
+                    <th>online_feedback</th>
+                    <th>tech_marks</th>
+                    <th>tech_status</th>
+                    <th>tech_feedback</th>
+                    <th>comm_marks</th>
+                    <th>comm_status</th>
+                    <th>comm_feedback</th>
+                    <th>is_selected</th>
+                    <th>user_id</th> 
+                    
+                </tr>
+        {% for i in res1 %}
+            <tr>
+        <td>
+            <p>{{i.online_marks}}</p>
+        </td>
+        <td>
+            <p>{{i.online_status}}</p>
+        </td>
+        <td>
+            <p>{{i.online_feedback}}</p>
+        </td>
+        <td>  
+            <p>{{i.tech_marks}}</p>
+        </td>
+        <td>  
+            <p>{{i.tech_status}}</p>
+        </td>
+        <td>
+            <p>{{i.tech_feedback}}</p>
+        </td>
+        <td>    
+            <p>{{i.comm_marks}}</p>
+        </td>
+        <td>   
+            <p>{{i.comm_status}}</p>
+        </td>
+        <td>    
+            <p>{{i.comm_feedback}}</p>
+        </td>
+        <td>    
+            <p>{{i.is_selected}}</p>
+        </td>    
+         <td>
+            <p>{{i.user_id}}</p>
+        </td>    
+        
+        
+        </tr>
+            {% endfor %}
+        </table> -->
+        </form>
+    
+        </body>
+    </head>
+</html> 

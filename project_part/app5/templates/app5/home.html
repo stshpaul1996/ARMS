@@ -1,0 +1,101 @@
+<html>
+    <head>
+        <title>Users</title>
+    </head>
+</html>
+<body>
+<table border="1">
+    <tr>
+        <th>first_name</th>
+        <th>last_name</th>
+        <th>email_id </th>
+        <th>phone_no</th>
+        <th>graduation</th>
+        <th>graduation_stream</th>
+        <th>graduation_year</th>
+        <th>post_graduation</th>
+        <th>post_graduation_stream</th>
+        <th>post_graduation_year</th>
+        <th>trained_on_technology</th>
+        <th>institute_name</th>
+        <th>course_duration</th>
+        <th>reference_name </th>
+        <th>experience</th>
+        <th>experience_years</th>
+        <th>previous_company_name</th>
+        <th>current_ctc</th>
+        <th>expected_ctc</th>
+        <th>pf</th>
+        <th>created_at</th>
+    </tr>
+{% for i in result %}
+<tr>
+<td>
+<p>{{i.first_name}}</p>
+</td>
+<td>
+<p>{{i.last_name }}</p>
+</td>
+<td>
+<p>{{i.email_id }}</p>
+</td>
+<td>  
+<p>{{i.phone_no}}</p>
+</td>
+<td>  
+<p>{{i.graduation}}</p>
+</td>
+<td>
+<p>{{i.graduation_stream }}</p>
+</td>
+<td>    
+<p>{{i.graduation_year }}</p>
+</td>
+<td>   
+<p>{{i.post_graduation}}</p>
+</td>
+<td>    
+<p>{{i.post_graduation_stream }}</p>
+</td>
+<td>    
+<p>{{i.post_graduation_year}}</p>
+</td>    
+<td>
+<p>{{i.trained_on_technology }}</p>
+</td>    
+<td>
+<p>{{i.institute_name}}</p>
+</td>
+<td>    
+<p>{{i.course_duration}}</p>
+</td> 
+<td>   
+<p>{{i.reference_name  }}</p>
+</td>
+<td>    
+<p>{{i.experience }}</p>
+</td>
+<td>    
+<p>{{i.experience_years }}</p>
+</td>
+<td>    
+<p>{{i.previous_company_name}}</p>
+</td>
+<td>    
+<p>{{i.current_ctc}}</p>
+</td>
+<td> 
+<p>{{i.expected_ctc}}</p>
+</td>
+<td>    
+<p>{{i.pf}}</p>
+</td>   
+<td>
+<p>{{i.created_at}}</p>
+</td> 
+</tr>
+{% endfor %}
+</table>
+
+</body>
+</html>
