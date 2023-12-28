@@ -1,57 +1,75 @@
 {% extends "resources/header.html" %}
-{% block data %}
-<h1 class="text-center text-success m-3"> List of Registered Candidates</h1>
-<table class="table table-responsive table-bordered table-hover">
-        <tr>
-            <th>First Name</th>
-            <th>Last Name</th>
-            <th>Email ID</th>
-            <th>Phone Number</th>
-            <th>Graduation Details</th>
-            <th>Graduation Year of passing</th>
-            <th>PG Details</th>
-            <th>PG Stream</th>
-            <th>PG Year of passing</th>
-            <th>Trained On Technology</th>
-            <th>Graduation Details</th>
-            <th>Where did you trained( Institute Name)</th>
-            <th>Duration of Course</th>
-            <th>Reference Name</th>
-            <th>Where did you hear about the interview</th>
-            <th>Do you have any work Experience</th>
-            <th>Previous Company Name </th>
-            <th>Current CTC(LPA)</th>
-            <th>Expected CTC(LPA)</th>
-            <th>Do you Have PF in Last Company</th>
-            <th>Created DateTime</th>
-        </tr>
-        {% for i in content %}
-        <tr>
-            <td>{{i.first_name}}</td>
-            <td>{{i.last_name}}</td>
-            <td>{{i.email}}</td>
-            <td>{{i.phone}}</td>
-            <td>{{i.graduation}}</td>
-            <td>{{i.stream}}</td>
-            <td>{{i.year}}</td>
-            <td>{{i.pg }}</td>
-            <td>{{i.pg_stream}}</td>
-            <td>{{i.pg_year}}</td>
-            <td>{{i.trained_technology}}</td>
-            <td>{{i.duration_course}}</td>
-            <td>{{i.reference_name}}</td>
-            <td>{{i.hear_interview}}</td>
-            <td>{{i.work_experience}}</td>
-            <td>{{i.years_experience}}</td>
-            <td>{{i.company_name}}</td>
-            <td>{{i.years_experience}}</td>
-            <td>{{i.current_ctc}}</td>
-            <td>{{i.expected_ctc}}</td>
-            <td>{{i.created_at}}</td>
-        </tr>
-        {% endfor %}
 
-    
+{% block data %}
+
+    {% if content %}
+    <h1 class="text-center text-success m-3"> List of Registered Candidates</h1>
+    <table class="table table-responsive table-bordered table-hover">
+    <tr>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Email ID</th>
+        <th>Phone Number</th>
+        <th>Graduation Details</th>
+        <th>Graduation Stream</th>
+        <th>Graduation Year of passing</th>
+        <th>PG Details</th>
+        <th>PG Stream</th>
+        <th>PG Year of passing</th>
+        <th>Trained On Technology</th>
+        <th>Where did you trained( Institute Name)</th>
+        <th>Duration of Course</th>
+        <th>Reference Name</th>
+        <th>Where did you hear about the interview</th>
+        <th>Do you have any work Experience</th>
+        <th>Previous Company Name </th>
+        <th>Current CTC(LPA)</th>
+        <th>Expected CTC(LPA)</th>
+        <th>Do you Have PF in Last Company</th>
+        <th>Created DateTime</th>
+        <th>Status</th>
+    </tr>
+    {% for i in content %}
+    <tr>
+        <td>{{i.first_name}}</td>
+        <td>{{i.last_name}}</td>
+        <td>{{i.email}}</td>
+        <td>{{i.phone}}</td>
+        <td>{{i.graduation}}</td>
+        <td>{{i.stream}}</td>
+        <td>{{i.year}}</td>
+        <td>{{i.pg }}</td>
+        <td>{{i.pg_stream}}</td>
+        <td>{{i.pg_year}}</td>
+        <td>{{i.trained_technology}}</td>
+        <td>{{i.institute_name}}</td>
+        <td>{{i.duration_course}}</td>
+        <td>{{i.reference_name}}</td>
+        <td>{{i.hear_interview}}</td>
+        <td>{{i.work_experience}}</td>
+        <td>{{i.years_experience}}</td>
+        <td>{{i.company_name}}</td>
+        <td>{{i.current_ctc}}</td>
+        <td>{{i.expected_ctc}}</td>
+        <td>{{i.created_at}}</td>
+        <td class="d-flex">
+             <a href="{% url 'update_candidate' i.id %}">
+                <button class="btn-outline-primary mr-2">Update</button>
+             </a>
+            <a href="{% url 'delete_candidate' i.id %}">
+                <button class="btn-outline-danger">Delete</button>
+            </a>
+        
+        </td>
+    </tr>
+    {% endfor %}
+
+
 </table>
+
+{% else %}
+<h1 class="text-center p-3 text-danger">No data avialble</h1>
+{% endif %}
+       
 
 {% endblock %}

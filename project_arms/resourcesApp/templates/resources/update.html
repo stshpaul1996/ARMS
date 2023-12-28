@@ -1,0 +1,67 @@
+{% extends "resources/header.html" %}
+{% block data %}
+
+<form method="POST">
+    {% csrf_token %}
+    <h1 class="text-center">Update Candidate</h1>
+            <!-- <label>First Name:- </label>
+            <input class="form-control mb-3 w-50" type="text" name="first" value={{data.first_name}} />
+            <label>Last Name:- </label>
+            <input class="form-control mb-3 w-50" type="text" name="last" value={{data.last_name}} />
+            <label>Email ID:- </label>
+            <input class="form-control mb-3 w-50" type="text" name="email" value={{data.email}} />
+            <label>Phone Number:- </label>
+            <input class="form-control mb-3 w-50" type="number" name="phone" value={{data.phone}} />
+            <label>Graduation Details:- </label>
+            <input class="form-control mb-3 w-50" type="text" name="grad" value={{data.graduation}} />
+            <label>Graduation Stream:- </label>
+            <input class="form-control mb-3 w-50" type="text" name="stream" value={{data.stream}} />
+            <label>Graduation Year of passing :- </label>
+            <input class="form-control mb-3 w-50" type="text" name="year" value={{data.year}} />
+            <label>PG Details:- </label>
+            <input class="form-control mb-3 w-50" type="text" name="pg" value={{data.pg}} />
+            <label>PG Stream:- </label>
+            <input class="form-control mb-3 w-50" type="text" name="pgstream" value={{data.pg_stream}} />
+            <label>PG Year of passing:- </label>
+            <input class="form-control mb-3 w-50" type="text" name="pgyear" value={{data.pg_year}} />
+            <label>Trained On Technology:- </label>
+            <input class="form-control mb-3 w-50" type="text" name="trainedtech" value={{data.trained_technology}} />
+            <label>Where did you trained( Institute Name):- </label>
+            <input class="form-control mb-3 w-50" type="text" name="institutename" value={{data.institute_name}} />
+            <label>Duration of Course:- </label>
+            <input class="form-control mb-3 w-50" type="text" name="duration" value={{data.duration_course}} />
+            <label>Reference Name:- </label>
+            <input class="form-control mb-3 w-50" type="text" name="reference" value={{data.reference_name}} />
+            <label>Where did you hear about the interview:- </label>
+            <input class="form-control mb-3 w-50" type="text" name="hear" value={{data.reference_name}} />
+            <label>Do you have any work Experience:- </label><br/>
+            <input type="radio" id="option1" name="work" value="Yes">
+            <label for="option1">Yes</label><br>
+            <input type="radio" id="option2" name="work" value="No">
+            <label for="option2">No</label><br>
+            <label>How Many years of Experience:- </label>
+            <input class="form-control mb-3 w-50" type="numbers" name="experience" value={{data.years_experience}} />
+            <label>Previous Company Name :- </label>
+            <input class="form-control mb-3 w-50" type="text" name="company" value={{data.company_name}} />
+            <label>Current CTC(LPA):- </label>
+            <input class="form-control mb-3 w-50" type="number" name="current" value={{data.current_ctc}} />
+            <label>Expected CTC(LPA):- </label>
+            <input class="form-control mb-3 w-50" type="number" name="expected" value={{data.expected_ctc}} />
+            <label>Do you Have PF in Last Company:- </label><br/>
+            <input type="radio" id="pfyes" name="pf" value="Yes">
+            <label for="pfyes">Yes</label><br>
+            <input type="radio" id="pfno" name="pf" value="No">
+            <label for="pfno">No</label><br> -->
+            <table align="center">
+                {{ form.as_table }}
+                
+            </table>
+            <div class="text-center mt-3">
+                <input type="submit" class="btn btn-primary" value="Submit" />
+                <input type="reset" class="btn btn-secondary" value="Reset" />
+
+            </div>
+            
+           
+</form>
+{% endblock %}

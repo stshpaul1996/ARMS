@@ -1,9 +1,18 @@
 from django.db import models
 from datetime import datetime
+from django.core.exceptions import ValidationError
 
 # Create your models here.
+
+# def check_alpha(value):
+#     if not value.isalpha():
+#         raise ValidationError("Enter only characters")
+
+
+
+
 class Resources(models.Model):
-    first_name = models.CharField(max_length=250)
+    first_name = models.CharField(max_length=250, )
     last_name = models.CharField(max_length=250)
     email = models.EmailField(max_length=250)
     phone = models.BigIntegerField()
@@ -26,6 +35,9 @@ class Resources(models.Model):
     pf = models.CharField(max_length=100, null=True)
     created_at = models.DateTimeField(default=datetime.now())
 
+    def __str__(self):
+        return f'id:{self.id} name:{self.first_name} {self.last_name}'
+
 
 class Rounds(models.Model):
     online_marks = models.FloatField()
@@ -44,4 +56,5 @@ class Rounds(models.Model):
 class OnBoarded(models.Model):
     onboard_status = models.BooleanField(default=False)
     rounds_id = models.ForeignKey(Rounds, on_delete=models.DO_NOTHING)
+
 

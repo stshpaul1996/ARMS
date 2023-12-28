@@ -1,60 +1,19 @@
 {% extends "resources/header.html" %}
-<!-- action="/resources/registered_candidates/" -->
 {% block data %}
-        <form class="p-3" method="POST">
-            {% csrf_token %}
-            <h1 class="text-center">Candidate Registration</h1>
-            <label>First Name:- </label>
-            <input class="form-control mb-3 w-50" type="text" name="first" />
-            <label>Last Name:- </label>
-            <input class="form-control mb-3 w-50" type="text" name="last" />
-            <label>Email ID:- </label>
-            <input class="form-control mb-3 w-50" type="text" name="email" />
-            <label>Phone Number:- </label>
-            <input class="form-control mb-3 w-50" type="number" name="phone" />
-            <label>Graduation Details:- </label>
-            <input class="form-control mb-3 w-50" type="text" name="grad" />
-            <label>Graduation Stream:- </label>
-            <input class="form-control mb-3 w-50" type="text" name="stream" />
-            <label>Graduation Year of passing :- </label>
-            <input class="form-control mb-3 w-50" type="text" name="year" />
-            <label>PG Details:- </label>
-            <input class="form-control mb-3 w-50" type="text" name="pg" />
-            <label>PG Stream:- </label>
-            <input class="form-control mb-3 w-50" type="text" name="pgstream" />
-            <label>PG Year of passing:- </label>
-            <input class="form-control mb-3 w-50" type="text" name="pgyear" />
-            <label>Trained On Technology:- </label>
-            <input class="form-control mb-3 w-50" type="text" name="trainedtech" />
-            <label>Where did you trained( Institute Name):- </label>
-            <input class="form-control mb-3 w-50" type="text" name="institutename" />
-            <label>Duration of Course:- </label>
-            <input class="form-control mb-3 w-50" type="text" name="duration" />
-            <label>Reference Name:- </label>
-            <input class="form-control mb-3 w-50" type="text" name="reference" />
-            <label>Where did you hear about the interview:- </label>
-            <input class="form-control mb-3 w-50" type="text" name="hear" />
-            <label>Do you have any work Experience:- </label><br/>
-            <input type="radio" id="option1" name="work" value="Yes">
-            <label for="option1">Yes</label><br>
-            <input type="radio" id="option2" name="work" value="No">
-            <label for="option2">No</label><br>
-            <label>How Many years of Experience:- </label>
-            <input class="form-control mb-3 w-50" type="numbers" name="experience" />
-            <label>Previous Company Name :- </label>
-            <input class="form-control mb-3 w-50" type="text" name="company" />
-            <label>Current CTC(LPA):- </label>
-            <input class="form-control mb-3 w-50" type="number" name="current" />
-            <label>Expected CTC(LPA):- </label>
-            <input class="form-control mb-3 w-50" type="number" name="expected" />
-            <label>Do you Have PF in Last Company:- </label><br/>
-            <input type="radio" id="pfyes" name="pf" value="Yes">
-            <label for="pfyes">Yes</label><br>
-            <input type="radio" id="pfno" name="pf" value="No">
-            <label for="pfno">No</label><br>
-           
-            
-            <button class="btn btn-primary" type="submit" value="Submit">SUBMIT</button>
-        </form>
+            <form class="p-3" method="POST">
+                {% csrf_token %}
+                <h1 class="text-center">Candidate Registration</h1>
+                <table align="center">
+                    {{ resource.as_table }}
+    
+                </table>
+                
+                <div class="text-center mt-2">
+                    <button class="btn btn-primary" type="submit" value="Submit">SUBMIT</button>
+                    <button class="btn btn-secondary" type="reset" value="reset">RESET</button>
+                </div>
+               
+            </form>
+       
 {% endblock %}
 
