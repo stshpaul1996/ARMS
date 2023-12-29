@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+{% extends "application/base.html" %}
+{% block title_block %}
+registration.html
+{% endblock %}
+
+{% block body_block %}
+
+<form method="post" action="">
+    {% csrf_token %}
+    first name: <input type="text" name="F_name" required><br><br>
+    last name: <input type="text" name="L_name" required><br><br>
+    Email_id: <input type="text" name="Email_id" required><br><br>
+    Phone number: <input type="number" name="Phone_no" required><br><br>
+    Graduation: <input type="text" name="Graduation" required><br><br>
+    Graduation stream: <input type="text" name="Graduation_Stream" required><br><br>
+    Graduation passed out year: <input type="number" name="Graduation_Passed_Out_Year" required><br><br>
+    Post Graduation: <input type="text" name="Post_Graduation" required><br><br>
+    Post Graduation Stream: <input type="text" name="Post_Graduation_Stream" required><br><br>
+    Post Gradation Passed out year: <input type="number" name="Post_Gradation_Passed_out_year" required><br><br>
+    Trained on Technology: <input type="text" name="Trained_on_Technology" required><br><br>
+    Where did you trained Institute Name: <input type="text" name="Where_did_you_trained_Institute_Name" required><br><br>
+    Duration of Course: <input type="text" name="Duration_of_Course" required><br><br>
+    Reference Name: <input type="text" name="Reference_Name" required><br><br>
+    Where did you hear about the interview: <input type="text" name="Where_did_you_hear_about_the_interview" required><br><br>
+    Experience: <input type="text" name="Experience" required><br><br>
+    Previous Company Name: <input type="text" name="Previous_Company_Name" required><br><br>
+    Current CTC: <input type="number" name="Current_CTC" required><br><br>
+    Expected CTC: <input type="number" name="Expected_CTC" required><br><br>
+    Do you Have PF in last company: <input type="text" name="Do_you_Have_PF_in_last_company" required><br><br>
+    How Many years ofExperience: <input type="text" name="How_Many_years_of_Experience" required><br><br>
+    <input type="submit" value="Submit"><br><br>
+</form>
+{% endblock %}

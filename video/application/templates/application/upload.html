@@ -1,0 +1,16 @@
+{% extends "application/base.html" %}    
+{% block title_block %}
+<title>upload.html</title>
+{% endblock %}
+
+{% block body_block %}
+<div class="container" align="center">
+    <h1>add images and videos</h1>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Upload">
+    </form>
+</div>
+{% endblock %}
+

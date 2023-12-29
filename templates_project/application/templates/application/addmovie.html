@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+{% include "application/home.html" %}
+
+<h3>{{ message }}</h3>
+<h4>{{ errors }}</h4>
+<form method="post">
+    {% csrf_token %}
+    {{form.as_p}}
+    <input type="submit" class="btn btn-primary" name="movie added">
+</form>
+
+ 

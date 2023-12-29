@@ -1,0 +1,61 @@
+{% extends "application/base.html" %}
+{% block title_block %}
+Aspirant details
+{% endblock %}
+
+{% block body_block %}
+    <div class="container">
+        <table class="table table-striped" border=2>
+            <tr class="table-secondary">
+                <th>first name</th>
+                <th>last name</th>
+                <th>Email_id</th>
+                <th>Phone number</th>
+                <th>Graduation</th>
+                <th>Graduation stream</th>
+                <th>Graduation passed out year</th>
+                <th>Post Graduation</th>
+                <th>Post Graduation Stream</th>
+                <th>Post Gradation Passed out year</th>
+                <th>Trained on Technology</th>
+                <th>Where did you trained Institute Name</th>
+                <th>Duration of Course</th>
+                <th>Reference Name</th>
+                <th>Where did you hear about the interview</th>
+                <th>Experience</th>
+                <th>Previous Company Name</th>
+                <th>Current CTC</th>
+                <th>Expected CTC</th>
+                <th>Do you Have PF in last company</th>
+                <th>How Many years ofExperience</th>
+            </tr>
+        <tbody>
+            {% for i in d %}
+            <tr>
+                <td>{{i.F_name}}</td>
+                <td>{{i.L_name}}</td>
+                <td>{{i.Email_id}}</td>
+                <td>{{i.Phone_no}}</td>
+                <td>{{i.Graduation}}</td>
+                <td>{{i.Graduation_Stream}}</td>
+                <td>{{i.Graduation_Passed_Out_Year}}</td>
+                <td>{{i.Post_Graduation}}</td>
+                <td>{{i.Post_Graduation_Stream}}</td>
+                <td>{{i.Post_Gradation_Passed_out_year}}</td>
+                <td>{{i.Trained_on_Technology}}</td>
+                <td>{{i.Where_did_you_trained_Institute_Name}}</td>
+                <td>{{i.Duration_of_Course}}</td>
+                <td>{{i.Reference_Name}}</td>
+                <td>{{i.Where_did_you_hear_about_the_interview}}</td>
+                <td>{{i.Experience}}</td>
+                <td>{{i.Previous_Company_Name}}</td>
+                <td>{{i.Current_CTC}}</td>
+                <td>{{i.Expected_CTC}}</td>
+                <td>{{i.Do_you_Have_PF_in_last_company}}</td>
+                <td>{{i.How_Many_years_of_Experience}}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    </div>
+    {% endblock %}

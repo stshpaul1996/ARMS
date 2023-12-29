@@ -1,0 +1,25 @@
+{% block title_block %}
+display item
+{% endblock %}
+
+{% block body_block %}
+<div class="container" align="center">
+    {% if request.session %}
+    <h1>Cart items</h1>
+    <table border="2">
+        <thead>
+            <th>item name</th>
+            <th>item quantity</th>
+        </thead>
+        {% for k,v in request.session.items %}
+        <tr>
+            <td>{{k}}</td>
+            <td>{{v}}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    {% else %}
+    <p>No items present in the table</p>
+    {% endif %}
+</div>
+{% endblock %}

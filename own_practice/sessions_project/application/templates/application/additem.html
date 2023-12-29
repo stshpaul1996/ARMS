@@ -1,0 +1,12 @@
+{% block title_block %}
+<title>additem.html</title>
+{% endblock %}
+
+{% block body_block %}
+<form method="POST">
+    {% csrf_token %}
+    {{form.as_p}}
+    <input type="submit" value="Submit">
+</form><br>
+<a class="btn btn-primary" href="/dis">display items</a>
+{% endblock %}

@@ -1,0 +1,38 @@
+{% extends "application/base.html" %}    
+{% block title_block %}
+<title>lists.html</title>
+{% endblock %}
+
+{% block body_block %}
+
+<table border="1">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Image</th>
+        <th>Video</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for i in data %}
+        <tr>
+          <td>{{ i.name }}</td>
+          <td>
+            {% if i.image %}
+              <img src="{{ i.image.url }}" alt="{{ i.title }}" width="100">
+            {% endif %}
+          </td>
+          <td>
+            {% if i.video %}
+              <video width="320" height="240" controls>
+                <source src="{{ i.video.url }}" type="video/mp4">
+                Your browser does not support the video tag.
+              </video>
+            {% endif %}
+          </td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  
+{% endblock %}
