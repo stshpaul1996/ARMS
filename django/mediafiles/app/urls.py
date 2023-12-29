@@ -5,5 +5,6 @@ from app import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('addcricketer/',views.add_cricketer),
-    path('cricketer/',views.cricketer)
+    path('cricketer/',views.cricketer),
+    path('delete/<int:id>/',views.delete,name='delete')
 ]

@@ -1,40 +1,84 @@
+{% extends 'base.html' %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>aspirant form</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+
+    <title>aspirantget</title>
 </head>
 <body>
-    <form method="post" novalidate>
-        {% csrf_token %}
-        {{form.as_p}}
-        <!-- full_name:<input type="text" name="full_name"><br><br>
-        email:<input type="text" name="email"><br><br>
-        phone_no:<input type="number" name="phone_no"><br><br>
-        gradution:<input type="text" name="gradution"><br><br>
-        post_gradution:<input type="text" name="post_gradution"><br><br>
-        stream:<input type="text" name="stream"><br><br>
-        passed_out_year:<input type="number" name="passed_out_year"><br><br>
-        trained_on_technology:<input type="text" name="trained_on_technology"><br><br>
-        trained_institue:<input type="text" name="trained_institue"><br><br>
-        duration_of_course:<input type="text" name="duration_of_course"><br><br>
-        reference_name:<input type="number" name="reference_name"><br><br>
-        hear_about_interview:<input type="text" name="hear_about_interview"><br><br>
-        experience:<input type="text" name="experience"><br><br>
-        Previous_company_name:<input type="text" name="Previous_company_name"><br><br>
-        current_ctc:<input type="number" name="current_ctc"><br><br>
-        expected_ctc:<input type="number" name="expected_ctc"><br><br>
-        last_company:<input type="text" name="last_company"><br><br>
-        years_of_experience:<input type="text" name="years_of_experience"><br><br>
-        created_at:<input type="text" name="created_at"><br><br> -->
     
-        <input type="submit">
-        <h3>{{message}}</h3>
+{% block content %}
+    <center>
         
-        <!-- <h4>{{ins.application_no}}</h4> -->
-        <!-- <h4>{{l}}</h4> -->
-
-
-    </form>
+    <div class='container'>
+        <h3 style="font-variant: small-caps;color:#f10eda;">List of Registered Candidates </h3>
+        {% if data %}
+        <table class="table table-striped">
+            <tr class="table-primary">
+                <th>ID</th>
+                <th>Full Name</th>
+                <th>Email</th>
+                <th>Phone Number</th>
+                <th>Gradution</th>
+                <th>Post Gradution</th>
+                <th>Stream</th>
+                <th>Passed out year</th>
+                <th>Trained on Technology</th>
+                <th>Where did you trained institue name</th>
+                <th>Duration of course</th>
+                <th>Refernce Name</th>
+                <th>Where did you hear about the interview</th>
+                <th>Experience</th>
+                <th>Previous Company Name</th>
+                <th>Current_CTC</th>
+                <th>Expected_CTC</th>
+                <th>Do you have PF in last company</th>
+                <th>How many year of experice</th>
+                <th>Created at</th>
+                <th>Action</th>
+            </tr>
+            {% for aspirant in data  %}
+            <tr>
+                <td>{{aspirant.id}}</td>
+                <td>{{aspirant.full_name}}</td>
+                <td>{{aspirant.email}}</td>
+                <td>{{aspirant.phone_no}}</td>
+                <td>{{aspirant.gradution}}</td>
+                <td>{{aspirant.post_gradution}}</td>
+                <td>{{aspirant.stream}}</td>
+                <td>{{aspirant.passed_out_year}}</td>
+                <td>{{aspirant.trained_on_technology}}</td>
+                <td>{{aspirant.trained_institue}}</td>
+                <td>{{aspirant.duration_of_course}}</td>
+                <td>{{aspirant.reference_name}}</td>
+                <td>{{aspirant.hear_about_interview}}</td>
+                <td>{{aspirant.experience}}</td>
+                <td>{{aspirant.Previous_company_name}}</td>
+                <td>{{aspirant.current_ctc}}</td>
+                <td>{{aspirant.expected_ctc}}</td>
+                <td>{{aspirant.last_company}}</td>
+                <td>{{aspirant.years_of_experience}}</td>
+                <td>{{aspirant.created_at}}</td>
+                <td><a href="{% url 'update' aspirant.id %}" class="btn btn-primary">Edit</a><br>
+                    <form action="{% url 'delete' aspirant.id %}" method="POST" class="d-inline">
+                        {% csrf_token %}
+                        <input type="submit" class="btn btn-danger" value="Delete">
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+        </div>
+            {% else %}
+        <h4 class="text-center alert alert-warning">"No Data"</h4>
+        {% endif %}
+    </center>
 </body>
 </html>
+{% endblock %}

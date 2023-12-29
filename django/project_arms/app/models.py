@@ -15,7 +15,7 @@ def gradutionyear(value):
             raise ValidationError("passed out year should be greater than 2016 and lessthan 2023 and should be 4 digits")
 
 def moblie(value):
-     if len(str(value))!=10 or not value.startswith('6'or'7'or'8'or'9'):
+     if len(str(value))<=9 or not value or not value.startswith(('6', '7', '8', '9')):
           raise ValidationError('Enter valid phone number')
 
 gradutionchoices=(('B.Tech','B.Tech'),('Bcom','Bcom'),('M.Tech','M.Tech'),('BE','BE'),('BCA','BCA'),('MBA','MBA'),('MCA','MCA'),
@@ -28,7 +28,8 @@ experiencechoices=(('YES','YES'),('NO','NO'))
 class Aspirant(models.Model):
     full_name = models.CharField(max_length=50,null=True,verbose_name='Full Name',validators=(fullname,))
     email = models.EmailField(max_length=50,null=True,verbose_name='Email_ID',validators=(emailid,))
-    phone_no = models.CharField(max_length=13,null=True,unique=True,verbose_name='Phone Number',validators=(moblie,))
+    phone_no = models.CharField(max_length=13,null=True,unique=True,verbose_name='Phone Number',
+                                validators=(moblie,))
     gradution = models.CharField(max_length=50,null=True,verbose_name='Gradution',
                                  choices=(gradutionchoices))
     post_gradution = models.CharField(max_length=50,null=True,verbose_name='Post Gradution')

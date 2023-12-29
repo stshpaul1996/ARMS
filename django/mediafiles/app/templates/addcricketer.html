@@ -6,10 +6,15 @@
     <title>addcricketer</title>
 </head>
 <body>
+    
     <form method="post" enctype="multipart/form-data" novalidate>
+        <table>
         {% csrf_token %}
-        {{form.as_p}}
+        {{form.as_table}}
+    </table>
         <input type="submit" value="upload">
     </form>
+    
+    
 </body>
 </html>

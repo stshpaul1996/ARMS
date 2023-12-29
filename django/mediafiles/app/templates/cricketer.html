@@ -23,6 +23,8 @@
                 <th>Phone Number</th>
                 <th>Images</th>
                 <th>Videos</th>
+                <th>created_at</th>
+                <th>Action</th>
             </tr>
             {% for cricketer in data  %}
             <tr>
@@ -35,6 +37,13 @@
                         <source src="/media/{{cricketer.video }}" type="video/mp4">
                         Your browser does not support the video tag.
                     </video>
+                </td>
+                <td>{{cricketer.created_at}}</td>
+                <td>
+                    <form action="{% url 'delete' cricketer.id %}" method="POST" class="d-inline">
+                            {% csrf_token %}
+                            <input type="submit" class="btn btn-danger" value="Delete">
+                    </form> 
                 </td>
             </tr>
             {% endfor %}
