@@ -1,6 +1,6 @@
 from django.urls import path
 
-from .views import resources_view, form_view, users_view, update_candidate, delete_candidate, rounds_form,  table_view
+from .views import resources_view, form_view, users_view, update_candidate, delete_candidate, rounds_form,  table_view, resourecs_all
 
 urlpatterns = [
     path("", resources_view),
@@ -10,5 +10,6 @@ urlpatterns = [
     path("delete/<id>", delete_candidate, name="delete_candidate"),
     path("rounds/", rounds_form),
     path("user_round/<id>", table_view),
+    path("all/", resourecs_all)
 
 ]

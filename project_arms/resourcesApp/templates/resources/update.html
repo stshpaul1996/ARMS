@@ -1,6 +1,6 @@
 {% extends "resources/header.html" %}
 {% block data %}
-
+{{ msg }}
 <form method="POST">
     {% csrf_token %}
     <h1 class="text-center">Update Candidate</h1>
@@ -54,8 +54,11 @@
             <label for="pfno">No</label><br> -->
             <table align="center">
                 {{ form.as_table }}
+                {{ rounds.as_table }}
+                
                 
             </table>
+    
             <div class="text-center mt-3">
                 <input type="submit" class="btn btn-primary" value="Submit" />
                 <input type="reset" class="btn btn-secondary" value="Reset" />
