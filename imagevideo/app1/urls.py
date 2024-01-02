@@ -3,5 +3,5 @@ from app1 import views
 
 urlpatterns = [
     path('upload/',views.Upload),
-    path('home/',views.home),
+    path('home/',views.home, name='home'),
 ]

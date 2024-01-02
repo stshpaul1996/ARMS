@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Communication</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        header {
+            background-color: skyblue;
+            padding: 20px;
+            text-align: center;
+        }
+
+        footer {
+            background-color: lightbrown;
+            padding: 10px;
+            text-align: center;
+        }
+
+        main {
+            margin: 20px;
+            text-align: justify;
+        }
+
+        form {
+            margin: 20px;
+            text-align: left;
+        }
+
+        input {
+            margin-bottom: 10px;
+        }
+
+        /* Add some styling for the logo */
+        #logo {
+            max-width: 100%;
+            height: auto;
+        }
+
+        h1 {
+            color: navy;
+        }
+
+        p {
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <!-- Add your logo here -->
+        <img id="logo" src="/media/images/aja%20logo.png" alt="Logo">
+        <h1>Welcome to aja Interview Process
+            (Communication)
+        </h1>
+    </header>
+    <main>
+        <form method="post">
+            {% csrf_token %}
+            {{form.as_p}}
+            <input type="submit">
+            {{message}}
+        </form>
+    </main>
+    <footer>
+        <p>Copyright © 2023 Aja Registration Portal. All rights reserved.</p>
+    </footer>
+</body>
+</html>

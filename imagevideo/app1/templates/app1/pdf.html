@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PDF Viewer with Hide Button</title>
+    <style>
+        .pdf-container {
+            position: relative;
+        }
+
+        .pdf-container button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="pdf-container">
+        <button onclick="togglePdf('pdf1')">Hide PDF</button>
+        <embed id="pdf1" src="example1.pdf" type="application/pdf" width="100%" height="600px" />
+    </div>
+
+    <div class="pdf-container">
+        <button onclick="togglePdf('pdf2')">Hide PDF</button>
+        <embed id="pdf2" src="example2.pdf" type="application/pdf" width="100%" height="600px" />
+    </div>
+
+    <script>
+        function togglePdf(pdfId) {
+            var pdfElement = document.getElementById(pdfId);
+            if (pdfElement.style.display === 'none' || pdfElement.style.display === '') {
+                pdfElement.style.display = 'block';
+            } else {
+                pdfElement.style.display = 'none';
+            }
+        }
+    </script>
+
+</body>
+</html>

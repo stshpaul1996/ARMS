@@ -1,7 +1,8 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from .forms import CricketerModelForm
 from .models import Cricketer
+
 
 # Create your views here.
 def Upload(request):
@@ -13,6 +14,7 @@ def Upload(request):
             form.save()
             form = CricketerModelForm()
             message ='The upload is sucessful'
+            return redirect('home')
         else:
             message ='The upload is unsucessful'
     else:
