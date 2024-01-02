@@ -1,0 +1,12 @@
+<form method="post">
+    {% csrf_token %}
+    name:<input type="text" name="user_name" ><br>
+    email:<input type="text" name="email_id">
+    <input type="submit">
+    {% for i in users %}
+    <h1>{{i.name}}</h1>
+    <h1>{{i.email}}</h1>
+    {% endfor %}
+    
+</form>
+{%csrf_token%}
