@@ -4,10 +4,7 @@ from django.core.exceptions import ValidationError
 
 def isalp(value):
     if not value.isalpha():
-        raise ValidationError("please enter alphabets only")  
-def isnum(value):
-    if not value.isnum():
-        raise ValidationError("please enter numbers only")  
+        raise ValidationError("please enter alphabets only")    
 class Users(models.Model):
     first_name = models.CharField(max_length=250,validators=[isalp])
     last_name = models.CharField(max_length=250)
@@ -31,8 +28,8 @@ class Users(models.Model):
     pf = models.BooleanField(default=0)
     created_at = models.DateTimeField(default=datetime.now())
 
-    # def __str__(self):
-    #     return f'{self.id}'
+    def __str__(self):
+        return f'{self.id}'
 
 
 class Rounds(models.Model):

@@ -1,0 +1,26 @@
+{%extends "app5/navbar.html"%}
+{%block data%}
+
+<table border="1">
+    <tr>
+
+        <th>is_joined</th>
+        <th>user_id</th>
+        
+    </tr>
+{% for i in data %}
+<tr>
+
+<td>    
+<p>{{i.is_joined}}</p>
+</td>    
+<td>
+<p>{{i.user_id}}</p>
+</td>    
+
+
+</tr>
+{% endfor %}
+</table>
+
+{%endblock%}

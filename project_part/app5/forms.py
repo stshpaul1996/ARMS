@@ -6,6 +6,8 @@ class Usersform(ModelForm):
         model=Users
         exclude=["pf"]
         #fields="__all__"
+    def clean_first_name(self):
+        return self.cleaned_data.get("first_name").upper()
 class Roundsform(ModelForm):
     class Meta:
         model=Rounds
@@ -14,5 +16,3 @@ class Joinedform(ModelForm):
     class Meta:
         model=Joined
         fields="__all__"
-                
-                

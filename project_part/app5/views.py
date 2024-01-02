@@ -1,6 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from app5.models import Users,Rounds,Joined
 from django.http import HttpResponse
+from .forms import Usersform
 
 # Create your views here.
 ##by using forms
@@ -20,7 +21,7 @@ def users_view(request):
     
 def registered(request):
         result=Users.objects.all()
-        return render(request, "app5/home.html" , {"result":result})
+        return render(request, "app5/1home.html" , {"result":result})
 
 
 
@@ -41,25 +42,28 @@ def rounds_view(request):
     
 def roundscomple(request):
         res1=Rounds.objects.all()
-        return render(request, "app5/home1.html", {"res1":res1})
+        return render(request, "app5/2home1.html", {"res1":res1})
     
-def join_view(request,id):
+def join_view(request):
     if request.method=="POST":
         # user_id = Users.objects.get(id=id)
-        d=Joined(is_joined=data1['is_joined'],user_id=data1['user_id'])
-        d.save()
+        # d=Joined(is_joined=data1['is_joined'],user_id=data1['user_id'])
+        # d.save()
         res2=Joined.objects.all()
         return render(request,"app5/join.html",{"res2":res2})
     else:
         return HttpResponse("check")
 
 
+def  joincomple(request):
+       data=Joined.objects.all()
+       return render(request, "app5/3joins.html", {"data":data})
+
+
 ##by using modelforms
 from app5.forms import Usersform,Roundsform,Joinedform
 def userview(request):
-    print(request.method, 'methodddddddd')
     if request.method=="POST":
-              print(request.POST, 'posttttttttt')
               form=Usersform(request.POST)
               if form.is_valid():
                    form.save()
@@ -69,9 +73,7 @@ def userview(request):
 
     return render(request, "app5/userform.html", {"form":form})              
 def roundview(request):
-    print(request.method, 'methodddddddd')
     if request.method=="POST":
-              print(request.POST, 'posttttttttt')
               form=Roundsform(request.POST)
               if form.is_valid():
                    form.save()
@@ -81,9 +83,7 @@ def roundview(request):
 
     return render(request, "app5/roundform.html", {"form":form})      
 def joinview(request):
-    print(request.method, 'methodddddddd')
     if request.method=="POST":
-              print(request.POST, 'posttttttttt')
               form=Joinedform(request.POST)
               if form.is_valid():
                    form.save()
@@ -91,4 +91,37 @@ def joinview(request):
     else:
           form=Joinedform
 
-    return render(request, "app5/roundform.html", {"form":form})   
+    return render(request, "app5/joinedform.html", {"form":form})   
+
+
+def base(request):
+      return render(request,"app5/navbar.html")
+
+# def update_view(request,id):
+#        data=Users.objects.get(id=id)
+#        if request.method == 'POST':
+#              form=Usersform(instance=data)
+#              if form.is_valid():
+#                 print("kkkkkkkkkk")
+#                 form=Usersform(request.POST, instance=data)
+#                 form.save()
+#                 return render(request,"app5/success.html") 
+#        return render(request,"app5/update_userform.html", {"form":form})      
+      
+
+def update_view(request, id):
+    data = Users.objects.get(id=id)
+    if request.method == 'POST':
+        form = Usersform(request.POST, instance=data)
+        if form.is_valid():
+            print("kkkkkkkkkk")
+            form.save()
+            return render(request, 'app5/success.html')  # Replace with your success URL name
+    else:
+        form = Usersform(instance=data)
+
+    return render(request, 'app5/update_userform.html', {'form': form})
+def delete_view(request,id):
+     res=Users.objects.get(id=id)
+     res.delete()
+     return redirect("after_delete_registered")
