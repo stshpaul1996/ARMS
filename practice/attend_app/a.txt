@@ -1,0 +1,29 @@
+<html>
+<head></head>
+<title></title>
+<body>
+<h1>This is employee information</h1><hr>
+{%if edetails%}
+<table border="1">
+<thead>
+<th>employee number</th>
+<th>employee name</th>
+<th>employee id</th>
+<th>employee address</th>
+</thead>
+<tr>
+{%for emp in edetails%}
+<td>{{emp.eno}}</td>
+<td>{{emp.ename}}</td>
+<td>{{emp.eid}}</td>
+<td>{{emp.eadd}}</td>
+</tr>
+{%endfor%}
+
+</table>
+{%else%}
+<p>no record</p>
+{%endif%}
+</body>
+</html>
+
