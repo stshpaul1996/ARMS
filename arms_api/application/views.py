@@ -1,20 +1,94 @@
-from django.shortcuts import render
 from rest_framework.views import APIView
 from rest_framework.response import Response
+from . models import Employee,Department
+import json
 # Create your views here.
+
 class SampleView(APIView):
-    def post(self,request):
-        return Response("post") #the consumer of the api is expecting json response
-    
-    def get(self,request,**kwargs):
+    def get(self, request, *args, **kwargs):
         return Response("get")
     
-    def delete(self,request,**kwargs):
-        return Response("delete")
-    
-    def put(self,request,**kwargs):
+    def post(self, request, *args, **kwargs):
+        return Response("post")
+
+    def put(self, request, *args, **kwargs):
         return Response("put")
-      
-    def patch(self,request,**kwargs):
+    
+    def patch(self, request, *args, **kwargs):
         return Response("patch")
     
+    def delete(self, request, *args, **kwargs):
+        return Response("delete")
+
+class DepartmentView(APIView):
+    def get(self, request, *args, **kwargs):
+        db_data=Department.objects.all()
+        all=[{"employee_id":i.emp_id.id,"employee_department":i.department,"employee_location":i.location} for i in db_data]
+        return Response(all)
+    
+    def post(self, request, *args, **kwargs):
+        body=json.loads(request.body)
+        employee=Employee.objects.get(id=body.get('emp_id'))
+
+        rd=request.data
+        depart=Department(emp_id= employee,department=rd.get("department"),location=rd.get("location"))
+        msg=""
+        try:
+            depart.save()
+            msg="you have successfully added"
+        except Exception as err:
+            msg=err
+        return Response(msg)
+    
+class EmployeeView(APIView):
+    def get(self,request,pk=None):
+        if pk is not None:
+            user=Employee.objects.get(id=pk)
+            employee_data={
+                "id":user.pk,
+                "name":user.name,
+                "age":user.age,
+                "salary":user.salary
+            }
+        else:
+            employee=Employee.objects.all()
+            employee_data=[{"id":i.id,"name":i.name,"age":i.age,"salary":i.salary} for i in employee]
+        return Response(employee_data)
+    
+    def post(self,request):
+        rd=request.data
+        employee=Employee(name=rd.get("name"),age=rd.get("age"),salary=rd.get("salary"))
+        msg=""
+        try:
+            employee.save()
+            msg="you have successfully added"
+        except Exception as err:
+            msg=str(err)
+        return Response(msg)
+    
+    def put(self, request,pk):
+        data=json.loads(request.body)
+        modal_data=Employee.objects.get(id=pk)
+        for i,j in data.items():
+            if hasattr(modal_data,i):
+                setattr(modal_data,i,j)
+        msg=""
+        try:
+            modal_data.save()
+            msg="you have successfully updated"
+        except Exception as err:
+            msg=err
+        return Response(msg)
+
+    def delete(self,request,pk):
+        instance=Employee.objects.get(id=pk)
+        msg=""
+        try:
+            instance.delete()
+            msg="successfully deleted"
+        except Exception as err:
+            msg=str(err)
+        return Response(msg)
+    
+
+

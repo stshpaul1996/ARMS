@@ -1,6 +1,10 @@
 from django.urls import path
-from . views import SampleView
+from . import views
+
 urlpatterns = [
-    path("<int:id>/",SampleView.as_view()),
-    path("",SampleView.as_view())
+    path('sam/',views.SampleView.as_view()),
+    path('dept/',views.DepartmentView.as_view()),
+    path('dept/<int:pk>/',views.DepartmentView.as_view()),
+    path('emp/',views.EmployeeView.as_view()),
+    path('emp/<int:pk>/',views.EmployeeView.as_view()),
 ]
