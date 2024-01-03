@@ -3,7 +3,8 @@ from django.urls import path, include
 from app1.views import SampleView
 
 urlpatterns = [
-    path("<int:id>/", SampleView.as_view()),
-    path("", SampleView.as_view()),
+    # path("person/<int:pk>/", SampleView.as_view()),
+    path("person/", SampleView.as_view()),
+    
     
 ]

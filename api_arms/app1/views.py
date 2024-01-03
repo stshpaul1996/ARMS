@@ -8,25 +8,17 @@ from rest_framework import status
 # Create your views here.
 class SampleView(APIView):
     def post(self, request):
-        #request parser
-        # data = request.data
-        # print(type(data))
-        # print(request.data
         message = ""
         data = {}
-        # person_inst = Person(name=request.data.get("name"))
-        # try:
-        #     person_inst.save()
-        #     message="inserted successfully"
-        # except Exception as err:
-        #     message = str(err)
         ser = PersonSerializer(data=request.data)
         status_code = status.HTTP_201_CREATED
+        # import pdb;pdb.set_trace()
         if ser.is_valid():
             person_inst = ser.save()
             data = ser.data
             message="inserted successfully"
         else:
+            message=ser.errors
             status_code = status.HTTP_400_BAD_REQUEST
         return Response({"Result":message,"data": data}, status=status_code)
 
@@ -44,10 +36,10 @@ class SampleView(APIView):
         return Response("delete")
 
 
-    def update(self, request, **kwargs):
+    def put(self, request, pk, **kwargs):
         return Response("update")
     
-    def patch(self, request, **kwargs):
+    def patch(self, request, pk, **kwargs):
         return Response("patch")
 
 
