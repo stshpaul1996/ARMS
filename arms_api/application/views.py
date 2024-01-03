@@ -1,3 +1,8 @@
+<<<<<<< HEAD
+=======
+from django.shortcuts import render
+from arms_api.application.models import Department, Employee
+>>>>>>> 7cddd1a6d8b4c25cbb443e8281aa1a3452c5f16a
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from . models import Employee,Department
@@ -17,6 +22,7 @@ class SampleView(APIView):
     def patch(self, request, *args, **kwargs):
         return Response("patch")
     
+<<<<<<< HEAD
     def delete(self, request, *args, **kwargs):
         return Response("delete")
 
@@ -92,3 +98,27 @@ class EmployeeView(APIView):
     
 
 
+=======
+class EmployeeView(APIView):
+
+    def post(self,request):
+        msg=""
+        try:
+            e=Employee(name=request.data.get("name"),age=request.data.get("age"),
+                       salary=request.data.get("salary"))
+            dept_id=request.data.get("dept_id")
+            dept_instance=Department.objects.get(pk=dept_id)
+            e.dept_id=dept_instance
+            e.save()
+            msg=("inserted successfully")
+        except Exception as err:
+            msg=str(err)
+        return Response({"msg":msg})
+    
+    def get(self,request):
+        db_data=Employee.objects.all()
+        all=[{"name":i.name,"age":i.age,"salary":i.salary,"dept_id":i.dept_id} for i in db_data]
+        return Response(all)
+    
+    
+>>>>>>> 7cddd1a6d8b4c25cbb443e8281aa1a3452c5f16a
