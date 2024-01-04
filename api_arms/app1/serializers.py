@@ -13,9 +13,9 @@ class PersonSerializer(serializers.ModelSerializer):
             #return value
         raise ValidationError("exepcting alpha numneric value.")
     
-    def validate(self, *args, **kwargs):
+    def validate(self, data):
         #self.validated_data = super(PersonSerializer, self).validate(*args)
-        # import pdb;pdb.set_trace()
+        import pdb;pdb.set_trace()
         
         data = self.initial_data
         age = data.get("age")
