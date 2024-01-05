@@ -19,7 +19,11 @@ class Product(models.Model):
     category = models.ForeignKey(Category, on_delete=models.PROTECT) 
     purchase_orders = models.ManyToManyField(PurchaseOrder)
     sales_orders = models.ManyToManyField(SalesOrder)
-    cost = models.DecimalField(max_digits=10, decimal_places=2, default=0)
+
+class ProductCost(models.Model):
+    prodcut = models.ForeignKey(Product, on_delete=models.PROTECT)
+    cost = models.DecimalField(max_digits=10, decimal_places=2)
+    created = models.DateTimeField(auto_now_add=True)
 class OpeningStock(models.Model):
     prodcut = models.ForeignKey(Product, on_delete=models.PROTECT)
     stock = models.DecimalField(max_digits=10, decimal_places=2)

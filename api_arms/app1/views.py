@@ -2,10 +2,43 @@ from django.shortcuts import render
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from app1.models import Person
-from app1.serializers import PersonSerializer
+from app1.serializers import (PersonSerializer, ProductModelSerializer,
+                              CategoryModelSerializer)
 from rest_framework import status
 
 # Create your views here.
+
+class CategoryView(APIView):
+    def post(self, request):
+        data = {}
+        ser = CategoryModelSerializer(data=request.data)
+        if ser.is_valid():
+            ser.save()
+            message = "inserted successfully"
+            status_code = status.HTTP_201_CREATED
+            data = ser.data
+        else:
+            message=ser.errors
+            status_code = status.HTTP_400_BAD_REQUEST
+
+        return Response({"Result":message,"data": data}, status=status_code)
+
+class ProductView(APIView):
+    def post(self, request):
+        data = {}
+        ser = ProductModelSerializer(request.data)
+        #ser.instance # model instanc
+        # product_model_instance.category.name
+        if ser.is_valid():
+            ser.save()
+            message = "inserted successfully"
+            status_code = status.HTTP_201_CREATED
+            data = ser.data
+        else:
+            message=ser.errors
+            status_code = status.HTTP_400_BAD_REQUEST
+
+        return Response({"Result":message,"data": data}, status=status_code)
 class SampleView(APIView):
     def post(self, request):
         message = ""
