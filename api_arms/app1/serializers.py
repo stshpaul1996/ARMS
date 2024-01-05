@@ -21,8 +21,8 @@ class ProductSerializer(serializers.Serializer):
 class ProductModelSerializer(serializers.ModelSerializer):
     # cost = # that should directly reffer the models.ProductCost.cost#serializers.DecimalField(max_digits=10, decimal_places=2)
     # openingstock =#that should directly reffer the models.Openingstock.stock #serializers.DecimalField(max_digits=10, decimal_places=2)
-    cost = serializers.DecimalField(source="productcost.cost",max_digits=10, decimal_places=2)
-    openingstock =serializers.DecimalField(source="openingstock.stock",max_digits=10, decimal_places=2)
+    cost = serializers.DecimalField(max_digits=10, decimal_places=2)
+    openingstock =serializers.DecimalField(max_digits=10, decimal_places=2)
     class Meta:
         model = Product
         fields = ("name", "product_unque_number", "category",

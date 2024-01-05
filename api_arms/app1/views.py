@@ -30,11 +30,6 @@ class ProductView(APIView):
         #ser.instance # model instanc
         # product_model_instance.category.name
         if ser.is_valid():
-            a=ser.save()
-            cost_data=request.data.get('cost')
-            a.productcost_set.create(cost=cost_data)
-            opening_stock=request.data.get('openingstock')
-            a.openingstock_set.create(stock=opening_stock)
             message = "inserted successfully"
             status_code = status.HTTP_201_CREATED
             data = ser.data
