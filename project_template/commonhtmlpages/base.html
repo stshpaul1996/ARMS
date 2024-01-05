@@ -1,0 +1,22 @@
+<html>
+    <head>
+        <title>
+            {% block title%}
+            CRICKET
+            {% endblock %}
+        </title>
+    </head>
+    <body>
+        <img widrth=200 height=200 src="/static/app1/images/logo.png">
+        <h1>This site expalins about cricketers</h1>
+        <ul>
+            <li> <a href="/app1/kohli/">Kohli</a></li>
+            <li>Rohit</li>
+            <li>Mandana</li>
+            <li>Smith</li>
+        </ul>
+        {% block data %}
+        <h1> click on menu to see the content</h1>
+        {% endblock %}
+    </body>
+</html>

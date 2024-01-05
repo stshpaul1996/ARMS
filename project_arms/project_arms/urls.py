@@ -15,8 +15,10 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 from django.http import HttpResponse
+# from base.views import base_customer_create_view
+# from sample.views import person1_create_view
 # def task1(p1):
 #     print("*"*20)
 #     print(p1)
@@ -31,6 +33,9 @@ from django.http import HttpResponse
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    
+    path("base/", include("base.urls")),
+    path("sample/", include("sample.urls")),
+    # path("customer/create/", base_customer_create_view),# base
+    # path("person1/create/", person1_create_view),# sample
     # path("users/", task1),#task1(request_obj)# server parsing that return value. expecting HttpReponse. 
 ]

@@ -1,0 +1,93 @@
+Understand the basic models 
+Things to keep in mind while working with basic models 
+1) validators  attribute
+2) clean 
+3) django.core.validators 
+4) django.core.exceptions
+5) full_clean 
+6) clean () 
+7) clean_ 
+8) cleaned_data 
+Things to keep in mind while working with own field classes 
+    class MyCustomField(models.Field):
+        def __init__(self, *args, **kwargs):
+            super().__init__(*args, **kwargs)
+            # Your custom initialization code goes here
+
+        def from_db_value(self, value, expression, connection):
+            # Convert the database value to Python value
+            # This method is used when retrieving data from the database
+            return value
+
+        def to_python(self, value):
+            # Convert the value to the appropriate Python data type
+            # This method is used when accessing the field in Python code
+            return value
+
+        def get_prep_value(self, value):
+            # Prepare the value for saving to the database
+            # This method is called before saving the data to the database
+            return value
+
+        def value_to_string(self, obj):
+            # Convert the field's value to a string representation
+            # This is used when serializing the model to a string
+            return str(self.value_from_object(obj))
+Types of models: 
+    1)Standard Model
+    2) Abstract Model: class Meta: abstract = True
+    3) Proxy Model: class Meta:proxy = True, we can not add columns, only methods 
+    4) inherited models
+    5) importanace of one to one relationship
+    6) inline models
+Validating Model objects
+There are four steps involved in validating a model:
+1. Validate the model fields - Model.clean_fields()
+2. Validate the model as a whole - Model.clean()
+3. Validate the field uniqueness - Model.validate_unique()
+4. Validate the constraints - Model.validate_constraints()
+All four steps are performed when you call a model’s full_clean() method.
+When you use a ModelForm, the call to is_valid() will perform these validation steps for all the fields that
+are included on the form.
+
+Model.clean_fields:
+    This method will validate all fields on your model. The optional exclude argument lets you provide a list of field names to exclude from validation. It will raise a ValidationError if any fields fail validation.
+Model.clean:
+    This method should be used to provide custom model validation, and to modify attributes on your model if desired. For instance, you could use it to automatically provide a value for a field, or to do validation that requires access to more than a single field
+
+
+What happens when you save?
+
+    Emit a pre-save signal. The pre_save signal is sent, allowing any functions listening for that signal to do something.
+
+    Preprocess the data. Each field’s pre_save() method is called to perform any automated data modification that’s needed. For example, the date/time fields override pre_save() to implement auto_now_add and auto_now.
+
+    Prepare the data for the database. Each field’s get_db_prep_save() method is asked to provide its current value in a data type that can be written to the database.
+
+    Most fields don’t require data preparation. Simple data types, such as integers and strings, are ‘ready to write’ as a Python object. However, more complex data types often require some modification.
+
+    For example, DateField fields use a Python datetime object to store data. Databases don’t store datetime objects, so the field value must be converted into an ISO-compliant date string for insertion into the database.
+
+    Insert the data into the database. The preprocessed, prepared data is composed into an SQL statement for insertion into the database.
+
+    Emit a post-save signal. The post_save signal is sent, allowing any functions listening for that signal to do something.
+
+How Django knows to UPDATE vs. INSERT
+    You may have noticed Django database objects use the same save() method for creating and changing objects. 
+
+    If the object’s primary key attribute is set to a value that evaluates to True (i.e., a value other than None or the empty string), Django executes an UPDATE.
+
+    If the object’s primary key attribute is not set or if the UPDATE didn’t update anything (e.g. if primary key is set to a value that doesn’t exist in the database), Django executes an INSERT.
+    
+    If the object’s primary key attribute defines a default then Django executes an UPDATE if it is an existing model instance and primary key is set to a value that exists in the database. Otherwise, Django executes an INSERT.
+specify which fields to update:
+    product.name = "Name changed again"
+    product.save(update_fields=["name"])
+
+
+urlpatterns = [
+    re_path(r"^index/$", views.index, name="index"),
+    re_path(r"^bio/(?P<username>\w+)/$", views.bio, name="bio"),
+    re_path(r"^blog/", include("blog.urls")),
+    ...,
+]

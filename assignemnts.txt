@@ -16,4 +16,21 @@
 8) write a notes for each field in the django.db.models.fields_all,  default value. default validator
 9) define models for your project, write some validators to your model fields, Migrate those models to database.  
 10) prepare some shell notes, to insert some rows in to database tables. call full_clean method to show the validations.
+11) Prepare abstract models for your project
+12) develope a sample project which has three applications.
+        seperate urls
+        seperate templeates with the same template name in each application templates folder.
+        if I call app1/url, that has to render app1/templates/a.html
+
+13) develop a sample application with some static images and load those images in to your templates
+    design below urls
+        /home --> home.html -> this has to have some headers, logo, and some menus
+            load this home.html from common template folder path, not from app templates path
+        create application called customer
+        /customer --> customer.html-> Add this in app templates.
+                this should have the samve header and logo which home.html has.
+                Add some static text in the customer.html and also load some images from static folder
+
+14) Design a URL app1/name:  app1/kohli  name: kohli: load kohli image from static and kohli data from constants.py
+                name: rohit: load rohit image from static and rohit data from constants.py
 

@@ -1,0 +1,24 @@
+<html>
+    <body>
+        <table>
+            <tr>
+                <th>NAME</th>
+                <th>IMAGE</th>
+            </tr>
+            {% for cricketer in cricketers_data %}
+                <tr>
+                    <td>{{ cricketer.name }}</td>
+                    <td><img src="/media/{{cricketer.image_path}}"  width="100" height="100"></td>
+                </tr>
+            {% endfor %}
+            <!-- <tr>
+                <td>{{ cricketers_data.0.name }}</td>
+                <td><img src="{{ cricketers_data.0.image_path }}"  width="100" height="100"></td>
+            </tr>
+            <tr>
+                <td>{{ cricketers_data.1.name }}</td>
+                <td><img src="{{ cricketers_data.1.image_path }}"  width="100" height="100"></td>
+            </tr> -->
+        </table>
+    </body>
+</html>
