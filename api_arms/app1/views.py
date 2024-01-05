@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from app1.models import Person
+from app1.models import *
 from app1.serializers import (PersonSerializer, ProductModelSerializer,
                               CategoryModelSerializer)
 from rest_framework import status
@@ -26,11 +26,15 @@ class CategoryView(APIView):
 class ProductView(APIView):
     def post(self, request):
         data = {}
-        ser = ProductModelSerializer(request.data)
+        ser = ProductModelSerializer(data=request.data)
         #ser.instance # model instanc
         # product_model_instance.category.name
         if ser.is_valid():
-            ser.save()
+            a=ser.save()
+            cost_data=request.data.get('cost')
+            a.productcost_set.create(cost=cost_data)
+            opening_stock=request.data.get('openingstock')
+            a.openingstock_set.create(stock=opening_stock)
             message = "inserted successfully"
             status_code = status.HTTP_201_CREATED
             data = ser.data
@@ -39,6 +43,15 @@ class ProductView(APIView):
             status_code = status.HTTP_400_BAD_REQUEST
 
         return Response({"Result":message,"data": data}, status=status_code)
+
+
+    def get(self,request):
+        products=Product.objects.all()
+        ser=ProductModelSerializer(products,many=True)
+        data=ser.data 
+        return Response(data)
+
+
 class SampleView(APIView):
     def post(self, request):
         message = ""
