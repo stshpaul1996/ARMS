@@ -1,0 +1,38 @@
+The flow of JWT (JSON Web Token) authentication typically involves several steps to authenticate and authorize a user.
+ Below is a simplified explanation of the JWT authentication flow:
+
+User Authentication Request:
+
+The user provides credentials (such as username and password) to the server to log in.
+Server Authentication and Token Generation:
+
+The server verifies the user's credentials.
+If the credentials are valid, the server creates a JWT containing the user's information (such as user ID, role, etc.).
+This JWT is signed with a secret key known only to the server.
+Token Issuance:
+
+The server sends the JWT back to the client (typically in the response body or headers) after successful authentication.
+Token Storage on Client Side:
+
+The client (usually a web or mobile application) receives the JWT and stores it securely. Common storage locations include browser local storage or device memory.
+Subsequent Requests with JWT:
+
+For subsequent requests to protected resources or APIs, the client includes the JWT in the request headers (commonly in the Authorization header with the Bearer prefix).
+Token Verification by Server:
+
+When the client sends a request to access protected resources, it includes the JWT.
+The server intercepts the request and verifies the JWT's signature using the secret key.
+If the signature is valid, the server parses the JWT and checks its validity, expiration, and other claims.
+Access or Denial of Resources:
+
+If the JWT is valid, not expired, and passes all verification checks, the server grants access to the requested resource or API endpoint.
+If the JWT is invalid (e.g., expired, tampered, or unauthorized), the server denies access and returns an appropriate error response (e.g., 401 Unauthorized).
+Token Refresh (Optional):
+
+If the JWT has an expiration time and the token is expired, the client can request a new token using a refresh token (if provided by the server).
+The refresh token allows the client to request a new JWT without re-authenticating with the username and password.
+Logging Out (Optional):
+
+To log out, the client can simply discard the JWT or take additional steps, such as sending a request to invalidate the token on the server-side (optional).
+JWT authentication provides a stateless way to authenticate users by securely transmitting claims between parties (client and server) as a JSON object.
+ The token's self-contained nature simplifies scalability and facilitates secure communication between client and server without the need for session storage on the server side.

@@ -14,7 +14,8 @@ def check_negative(value):
 class NegativeIntegerField(models.IntegerField):
     default_validators = [check_negative]
 
-class EncruptionField()
+class EncruptionField():
+    pass
 
 class Customer(models.Model):
 
