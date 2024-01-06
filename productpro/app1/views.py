@@ -24,11 +24,8 @@ class ProductView(APIView):
         msg = ""
         if req.is_valid():
             req.save()
-            
-            pro_id = Product.objects.get(pk=id)
-            print(pro_id)
-            print(request.data.get("cost"))
-            cost = ProductCost(cost=request.data.get("cost"), created=datetime.now(), product_id=pro_id)
+            pro_id= Product.objects.get(pk=id)
+            cost = ProductCost(cost=request.data.get("cost"), created=datetime.now(), prodcut=pro_id)
             cost.save()
             msg = "success"
         else:
