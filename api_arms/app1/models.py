@@ -48,18 +48,18 @@ class Person(models.Model):
     email = models.EmailField(max_length=250, default="", validators=(validate_email,))
     age = models.IntegerField(default=0)
 
-# class Region(models.Model):
-#     name = models.CharField(max_length=250, unique=True)
+class Region(models.Model):
+    name = models.CharField(max_length=250, unique=True)
 
-# class Country(models.Model):
-#     name = models.CharField(max_length=250, unique=True)
-#     region = models.ForeignKey(Region, on_delete=models.PROTECT)
+class Country(models.Model):
+    name = models.CharField(max_length=250, unique=True)
+    region = models.ForeignKey(Region, on_delete=models.PROTECT)
 
-# class State(models.Model):
-#     name = models.CharField(max_length=250, unique=True)
-#     country = models.ForeignKey(Country, on_delete=models.PROTECT)
-# class Address(models.Model):
-#     city = models.CharField(max_length=250)
-#     street = models.CharField(max_length=250)
-#     pincode = models.CharField(max_length=50)
+class State(models.Model):
+    name = models.CharField(max_length=250, unique=True)
+    country = models.ForeignKey(Country, on_delete=models.PROTECT)
+class Address(models.Model):
+    city = models.CharField(max_length=250)
+    street = models.CharField(max_length=250)
+    pincode = models.CharField(max_length=50)
 
