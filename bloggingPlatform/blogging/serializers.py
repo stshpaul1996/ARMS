@@ -14,18 +14,12 @@ class PostCommentSerializer(serializers.ModelSerializer):
 class CommentSerializer(serializers.ModelSerializer):
    # post = PostSerializer()
     post = serializers.PrimaryKeyRelatedField(queryset=PostModel.objects.all())
-    #post = serializers.SlugRelatedField(slug_field='title', queryset=PostModel.objects.all())
-
+    
 
     class Meta:
         model = CommentModel
         fields = "__all__"
-    # def to_representation(self, instance):
-    #     representation = super().to_representation(instance)
-    #     # Modify post field representation to include specific fields from Post
-    #    # print(representation)
-    #     representation['post'] = 
-    #     return representation
+    
     def to_representation(self, instance):
         representation = super().to_representation(instance)
         post_id = representation['post']
