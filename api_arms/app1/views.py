@@ -3,10 +3,32 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from app1.models import Person
 from app1.serializers import (PersonSerializer, ProductModelSerializer,
-                              CategoryModelSerializer)
+                              CategoryModelSerializer,PoductCostOpeningstockSerializer)
 from rest_framework import status
 
 # Create your views here.
+
+class PoductCostOpeningstockView(APIView):
+    # def post(self,request):
+    #     serilizer=PoductCostOpeningstockSerializer(data=request.data)
+    #     if serilizer.is_valid():
+    #         message='inserted success fully'
+    #         status_code = status.HTTP_201_CREATED
+    #     else :
+    #         message=serilizer.errors
+    #         status_code = status.HTTP_400_BAD_REQUEST
+    #     return Response({"Result": message}, status=status_code)
+    def post(self,request):
+        serilizer =PoductCostOpeningstockSerializer(data=request.data)
+        if serilizer.is_valid():
+            serilizer.save()
+            message='inserted success fully'
+            status_code = status.HTTP_201_CREATED
+        else :
+            message=serilizer.errors
+            status_code = status.HTTP_400_BAD_REQUEST
+        return Response({"Result": message}, status=status_code)
+
 
 class CategoryView(APIView):
     def post(self, request):

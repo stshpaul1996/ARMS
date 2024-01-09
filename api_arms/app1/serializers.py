@@ -1,5 +1,5 @@
 from rest_framework import serializers 
-from app1.models import Person, Product, Category
+from app1.models import Person, Product, Category,OpeningStock,ProductCost
 from django.core.exceptions import ValidationError
 
 class CategoryModelSerializer(serializers.ModelSerializer):
@@ -7,20 +7,31 @@ class CategoryModelSerializer(serializers.ModelSerializer):
         model = Category
         fields = "__all__"
 
-class ProductSerializer(serializers.Serializer):
+class PoductCostOpeningstockSerializer(serializers.Serializer):
     cost = serializers.DecimalField(max_digits=10, decimal_places=2)
     openingstock = serializers.DecimalField(max_digits=10, decimal_places=2)
     name = serializers.CharField(max_length=250)
     category = serializers.IntegerField()
-    product_unque_number = serializers.IntegerField()
+    product_unque_number = serializers.CharField()
+    purchase_orders=serializers.CharField(max_length=250)
+    sales_orders=serializers.CharField(max_length=250)
 
-    def save():
-        model_instance
-        save()
-    
+
+    # def save():
+    #     model_instance
+    #     save()
+    def create(self, validated_data):
+        cost = validated_data.pop('cost')
+        openingstock = validated_data.pop('openingstock')
+        product = Product.objects.create(**validated_data)
+        ProductCost.objects.create(product=product, cost=cost)
+        OpeningStock.objects.create(product=product, stock=openingstock)
+        return product
+
+
 class ProductModelSerializer(serializers.ModelSerializer):
-    cost = # that should directly reffer the models.ProductCost.cost#serializers.DecimalField(max_digits=10, decimal_places=2)
-    openingstock =#that should directly reffer the models.Openingstock.stock #serializers.DecimalField(max_digits=10, decimal_places=2)
+    # cost = # that should directly reffer the models.ProductCost.cost#serializers.DecimalField(max_digits=10, decimal_places=2)
+    # openingstock =#that should directly reffer the models.Openingstock.stock #serializers.DecimalField(max_digits=10, decimal_places=2)
     class Meta:
         model = Product
         fields = ("name", "product_unque_number", "category",
@@ -39,14 +50,13 @@ class PersonSerializer(serializers.ModelSerializer):
     
     def validate(self, data):
         #self.validated_data = super(PersonSerializer, self).validate(*args)
-        import pdb;pdb.set_trace()
         
         data = self.initial_data
         age = data.get("age")
         if age and age>=18:
             if not data.get("email"):
                 raise ValidationError("Email mandatory")
-        return super(PersonSerializer, self).validate(*args)
+        return super(PersonSerializer, self).validate()
 
            
 
