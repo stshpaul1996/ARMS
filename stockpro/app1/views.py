@@ -32,7 +32,7 @@ class ProductView(APIView):
             msg="success"
         else:
             msg=req.errors
-        return Response({"result":msg,"data":request.data})
+        return Response({"result":msg,"data":data})
 
 class PurchaseView(APIView):
     def post(self, request):
