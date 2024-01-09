@@ -21,13 +21,18 @@ class ProductView(APIView):
         req = ProductSer(data=request.data)
         msg = ""
         #import pdb;pdb.set_trace()
+        data={}
         if req.is_valid():
             sa = req.save()
+            #import pdb;pdb.set_trace()
+            # data = req.data
+            # data.update({"id":sa.id})
+
             sa.openingstock_set.create(stock=request.data.get("stock"))
             msg="success"
         else:
             msg=req.errors
-        return Response({"result":msg, "data":request.data})
+        return Response({"result":msg,"data":request.data})
 
 class PurchaseView(APIView):
     def post(self, request):

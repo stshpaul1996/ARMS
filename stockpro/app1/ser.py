@@ -10,7 +10,7 @@ class ProductSer(serializers.ModelSerializer):
     class Meta:
         stock = serializers.DecimalField(source="openingstock.stock", max_digits=10, decimal_places=2)
         model = Product
-        fields = "__all__"
+        fields = ("id", "name", "unique_num", "category", "cost")
 
 class SalesSer(serializers.ModelSerializer):
     class Meta:
