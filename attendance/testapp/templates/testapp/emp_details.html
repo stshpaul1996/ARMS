@@ -1,0 +1,36 @@
+
+
+
+
+{%extends 'testapp/base.html'%}
+
+
+
+
+{%block content%}
+
+<table border="1">
+    <thead>
+        <th>Employee_id</th>
+        <th>email_id</th>
+        <th>First_name</th>
+        <th>Last_name</th>
+        <th>Number</th>
+        <th>Address</th>
+        <th>Tech_id</th>
+        </thead>
+       
+    
+    {%for i in data%}
+    <tr>
+        <td>{{i.id}}</td>
+        <td>{{i.email_id}}</td>
+        <td>{{i.first_name}}</td>
+        <td>{{i.last_name}}</td>
+        <td>{{i.validate_phone_number}}</td>
+        <td>{{i.address}}</td>
+        <td>{{i.tech_id}}</td>
+        </tr>
+    {%endfor%}
+</table>
+{%endblock%}

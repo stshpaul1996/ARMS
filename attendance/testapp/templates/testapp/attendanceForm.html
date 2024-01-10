@@ -1,0 +1,17 @@
+{%extends 'testapp/base.html'%}
+
+
+
+
+{%block content%}
+
+
+    <div class="att">
+    <form method="post" class="form" >
+        {{form.as_p}}
+        <button>submit</button>
+        {%csrf_token%}
+        </form>
+        </div>
+
+{%endblock%}

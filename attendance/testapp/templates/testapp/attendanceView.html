@@ -1,0 +1,35 @@
+{%extends 'testapp/base.html'%}
+
+
+
+{%block content%}
+
+<table border="1">
+    <thead>
+        <th>Employee_id</th>
+        <th>Date</th>
+        <th>Check-in</th>
+        <th>Check-out</th>
+        <th>Status</th>
+        <!-- <th>delete</th>
+        <th>update</th> -->
+
+        
+        </thead>
+       
+    
+    {%for i in data%}
+    <tr>
+        <td>{{i.employee_id}}</td>
+        <td>{{i.date}}</td>
+        <td>{{i.check_in}}</td>
+        <td>{{i.check_out}}</td>
+        <td>{{i.status}}</td>
+        <!-- <td><a href=  "">delete</a></td>
+        <td><button>update</button></td> -->
+      
+        </tr>
+    {%endfor%}
+</table>
+    
+{%endblock%}
