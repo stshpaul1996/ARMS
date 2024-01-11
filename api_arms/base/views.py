@@ -4,6 +4,8 @@ from django.contrib.auth import authenticate
 from rest_framework.authtoken.models import Token
 from rest_framework.response import Response
 from rest_framework import status
+from django.conf import settings
+import jwt
 
 # Create your views here.
 class LoginAPI(APIView):
@@ -18,8 +20,9 @@ class LoginAPI(APIView):
             #     token_inst = Token.objects.create(user=user)
             # else:
             #     token_inst = token_inst[0]
-            token_inst = Token.objects.get_or_create(user=user)[0]
-            resp_data["token"] = token_inst.key
+            #token_inst = Token.objects.get_or_create(user=user)[0]
+            payload = {"userName": user.username, "userId": user.id}
+            resp_data["token"] = jwt.encode(payload, settings.SECRET_KEY, algorithm="HS256")
             resp_data["message"] = "OK"
             return Response(resp_data)
         else:
