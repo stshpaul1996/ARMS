@@ -10,6 +10,7 @@ from django.db import models
 # Create your models here.
 
 
+from django.contrib.auth.models import User 
 
 
 
@@ -29,6 +30,7 @@ class product(models.Model):
     category_id = models.ForeignKey(category,on_delete=models.PROTECT)
     purchase_details = models.ManyToManyField(PurchaseOrder,blank=True)
     sales_details = models.ManyToManyField(SalesOrder,blank=True)
+    created_by = models.ForeignKey(User,on_delete=models.PROTECT,null = True)
 
 
 

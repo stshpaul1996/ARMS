@@ -1,6 +1,18 @@
 from rest_framework import serializers
 from .models import product,category,PurchaseOrder,SalesOrder,stock,productcost,ppos,ssos,StockReport
 
+
+
+
+class PurchaseSerializer(serializers.ModelSerializer):
+    class Meta :
+        model = PurchaseOrder
+        fields = "__all__"
+
+
+
+
+
 class ProductSerializer(serializers.ModelSerializer):
 
 
@@ -51,3 +63,16 @@ class PposSertializer(serializers.ModelSerializer):
     class Meta:
         model  = ppos
         fields = "__all__"
+
+
+from rest_framework import serializers
+
+class StockReportSerializer(serializers.Serializer):
+    product_id_id = serializers.IntegerField()
+    name = serializers.CharField()
+    product_unq_number = serializers.CharField()
+    category_name = serializers.CharField()
+    num_of_quantity_purchase = serializers.DecimalField(max_digits=10, decimal_places=2)
+    opening_stock = serializers.DecimalField(max_digits=10, decimal_places=2)
+    num_of_quantity_sale = serializers.DecimalField(max_digits=10, decimal_places=2)
+    quantity_onhand = serializers.DecimalField(max_digits=10, decimal_places=2)

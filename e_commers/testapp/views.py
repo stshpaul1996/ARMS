@@ -1,56 +1,198 @@
 from django.shortcuts import render
-from django.db.models import Sum
+from django.db.models import Sum,Q
+import jwt
 
 # Create your views here.
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from .serializers import ProductSerializer,CategorySerializer,StockSerializer,PposSertializer
+from rest_framework import status
+from .serializers import ProductSerializer,CategorySerializer,StockSerializer,PposSertializer,StockReportSerializer
 
 from .models import product,category,PurchaseOrder,SalesOrder,stock,StockReport,ppos,ssos
+
+from django.contrib.auth.models import User
+
+from django.db import connection
+
+from django.contrib.auth import authenticate
+from rest_framework.authtoken.models import Token
+from django.conf import Settings
+
+
+class LoginView(APIView):
+    def post(self,request):
+        
+        print(request.data)
+        print(dir(request))
+        request.META
+       
+        #import pdb;pdb.set_trace()
+        response = {"data":None,"status":''}
+        
+        data = request.data
+        print(data)
+        #person = User.objects.filter(username=data.get("username"),password=data.get("password"))
+        is_authenticated = authenticate(username=data.get("username"),password=data.get("password"))
+        print(is_authenticated)
+        if is_authenticated:
+            payload = request.data
+            #token = Token.objects.get_or_create(user = is_authenticated)[0]
+            token = jwt.encode(payload,"#^dhejh",algorithm="HS256")
+            #response["data"] = token.key
+            response["data"] = token
+            response["status"] = "ok"
+            
+        
+        
+
+        return Response(response)
+
+
+
+
+class GetCredentials(APIView):
+    def get(self,request):
+        print(request.data)
+        data = request.data
+        jwt_token = request.data['jwt']
+        token = jwt.decode(jwt_token,"#^dhejh",algorithms="HS256")
+        return Response({"data":token})
+
+
+def single_object(id):
+
+    with connection.cursor() as cursor:
+        
+        sql_query = """
+            SELECT sr.product_id_id,
+                   p.name AS product_name,
+                   p.product_unq_number,
+                   c.name AS category_name,
+                   SUM(CASE WHEN sr.type = 'PS' THEN sr.quantity ELSE 0 END) AS num_of_quantity_purchase,
+                   SUM(CASE WHEN sr.type = 'OS' THEN sr.quantity ELSE 0 END) AS opening_stock,
+                   SUM(CASE WHEN sr.type = 'SS' THEN sr.quantity ELSE 0 END) AS num_of_quantity_sale,
+                   SUM(sr.quantity) AS quantity_onhand
+            FROM testapp_stockreport sr
+            JOIN testapp_product p ON sr.product_id_id = p.id
+            JOIN testapp_category c ON p.category_id_id = c.id
+            where sr.product_id_id = {};
+        """.format(id)
+
+        cursor.execute(sql_query)
+        columns = [col[0] for col in cursor.description]
+        result = [dict(zip(columns, row)) for row in cursor.fetchall()]
+
+    return result
+
+
+
+
+def custom_sql_query():
+    with connection.cursor() as cursor:
+        
+        sql_query = """
+            SELECT sr.product_id_id,
+                   p.name AS product_name,
+                   p.product_unq_number,
+                   c.name AS category_name,
+                   SUM(CASE WHEN sr.type = 'PS' THEN sr.quantity ELSE 0 END) AS num_of_quantity_purchase,
+                   SUM(CASE WHEN sr.type = 'OS' THEN sr.quantity ELSE 0 END) AS opening_stock,
+                   SUM(CASE WHEN sr.type = 'SS' THEN sr.quantity ELSE 0 END) AS num_of_quantity_sale,
+                   SUM(sr.quantity) AS quantity_onhand
+            FROM testapp_stockreport sr
+            JOIN testapp_product p ON sr.product_id_id = p.id
+            JOIN testapp_category c ON p.category_id_id = c.id
+            GROUP BY sr.product_id_id, p.name, c.name  order by sr.product_id_id;
+        """
+
+        cursor.execute(sql_query)
+        columns = [col[0] for col in cursor.description]
+        
+        result = [dict(zip(columns, row)) for row in cursor.fetchall()]
+        
+        # for i in cursor.fetchall():
+        #     print(i)
+        #print(result)
+
+    return result
+
+
+
 
 
 
 class Purchase(APIView):
     def post(self,request):
         data = request.data 
+        print(data)
+        #import pdb;pdb.set_trace()
+        status_code = status_code = status.HTTP_201_CREATED
+
+        for i in data:
         
-        product_instance = product.objects.get(pk=data.get("product_id"))
-        purchase_inst = PurchaseOrder(description=data.get("description"))
-        purchase_inst.save()
+            product_instance = product.objects.get(pk=i.get("product_id"))
+            purchase_inst = PurchaseOrder(description=i.get("description"))
+            purchase_inst.save()
 
-        product_purchase_inst = ppos( product_id= product_instance,purchase_id=purchase_inst,quantity=data.get('quantity'))
-        product_purchase_inst.save()
+            product_purchase_inst = ppos( product_id= product_instance,purchase_id=purchase_inst,quantity=i.get('quantity'))
+            product_purchase_inst.save()
 
         
 
-        stock_report_inst = StockReport(description=data.get("description"), product_id =product_instance, type='PS', quantity=data.get('quantity'))
-        stock_report_inst.save()
-        return Response("hy")
+            stock_report_inst = StockReport(description=i.get("description"), product_id =product_instance, type='PS', quantity=i.get('quantity'))
+            stock_report_inst.save()
+        return Response({"data":"purchase is added succefully"},status=status_code)
 
 class Sale(APIView):
     def post(self,request):
         data = request.data 
+        status_code = status_code = status.HTTP_201_CREATED
+
+        for i in data:
         
-        product_instance = product.objects.get(pk=data.get("product_id"))
-        sale_inst = SalesOrder(description=data.get("description"))
-        sale_inst.save()
+            product_instance = product.objects.get(pk=i.get("product_id"))
+            sale_inst = SalesOrder(description=i.get("description"))
+            sale_inst.save()
 
-        product_purchase_inst = ssos( product_id= product_instance,sale_id=sale_inst,quantity=data.get('quantity'))
-        product_purchase_inst.save()
+            product_purchase_inst = ssos( product_id= product_instance,sale_id=sale_inst,quantity=i.get('quantity'))
+            product_purchase_inst.save()
 
-        stock_report_inst = StockReport(description=data.get("description"), product_id =product_instance, type='SS', quantity=-(data.get('quantity')))
-        stock_report_inst.save()
-        return Response("hy")
+            stock_report_inst = StockReport(description=i.get("description"), product_id =product_instance, type='SS', quantity=-(i.get('quantity')))
+            stock_report_inst.save()
+        return Response({"data":"sale is added succefully"},status=status_code)
 
-class SaleReport(APIView):
+class StockReportOfsingleObject(APIView):
     def get(self,request,id):
-        data  = StockReport.objects.filter(product_id__id=id).aggregate(total_quantity=Sum('quantity'))
+        data  = single_object(id)
+       
+        for i in data:
+            
+            i["num_of_quantity_sale"] = abs(i["num_of_quantity_sale"])
+        return Response({"data":data})
+    
+
+class StockReportS(APIView):
+    def get(self,request):
+        
+
+        data = custom_sql_query()
+        for i in data:
+            
+            i["num_of_quantity_sale"] = abs(i["num_of_quantity_sale"])
+        
+        #return Response(serializer.data)
         return Response({"data":data})
     
 
 
 class ProductView(APIView):
     def get(self,request):
+
+        print("calledd")
+        from rest_framework.authentication import TokenAuthentication
+        from rest_framework.permissions import IsAuthenticated
+        authentication_classes = [TokenAuthentication]
+        permission_classes = [IsAuthenticated]
         products = product.objects.all()
         data = ProductSerializer(products,many=True)
         return Response({"data":data.data})
@@ -60,9 +202,10 @@ class ProductView(APIView):
         data = request.data
         
         print(data)
+        status_code = status.HTTP_201_CREATED
         
         inst = ProductSerializer(data=request.data)
-
+        import pdb;pdb.set_trace()
        
         message = ""
         if inst.is_valid():
@@ -70,7 +213,11 @@ class ProductView(APIView):
 
             
             ser = inst.save()
-            
+            print(ser.id)
+
+            user = request.user
+            ser.created_by = user
+            ser.save()
            
             ser.productcost_set.create(cost=request.data.get('cost'))
             ser.stock_set.create(quantity=request.data.get('quantity'))
@@ -79,9 +226,11 @@ class ProductView(APIView):
             stock_report_inst.save()
 
             message = "Data added successfully"
+            data["id"] = ser.id
         else :
             message = "sorry....! Data not added"
-        return Response({"message":message})
+            status_code = status.HTTP_404_NOT_FOUND
+        return Response({"message":message,"product_id":data.get("id")},status=status_code)
 
     def put(self,request,**kwrdargs):
 
