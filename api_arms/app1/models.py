@@ -1,5 +1,6 @@
 from django.db import models
 from django.core.exceptions import ValidationError
+from django.contrib.auth.models import User
 
 # Create your models here.
 def validate_email(value):
@@ -47,6 +48,7 @@ class Person(models.Model):
     name = models.CharField(max_length=250, unique=True)
     email = models.EmailField(max_length=250, default="", validators=(validate_email,))
     age = models.IntegerField(default=0)
+    created_by = models.ForeignKey(User, on_delete=models.PROTECT, null=True)
 
 class Region(models.Model):
     name = models.CharField(max_length=250, unique=True)

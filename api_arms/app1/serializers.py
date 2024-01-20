@@ -29,7 +29,8 @@ class ProductModelSerializer(serializers.ModelSerializer):
 class PersonSerializer(serializers.ModelSerializer):
     class Meta:
         model = Person
-        fields = "__all__"
+        #fields = "__all__"
+        exclude = ('created_by', )
 
     def validate_name(self, value=None):
         if value.isalnum():

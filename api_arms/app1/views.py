@@ -47,6 +47,8 @@ class SampleView(APIView):
         status_code = status.HTTP_201_CREATED
         if ser.is_valid():
             person_inst = ser.save()
+            person_inst.created_by = request.user
+            person_inst.save()
             data = ser.data
             message="inserted successfully"
         else:

@@ -9,6 +9,8 @@ import jwt
 
 # Create your views here.
 class LoginAPI(APIView):
+    authentication_classes = []
+    permission_classes = []
     def post(self, request):
         data = request.data
         resp_data = {"token":None, "message":""}
