@@ -1,5 +1,5 @@
 """
-URL configuration for e_commers project.
+URL configuration for IAM project.
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/5.0/topics/http/urls/
@@ -16,18 +16,9 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from testapp.views import ProductView,CategoryView,Purchase,Sale,StockReportOfsingleObject,StockReportS,LoginView,GetCredentials
+from testapp.views import LoginApi
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('product', ProductView.as_view()),
-        path('product/<int:pk>', ProductView.as_view()),
-         path('purchase', Purchase.as_view()),
-         path('sale', Sale.as_view()),
-         path('stockreports', StockReportS.as_view()),
-          path('stockreport/<int:id>', StockReportOfsingleObject.as_view()),
-    path('category',CategoryView.as_view()),
-    path('login',LoginView.as_view()),
-    path("getcredentials",GetCredentials.as_view())
+     path('login', LoginApi.as_view()),
 ]
-

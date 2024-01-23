@@ -17,6 +17,9 @@ from django.db import connection
 from django.contrib.auth import authenticate
 from rest_framework.authtoken.models import Token
 from django.conf import Settings
+from rest_framework.authentication import TokenAuthentication
+from rest_framework.permissions import IsAuthenticated
+
 
 
 class LoginView(APIView):
@@ -26,7 +29,7 @@ class LoginView(APIView):
         print(dir(request))
         request.META
        
-        #import pdb;pdb.set_trace()
+        import pdb;pdb.set_trace()
         response = {"data":None,"status":''}
         
         data = request.data
@@ -174,6 +177,8 @@ class StockReportOfsingleObject(APIView):
 class StockReportS(APIView):
     def get(self,request):
         
+        authentication_classes = [TokenAuthentication]
+        permission_classes = [IsAuthenticated]
 
         data = custom_sql_query()
         for i in data:

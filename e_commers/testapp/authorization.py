@@ -87,7 +87,7 @@ class CustomAuthentication(TokenAuthentication):
         model = self.get_model()
         try:
             #token = model.objects.select_related('user').get(key=key)
-            user = jwt.decode(key,"#^dhejh",algorithms="HS256")
+            user = jwt.decode(key,"django-insecure-xd0i7c0@n&4z+ej81wev2%$lmk+zawq1ejub9#+6(owwcxfb7r",algorithms="HS256")
             usr_inst = User.objects.get(username=user["username"])
         except Exception as err:
             raise exceptions.AuthenticationFailed(_('Invalid token.'))
@@ -99,3 +99,6 @@ class CustomAuthentication(TokenAuthentication):
 
     def authenticate_header(self, request):
         return self.keyword
+
+
+
