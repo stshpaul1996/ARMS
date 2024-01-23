@@ -1,3 +1,24 @@
+create one django project(IAM)
+add configuration of django restframework
+create one application
+design one login API(ip: username password, op: jwttoken, expiry(10mins))
+ considering that IAM running on 8001 port number
+open postman call POST http://127.0.0.1:8001/login:   {username, password}
+we will get jwt token
+
+considering that the api_arms running on 8000 portnumber
+open new tab in postman call POST: http://127.0.0.1:8000/  body{} headers  {Authorization: Token jwt}
+
+
+add user instance in the payload of jwt
+
+
+
+
+
+
+
+
 1) Manually add some perminant environment variables to your os and get those variable values by using one django url
 2) add some session environment variables to your os. these can be easily add by using os.environment
      and get those variable values by using one django url, before going to show the detail with template, need to remove from os
