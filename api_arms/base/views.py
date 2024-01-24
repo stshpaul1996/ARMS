@@ -23,7 +23,7 @@ class LoginAPI(APIView):
             # else:
             #     token_inst = token_inst[0]
             #token_inst = Token.objects.get_or_create(user=user)[0]
-            payload = {"userName": user.username, "userId": user.id}
+            payload = {"userId": user.id}
             resp_data["token"] = jwt.encode(payload, settings.SECRET_KEY, algorithm="HS256")
             resp_data["message"] = "OK"
             return Response(resp_data)

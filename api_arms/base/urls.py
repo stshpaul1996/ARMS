@@ -6,3 +6,11 @@ urlpatterns = [
 
     path("login/", LoginAPI.as_view() )
 ]
+
+"""
+post, get: person/
+patch,put,delete,get: person/<1234>
+
+"""
+
+
