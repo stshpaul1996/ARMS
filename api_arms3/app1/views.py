@@ -5,6 +5,7 @@ from rest_framework import status
 from .serial import *
 from .models import *
 from django.db.models import Sum, ExpressionWrapper, IntegerField, F
+from django.http import JsonResponse
 # Create your views here.
 class CategoryV(APIView):
     def post(self, request):
@@ -15,7 +16,7 @@ class CategoryV(APIView):
             Message ='Data is inserted'
         else:
             Message = 'Data is not inserted'
-        return Response({'Message': Message})
+        return Response({'Message': Message}, status=status.HTTP_201_CREATED)
     
 class Productv(APIView):
     def post(self, request):
@@ -30,7 +31,7 @@ class Productv(APIView):
             Message = 'Data is inserted'
         else:
             Message = 'Data is not inserted'
-        return Response(Message)
+        return Response(Message,status=status.HTTP_201_CREATED)
 
             
 class OpeningStockV(APIView):
@@ -59,7 +60,7 @@ class OpeningStockV(APIView):
             Message ='Data is inserted'
         else:
             Message = 'Data is not inserted'
-        return Response(Message)
+        return Response(Message,status=status.HTTP_201_CREATED)
     
 class Salesv(APIView):
     def post(self, request):
@@ -84,7 +85,7 @@ class Salesv(APIView):
             Message ='Data is inserted'
         else:
             Message = 'Data is not inserted'
-        return Response(Message)
+        return Response(Message,status=status.HTTP_201_CREATED)
 
 class Purchasev(APIView):
     def post(self, request):
@@ -109,16 +110,16 @@ class Purchasev(APIView):
             Message = 'Data is inserted'
         else:
             Message = 'Data is not inserted'
-        return Response({'mess1':mess, 'mess2':Message})
+        return Response({'mess1':mess, 'mess2':Message},status=status.HTTP_201_CREATED)
     
 class Stockv(APIView):
     def get(self, request):
         aggregated_stocks = Stock.objects.values(
             'product__name', 
-            'product__id', 
-            'product__unique_num', 
+            # 'product__id', 
+            'unique_nums', 
             'category__name', 
-            'category__id'
+            # 'category__id'
         ).annotate(
             total_opening_stock=Sum('openingStock'),
             total_sales=Sum('sales'),
@@ -128,6 +129,28 @@ class Stockv(APIView):
                 output_field=IntegerField()
                 )
         )
-
         return Response(aggregated_stocks)
-        
+# class Stockvp(APIView):
+#     def get(self, request, id):
+#         stvp = Stock.objects.get(product = id)
+#         productid = stvp.id
+#         productcat = stvp.category
+#         productopen = stvp.openingStock
+#         productsale = stvp.sales
+#         productuniq = stvp.unique_nums
+
+#         return Response({productid, productcat, productopen, productsale, productuniq})
+
+class Stockvp(APIView):
+    def get(self, request, id):
+        stocks = Stock.objects.filter(product=id)
+        results = []
+        for stvp in stocks:
+            results.append({
+                'id': stvp.id,
+                'category': stvp.category,
+                'openingStock': stvp.openingStock,
+                'sales': stvp.sales,
+                'unique_nums': stvp.unique_nums
+            })
+        return JsonResponse(results, safe=False)

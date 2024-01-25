@@ -8,4 +8,5 @@ urlpatterns = [
     path('sale/',Salesv.as_view()),
     path('pur/',Purchasev.as_view()),
     path('stock/',Stockv.as_view()),
+    path('stock/<int:id>/', Stockvp.as_view())
 ]
