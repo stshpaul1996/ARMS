@@ -1,0 +1,25 @@
+role
+id,name
+1,user
+2,admin
+3,person
+
+apis
+id,name
+1,person
+2,stock
+3,product
+
+permissions
+id,roleid,apiid,has_get,has_post,has_put,has_delete
+1,2,1,True,True,True,True
+2,3,1,True,True,True,False
+3,1,1,True,False,False,False
+3,1,2,True,False,False,False
+
+
+user
+id, username, password, roleid
+1,user_user,233,1
+2,user_admin,233,2
+3,user_person,24,3

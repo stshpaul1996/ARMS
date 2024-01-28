@@ -1,6 +1,20 @@
 from rest_framework import serializers 
 from app1.models import Person, Product, Category
 from django.core.exceptions import ValidationError
+from django.contrib.auth.models import User
+from app1.models import Role
+class RoleSerializer(serializers.ModelSerializer):
+     class Meta:
+        model = Role
+        fields = ["name"]
+
+
+class UserSerializer(serializers.ModelSerializer):
+    role = serializers.IntegerField()
+
+    class Meta:
+        model = User
+        fields = ["username", "password","email", "role"]
 
 class CategoryModelSerializer(serializers.ModelSerializer):
     class Meta:
