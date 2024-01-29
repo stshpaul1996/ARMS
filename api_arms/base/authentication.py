@@ -1,5 +1,6 @@
 from django.conf import settings
-from django.contrib.auth.models import User
+#from django.contrib.auth.models import User
+from app1.models import MyUser
 
 
 from rest_framework.authentication import TokenAuthentication, get_authorization_header
@@ -14,7 +15,7 @@ class JWTAuth(TokenAuthentication):
     def authenticate_credentials(self, key):    
         try:
             payload = jwt.decode(key, settings.SECRET_KEY, algorithm="HS256")
-            user_inst = User.objects.get(pk=payload.get("userId"))
+            user_inst = MyUser.objects.get(pk=payload.get("userId"))
         except Exception as err:
             raise exceptions.AuthenticationFailed('Invalid token.')
 

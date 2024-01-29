@@ -138,3 +138,4 @@ REST_FRAMEWORK = {
     ],
 }
 
+AUTH_USER_MODEL = "app1.MyUser"
