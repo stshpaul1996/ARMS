@@ -85,7 +85,6 @@ class Purchase(APIView):
             product_purchase_inst = ppos( product_id= product_instance,purchase_id=purchase_inst,quantity=i.get('quantity'))
             product_purchase_inst.save()
 
-        
 
             stock_report_inst = StockReport(description=i.get("description"), product_id =product_instance, type='PS', quantity=i.get('quantity'))
             stock_report_inst.save()
@@ -145,7 +144,7 @@ class ProductView(APIView):
         if inst.is_valid():
             ser = inst.save()
             print(ser.id)
-           
+
             ser.productcost_set.create(cost=request.data.get('cost'))
             ser.stock_set.create(quantity=request.data.get('quantity'))
             stock_report_inst = StockReport(description="opesningstock in added", product_id =ser, type='OS', quantity=data.get('quantity'))

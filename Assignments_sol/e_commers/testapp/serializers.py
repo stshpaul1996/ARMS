@@ -15,8 +15,6 @@ class PurchaseSerializer(serializers.ModelSerializer):
 
 class ProductSerializer(serializers.ModelSerializer):
 
-
-   
     cost = serializers.SerializerMethodField()
     quantity = serializers.SerializerMethodField()
  

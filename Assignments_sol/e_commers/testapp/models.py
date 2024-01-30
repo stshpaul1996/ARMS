@@ -1,25 +1,12 @@
-from django.db import models
-
-# Create your models here.
-from django.db import models
-
-# Create your models here.
 
 from django.db import models
-
-# Create your models here.
-
-
-
-
 
 class category(models.Model):
     name = models.CharField(max_length=250)
 
-    
-
 class PurchaseOrder(models.Model):
     description = models.TextField(max_length=250)
+
 
 class SalesOrder(models.Model):
     description = models.TextField(max_length=250)

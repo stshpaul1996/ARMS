@@ -1,0 +1,122 @@
+Basics and Fundamentals:
+What is Python?
+Differentiate between Python 2 and Python 3.
+Explain PEP 8.
+What are the advantages of using Python?
+How do you comment in Python?
+Explain the concept of Python indentation.
+What is the purpose of __init__ in Python classes?
+Differentiate between list and tuple in Python.
+Explain the difference between append() and extend() methods in a list.
+Describe the purpose of the pass statement in Python.
+
+Data Types and Variables:
+
+List some built-in data types in Python.
+Explain the difference between int and float data types.
+How do you convert a string to an integer in Python?
+What is the purpose of the str() function?
+How do you check the type of a variable in Python?
+What is the difference between == and is in Python?S
+
+Control Flow and Loops:
+
+Explain the if, elif, and else statements in Python.
+How do you use a for loop in Python?
+Explain the while loop in Python.
+What is the purpose of the range() function?
+
+Functions:
+
+Define a function in Python.
+Explain the difference between parameters and arguments.
+What is a lambda function, and how is it different from a regular function?
+What is the purpose of the return statement in a function?
+Explain the concept of function overloading in Python.
+
+Lists, Strings, and Dictionaries:
+
+How do you access elements in a list?
+Explain the concept of slicing in Python.
+How do you concatenate two lists in Python?
+Explain the difference between remove() and pop() methods in a list.
+What is a dictionary in Python?
+How do you access values in a dictionary?
+Explain the purpose of the keys() and values() methods in a dictionary.
+How do you check if a key exists in a dictionary?
+
+Advanced Python Interview Questions:
+Object-Oriented Programming (OOP):
+
+Explain the four principles of OOP.
+What is an instance variable in Python?
+Describe the concept of inheritance.
+What is method overloading and method overriding in Python?
+What is the purpose of the super() function in Python?
+
+Exception Handling:
+
+Explain the purpose of the try, except, else, and finally blocks in Python.
+What is the purpose of the raise statement?
+
+File Handling:
+
+How do you open and close a file in Python?
+Explain the difference between read and write modes in file handling.
+What is the purpose of the with statement in file handling?
+
+Modules and Packages:
+
+Define a module in Python.
+Explain the difference between a module and a package.
+How do you import a module in Python?
+What is the purpose of the __init__.py file in a package?
+
+Decorators and Generators:
+
+Explain the concept of decorators in Python.
+What is a generator in Python?
+Describe the yield statement in Python.
+
+Regular Expressions:
+
+What is a regular expression?
+Explain the purpose of the re module in Python.
+How do you use regular expressions to search for a pattern in a string?
+
+List Comprehensions:
+
+What is a list comprehension in Python?
+How do you write a list comprehension to generate a new list?
+
+Threading and Multiprocessing:
+
+What is threading in Python?
+Explain the Global Interpreter Lock (GIL).
+How do you achieve parallelism in Python?
+
+Database Connectivity:
+
+How do you connect to a database using Python?
+Explain the purpose of the cursor in database operations.
+
+Virtual Environments:
+
+What is a virtual environment in Python?
+How do you create and activate a virtual environment?
+
+Package Management:
+
+What is pip?
+How do you install a package using pip?
+Explain the purpose of requirements.txt in Python projects.
+
+Testing in Python:
+
+What is unit testing?
+Explain the purpose of the unittest module in Python.
+
+Memory Management:
+
+How does Python manage memory?
+Explain the concept of reference counting.
