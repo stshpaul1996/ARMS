@@ -1,0 +1,41 @@
+{
+        
+        "name": "redmi note 7",
+        "product_unique_number": "1234568",
+        "category": 1,
+        "purchase_orders": [
+            2,
+            3
+        ],
+        "sales_orders": [
+            1,
+            2
+        ],
+        "cost":500000,
+        "stock":5
+            }
+
+
+
+
+    {
+  "product": {
+    "name": "redmi8",
+    "product_unque_number": "19",
+    "category": 2,
+    "purchase_orders": [
+            2,
+            3
+        ],
+        "sales_orders": [
+            1,
+            2
+        ]
+  },
+  "opening_stock": {
+    "stock": 100
+  },
+  "cost_price": {
+    "cost": 50
+  }
+}
