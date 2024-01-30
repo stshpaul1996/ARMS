@@ -8,18 +8,16 @@ import jwt
 
 # Create your views here.
 class Login_api(APIView):
+
     def post(self, request):
         data = request.data
         insta = {'token':None, 'message':" "}
         user = authenticate(**data)
         
         if user:
-
-            payload = {"username":user}
+            payload = {"hello":"hi",}
             insta['token'] = jwt.encode(payload,'secret',algorithm="HS256")
             insta['message'] = 'Okay'
-
             return Response(insta)
         else:
-
             return Response(insta,status=status.HTTP_403_FORBIDDEN)

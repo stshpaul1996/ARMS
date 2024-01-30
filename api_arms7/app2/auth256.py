@@ -6,10 +6,9 @@ import jwt
 class JWTAuth(TokenAuthentication):
 
     def authenticate_credentials(self, key):
+        #import pdb;pdb.set_trace()
         try:
-            print('hello1')
-            payload1 = jwt.decode(key,'secret', algorithm="HS256")
-            print('hello2')
+            payload1 = jwt.decode(key,'secret', algorithms="HS256")
             user_inst = User.objects.get(pk=payload1.get("username"))
 
         except jwt.ExpiredSignatureError:
