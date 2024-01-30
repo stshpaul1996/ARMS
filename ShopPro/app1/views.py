@@ -4,8 +4,51 @@ from rest_framework.response import Response
 from .models import *
 from .serializers import *
 from rest_framework import status
+from rest_framework.authtoken.models import Token
+from django.contrib.auth.models import User
+from django.shortcuts import get_object_or_404
+
+import requests
+
+def perform_login(username, password):
+    login_url = 'http://localhost:8001/login/' 
+    response = requests.post(login_url, data={'username': username, 'password': password})
+
+    if response.status_code == 200:
+        
+        token = response.json().get('jwt_code')  
+        
+        return token
+    else:
+        res = "Invalid Details"
+        return res
+    
 
 # Create your views here.
+# class Register(APIView):
+#     def post(self, request):
+#         user = UserSerializer(data=request.data)
+#         if user.is_valid():
+#             user.save()
+#             u = User.objects.get(username=request.data['username'])
+#             u.set_password(request.data['password'])
+#             u.save()
+#             token = Token.objects.create(user=u)
+#             return Response({"token":token.key, "user":user.data})
+#         return Response(user.errors, status=status.HTTP_400_BAD_REQUEST)
+
+# class Login(APIView):
+#     def post(self, request):
+#         user = get_object_or_404(User, username=request.data["username"])
+#         if not user.check_password(request.data["password"]):
+#             return Response({"details": "Not Found"}, status=status.HTTP_404_NOT_FOUND)
+#         token,create = Token.objects.get_or_create(user=user)
+#         seri = UserSerializer(instance=user)
+#         return Response({"Login": "success", "token":token.key, "user":seri.data})
+    
+
+
+
 class CategoryView(APIView):
     def post(self, request):
         req = CategorySerializer(data=request.data)
@@ -116,9 +159,11 @@ class SalesView(APIView):
             data = Sales.objects.get(id=id)
             res = SalesSerializer(data)
             return Response(res.data)
-    
+
+
 
 class StockView(APIView):
+
     def get(self,request,id=None):
         if id == None:
             main = []
@@ -207,6 +252,11 @@ class StockView(APIView):
                         category["products"]=products      
                 
             return Response(category)
+
+class ProductStockView(APIView):
+    def get(self, request, id):
+        if id == None:
+            pass
 
 
                

@@ -1,0 +1,5 @@
+1) create UserProfile model add role field. add Userprofile when the user registered with /user API
+
+2) create MyUser model, this has to overide the existing user table. add role column to it.
+
+    develop /role and /user APIs
