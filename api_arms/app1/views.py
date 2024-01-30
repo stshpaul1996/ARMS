@@ -67,9 +67,10 @@ class SampleView(APIView):
         data = {}
         ser = PersonSerializer(data=request.data)
         status_code = status.HTTP_201_CREATED
-        # import pdb;pdb.set_trace()
         if ser.is_valid():
             person_inst = ser.save()
+            person_inst.created_by = request.user
+            person_inst.save()
             data = ser.data
             message="inserted successfully"
         else:
@@ -79,6 +80,11 @@ class SampleView(APIView):
 
     def get(self, request):
         persons = Person.objects.all()
+        query_params = request.query_params
+        if query_params:
+            if "name" in query_params:
+                persons = persons.filter(name=query_params.get("name"))
+            
         #response parser
         # data = [ {"name": rec.name, "id": rec.id} for rec in persons]
         ser = PersonSerializer(persons, many=True)
