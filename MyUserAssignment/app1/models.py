@@ -21,7 +21,7 @@ class Api(BaseAbstarctModel):
     #name = models.CharField(max_length=250, unique=True)
 
 class MyUser(AbstractUser):
-    role = models.ForeignKey(Role, on_delete=models.PROTECT)
+    role = models.ForeignKey(Role, on_delete=models.PROTECT, default=1)
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs)
      

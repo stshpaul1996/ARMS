@@ -23,7 +23,7 @@ class LoginAPI(APIView):
         user = authenticate(**data)
         if user:
             payload = {"userId": user.id}
-            resp_data["token"] = jwt.encode(payload, settings.SECRET_KEY, algorithms="HS256")
+            resp_data["token"] = jwt.encode(payload, settings.SECRET_KEY, algorithm="HS256")
             resp_data["message"] = "OK"
             return Response(resp_data, status=status.HTTP_201_CREATED)
         
@@ -32,6 +32,8 @@ class LoginAPI(APIView):
 
 
 class RoleViewset(viewsets.ModelViewSet):
+    authentication_classes = []
+    permission_classes = []
     queryset = Role.objects.all()
     serializer_class = RoleSerializer
 
@@ -39,6 +41,13 @@ class RoleViewset(viewsets.ModelViewSet):
 class UserViewSet(viewsets.ModelViewSet):
     queryset = MyUser.objects.all()
     serializer_class = UserSerializer
+    def perform_create(self, serializer):
+        data = serializer.data
+        role_id = data.pop("role")
+        role_inst = Role.objects.get(id=role_id)
+        user = MyUser.objects.create_user(**data,role=role_inst)
+        
+       
 
 class PermissionViewSet(viewsets.ModelViewSet):
     queryset = Permissions.objects.all()

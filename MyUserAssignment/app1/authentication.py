@@ -7,7 +7,7 @@ from rest_framework import exceptions
 import jwt
 
 class JWTAuth(TokenAuthentication):
-    def authenticate_credential(self, key):
+    def authenticate_credentials(self, key):
         try:
             payload = jwt.decode(key, settings.SECRET_KEY, algorithms="HS256")
             user_inst = MyUser.objects.get(pk=payload.get("userId"))
