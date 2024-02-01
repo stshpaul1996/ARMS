@@ -1,8 +1,11 @@
-from django.contrib.auth.models import AbstractUser
+from django.contrib.auth.models import User
 from django.db import models
+from django.conf import settings
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 
 class UserProfileBase(models.Model):
-    name = models.CharField(max_length=100)  # Adjust max_length based on your needs
+    name = models.CharField(max_length=100)
 
     class Meta:
         abstract = True
@@ -10,8 +13,27 @@ class UserProfileBase(models.Model):
 class Role(UserProfileBase):
     pass
 
-class UserProfile(AbstractUser):
+class UserProfile(models.Model):
+    user=models.OneToOneField(User,on_delete=models.PROTECT)
+    role = models.ForeignKey(Role, on_delete=models.PROTECT, null=True, blank=True)
+
+
+@receiver(post_save,sender=User)
+def add_role(sender,created,instance, *args,**kwargs):
+    UserProfile.objects.create(user=instance,role=Role.objects.get(id=1))
+        
+
+    # def save(self, *args, **kwargs):
+    #     super().save(*args, **kwargs)
+        
+class Api(UserProfileBase):
+    pass
+    #name = models.CharField(max_length=250, unique=True)
+
+class Permissions(models.Model):
     role = models.ForeignKey(Role, on_delete=models.PROTECT)
-    def save(self, *args, **kwargs):
-        super().save(*args, **kwargs)
-        #role_inst = Role.objects.get(id=kwargs.get("role_id"))
+    api = models.ForeignKey(Api, on_delete=models.PROTECT)
+    has_get = models.BooleanField(default=False)
+    has_post = models.BooleanField(default=False)
+    has_put = models.BooleanField(default=False)
+    has_delete = models.BooleanField(default=False)
