@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from rest_framework import viewsets
-from app1.models import MyUser,Role
+from app1.models import Role
+from django.contrib.auth import get_user_model
 from .serializers import RoleSerializer,UserSerializer
 
 class RoleModelViewset(viewsets.ModelViewSet):
@@ -8,7 +9,7 @@ class RoleModelViewset(viewsets.ModelViewSet):
     serializer_class = RoleSerializer
 
 class UserViewSet(viewsets.ModelViewSet):
-    queryset = MyUser.objects.all()
+    queryset = get_user_model().objects.all()
     serializer_class = UserSerializer
 
     def perform_create(self, serializer):
@@ -18,7 +19,7 @@ class UserViewSet(viewsets.ModelViewSet):
         print(roleins)
         data['role'] = roleins
         print(data)
-        s = MyUser.objects.create_user(**data)
-        s.save()   
+        get_user_model().objects.create_user(**data)
+           
 
  

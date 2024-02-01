@@ -10,3 +10,5 @@ class Role(models.Model):
 class UserProfile(models.Model):
     user=models.OneToOneField(User, on_delete=models.PROTECT)
     role=models.ForeignKey(Role,on_delete=models.PROTECT)
+
+
