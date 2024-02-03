@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 from django.contrib import admin
 from django.urls import path, include
 from app1.views import (SampleView, ProductView, CategoryView,PoductCostOpeningstockView)
@@ -13,7 +13,7 @@ urlpatterns = [
     
     
 ]
-=======
+
 from django.contrib import admin
 from django.urls import path, include
 from app1.views import (SampleView, ProductView, CategoryView)
@@ -40,4 +40,4 @@ urlpatterns = [
     
     
 ] + router.urls
->>>>>>> 7aaa55c3dc0d9b8880651676d930355cef0e1f4c
+

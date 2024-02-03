@@ -1,6 +1,7 @@
 from django.db import models
 from django.core.exceptions import ValidationError
 from django.contrib.auth.models import AbstractUser
+from  django.contrib.auth.models import User
 
 class BaseAbstarctModel(models.Model):
      name = models.CharField(max_length=250, unique=True)
@@ -8,14 +9,18 @@ class BaseAbstarctModel(models.Model):
          abstract = True
 
 class Role(BaseAbstarctModel):
-    pass
-    #name = models.CharField(max_length=100, unique=True)
+    name = models.CharField(max_length=100, unique=True,default='admin')
 
 class MyUser(AbstractUser):
     role = models.ForeignKey(Role, on_delete=models.PROTECT)
-    def save(self, *args, **kwargs):
-        super().save(*args, **kwargs)
-        #role_inst = Role.objects.get(id=kwargs.get("role_id"))
+    user=models.OneToOneField(User,on_delete=models.PROTECT)
+    # def save(self, *args, **kwargs):
+    #     super().save(*args, **kwargs)
+    #     #role_inst = Role.objects.get(id=kwargs.get("role_id"))
+
+class Myprofile(models.Model):
+    role = models.ForeignKey(Role, on_delete=models.PROTECT)
+    user = models.OneToOneField(User, on_delete=models.PROTECT)
 
 # Create your models here.
 def validate_email(value):
@@ -102,9 +107,9 @@ UserPRofile:
 
 UserProfile.get(userid=reqest.user.id).role.id
 """
-# class UserProfile(models.Model):
-#     user = models.OneToOneField(User, on_delete=models.PROTECT)
-#     role = models.ForeignKey(Role, on_delete=models.PROTECT)
+class UserProfile(models.Model):
+    user = models.OneToOneField(MyUser, on_delete=models.PROTECT)
+    role = models.ForeignKey(Role, on_delete=models.PROTECT)
 
 #from django.contrib.auth.models import User.
 # dont use User model use the model app1.models.MyUser

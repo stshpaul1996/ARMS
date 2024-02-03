@@ -1,5 +1,5 @@
 from rest_framework import serializers 
-from app1.models import Person, Product, Category,OpeningStock,ProductCost
+from app1.models import Person, Product, Category,OpeningStock,ProductCost,UserProfile
 from django.core.exceptions import ValidationError
 from app1.models import Role, MyUser
 class RoleSerializer(serializers.ModelSerializer):
@@ -43,13 +43,12 @@ class PoductCostOpeningstockSerializer(serializers.Serializer):
 
 
 class ProductModelSerializer(serializers.ModelSerializer):
-<<<<<<< HEAD
+
     # cost = # that should directly reffer the models.ProductCost.cost#serializers.DecimalField(max_digits=10, decimal_places=2)
     # openingstock =#that should directly reffer the models.Openingstock.stock #serializers.DecimalField(max_digits=10, decimal_places=2)
-=======
+
     cost = serializers.DecimalField(max_digits=10, decimal_places=2)
     openingstock = serializers.DecimalField(max_digits=10, decimal_places=2)
->>>>>>> 7aaa55c3dc0d9b8880651676d930355cef0e1f4c
     class Meta:
         model = Product
         fields = ("name", "product_unque_number", "category",
@@ -75,12 +74,17 @@ class PersonSerializer(serializers.ModelSerializer):
         if age and age>=18:
             if not data.get("email"):
                 raise ValidationError("Email mandatory")
-<<<<<<< HEAD
+
         return super(PersonSerializer, self).validate()
-=======
+
         return super(PersonSerializer, self).validate(data)
->>>>>>> 7aaa55c3dc0d9b8880651676d930355cef0e1f4c
+
 
         
+class UserProfileSerializer(serializers.ModelSerializer):
+    class Meta:
+        model=UserProfile
+        fields = ['']
+
 
     
