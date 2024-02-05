@@ -4,6 +4,7 @@ from rest_framework import status
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import viewsets
+from django.db.models import Avg, Count, Sum
 import datetime
 
 from .serializers import *
@@ -15,7 +16,6 @@ class TripView(viewsets.ModelViewSet):
     serializer_class = TripSerializer
 
     def perform_create(self, serializer):
-
         validated_data = serializer.validated_data
         validated_data["created_by"] = users["user"]
         serializer.save()
@@ -33,6 +33,10 @@ class MemberView(viewsets.ModelViewSet):
     queryset = Member.objects.all()
     serializer_class = MemberSerializer
 
+
+    # def list(self, request, *args, **kwargs):
+    #     pass
+
     def perform_create(self, serializer):
         validated_data = serializer.validated_data
         validated_data["created_by"] = users["user"]
@@ -46,54 +50,50 @@ class MemberView(viewsets.ModelViewSet):
       
 
 
-class ExpensesView(APIView):
-    def post(self, request):
-        req_data = request.data
-        req_data["created_by"] = users["user"]
-        req = ExpensesSerializer(data=req_data)
-        msg = ""
-        if req.is_valid():
-            req.save()
-            msg = "Added Successfully"
-            status_code = status.HTTP_201_CREATED
-        else:
-            msg = req.errors
-            status_code = status.HTTP_400_BAD_REQUEST
-        
-        return Response({"Result":msg, "data":request.data}, status=status_code)
+class ExpensesView(viewsets.ModelViewSet):
+    queryset = Expenses.objects.all()
+    serializer_class = ExpensesSerializer
+
+
+    def retrieve(self, request, *args, **kwargs):
+        instance = self.get_object()
+        serializer = self.get_serializer(instance)
+        print(serializer.data)
+        id = serializer.data['id']
+        print(id)
+        data = Member.objects.filter(trip=id)
+        total_members = len(data)
+        mem_id = 0
+        for i in data:
+            mem_id = i.id
+            break
+        print(mem_id)
+        expenses = Expenses.objects.filter(member=mem_id).aggregate(Sum('spent'))
+        print(expenses)
+        try:
+            each_person_expenses = expenses['spent__sum']/total_members
+        except Exception as err:
+            return Response({})
+        members = []
+        for i in data:
+            members.append(i.name)
+       
+
+        return Response({'trip':id,'members':members, 'total':expenses['spent__sum'], 'each_person_expenses':each_person_expenses})
+
+
+
+
+    def perform_create(self, serializer):
+        validated_data = serializer.validated_data
+        validated_data["created_by"] = users["user"]
+        serializer.save()
     
-    def get(self, request, id=None):
-        if id == None:
-            # data = Expenses.objects.all()
-            # res = ExpensesSerializer(data, many=True)
-            # return Response(res.data)
+    def perform_update(self, serializer):
+        validated_data = serializer.validated_data
+        validated_data["updated_by"] = users["user"]
+        validated_data["updated_at"] = datetime.datetime.now()
+        serializer.save()
+      
 
-            data = []
-            for i in Member.objects.all():
-                persons = {}
-                for j in Expenses.objects.all():
-                    if i.id == j.member_id:
-                        persons["name"] = i.name
-                        if "spent" in persons:
-                            persons["spent"] += j.spent
-                        else:
-                            persons["spent"] = j.spent 
-                    else:
-                        pass
-                data.append(persons)
-        
-
-
-
-
-        
-            
-            return Response(data)
-
-        else:
-            data = Expenses.objects.get(id=id)
-            res = ExpensesSerializer(data)
-            return Response(res.data)
-
-    
 

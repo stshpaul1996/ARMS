@@ -5,8 +5,9 @@ from .views import *
 router = DefaultRouter()
 router.register(r'trip', TripView, basename="trip")
 router.register(r'member', MemberView, basename="member")
+router.register(r'expense', ExpensesView, basename="expense")
 
 
 urlpatterns = [
-    path("expenses/", ExpensesView.as_view()) 
+     #path("expense/", ExpensesView.as_view()) 
 ]+router.urls
