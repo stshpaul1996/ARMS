@@ -114,9 +114,9 @@ REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'app.authorization.CustomAuthentication'
     ],
-    'DEFAULT_PERMISSION_CLASSES': [
-   'rest_framework.permissions.IsAuthenticated',
-]
+#     'DEFAULT_PERMISSION_CLASSES': [
+#    'rest_framework.permissions.IsAuthenticated',
+# ]
 }
 
 # Internationalization

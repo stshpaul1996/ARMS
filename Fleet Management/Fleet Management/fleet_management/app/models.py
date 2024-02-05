@@ -12,7 +12,7 @@ class CommonAbstract(models.Model):
         abstract = True
 
     def clean(self):
-        if self.updated_at and self.updated_at < self.created_at:
+        if self.updated_at < self.created_at:
             raise ValidationError("Updated date cannot be earlier than created date.")
 
 class Vehicle_category(CommonAbstract):
