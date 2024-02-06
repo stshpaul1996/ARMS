@@ -2,13 +2,16 @@
 from rest_framework import viewsets
 from django.contrib.auth.models import User
 from rest_framework import generics, mixins, views
+from django.contrib.auth import get_user_model
 
-from app1.models import Person, Role, MyUser
+from app1.models import Person, Role, MyUser, Api
 from app1.serializers import (PersonSerializer, UserSerializer,
-                              RoleSerializer,
+                              RoleSerializer, ApiSerializer
                               )
 
 class RoleModelViewset(viewsets.ModelViewSet):
+    authentication_classes = []
+    permission_classes = []
     queryset = Role.objects.all()
     serializer_class = RoleSerializer
 
@@ -23,6 +26,10 @@ class PersonModelViewset(viewsets.ModelViewSet):
     queryset = Person.objects.all()
     serializer_class = PersonSerializer
 
+class ApiModelViewset(viewsets.ModelViewSet):
+    queryset = Api.objects.all()
+    serializer_class = ApiSerializer
+
 # def USerPorfileSave(wrapper):
 #     def inner_wrapper(*args, **kwargs):
 #         UserProfile(user=kwargs.get("user"), role=kwargs.get("role")).save()
@@ -30,16 +37,21 @@ class PersonModelViewset(viewsets.ModelViewSet):
 #     return inner_wrapper
 
 class UserViewSet(viewsets.ModelViewSet):
-    queryset = MyUser.objects.all()
+    authentication_classes = []
+    permission_classes = []
+    queryset = get_user_model().objects.all()
     serializer_class = UserSerializer
  
-    # def perform_create(self, serializer):
-    #     data = serializer.data
-    #     #role_id = data.pop("role")
-    #     user1 = User.objects.create_user(**data)
-    #     # User.save()
-    #     #role_inst = Role.objects.get(id=role_id)
-    #     #UserProfile(user=user1, role=role_inst).save()
-    #     #remove role from serializer.data
-    #     # serializer.save()
-    #     #add UserProfile
+    def perform_create(self, serializer):
+        data = serializer.data
+        role_id = data.pop("role")
+        role_inst = Role.objects.get(id=role_id)
+        data['role'] = role_inst
+        user1 = get_user_model().objects.create_user(**data)
+        # role_inst = Role.objects.get(id=role_id)
+        # user1.role = role_inst
+        # user1.save()
+        #UserProfile(user=user1, role=role_inst).save()
+        #remove role from serializer.data
+        # serializer.save()
+        #add UserProfile

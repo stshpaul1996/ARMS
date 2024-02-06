@@ -4,6 +4,7 @@ from app1.models import MyUser
 
 
 from rest_framework.authentication import TokenAuthentication, get_authorization_header
+from rest_framework.permissions import BasePermission
 from rest_framework import exceptions
 import jwt
 class JWTAuth(TokenAuthentication):
@@ -23,5 +24,18 @@ class JWTAuth(TokenAuthentication):
             raise exceptions.AuthenticationFailed('User inactive or deleted.')
 
         return (user_inst, key)
+    
+class CheckPermission(BasePermission):
+    """
+    Allows access only to authenticated users.
+    """
+
+    def has_permission(self, request, view):
+        given_api = request.META["PATH_INFO"]
+        role_inst = request.user.role
+        if given_api=="/person/":
+            pass
+        else:
+            return bool(request.user and request.user.is_authenticated)
 
 

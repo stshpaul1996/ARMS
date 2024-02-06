@@ -1,0 +1,5 @@
+-> complete business logic APIS
+-> Add authentication using IAM(develop the seperate project)
+-> Every model in the project should have createdby, updatedby, createdat, updatedat
+-> adding one column to the usertable(we need to overide the existing usertable)
+-> make sure that you are using atleast one abstract model
