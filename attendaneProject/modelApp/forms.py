@@ -82,9 +82,10 @@ class DailyAttendanceForm(forms.ModelForm):
 
 
 
+
 class TechEmpForm(forms.ModelForm):
     class Meta:
         model = Emp_Tech
         fields = "__all__"
     # emp_id = forms.ModelChoiceField(queryset=Employee.objects.all())
-    # tech_id = forms.ModelChoiceField(queryset=Technology.objects.all())
+    # tech_id = forms.ModelChoiceField(queryset=Technology.objects.all())ś

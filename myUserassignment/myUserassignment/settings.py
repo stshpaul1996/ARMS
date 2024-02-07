@@ -125,3 +125,14 @@ STATIC_URL = "static/"
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 AUTH_USER_MODEL = "app.MyUser"
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'app.authentication.jwtAuthentication',
+        # You can add more authentication classes here
+    ),
+    'DEFAULT_PERMISSION_CLASSES': (
+        'app.authentication.CustomPermission',
+        # You can add more permission classes here
+    ),
+}

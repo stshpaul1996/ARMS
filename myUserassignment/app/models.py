@@ -16,3 +16,17 @@ class API(BaseAbsrtract):
 
 class MyUser(AbstractUser):
     role = models.ForeignKey(Role,on_delete = models.PROTECT)
+
+class Permissions(models.Model):
+    role = models.ForeignKey(Role, on_delete=models.PROTECT)
+    api = models.ForeignKey(API, on_delete=models.PROTECT)
+    has_get = models.BooleanField(default=False)
+    has_post = models.BooleanField(default=False)
+    has_put = models.BooleanField(default=False)
+    has_delete = models.BooleanField(default=False)
+
+class Person(BaseAbsrtract):
+    #name = models.CharField(max_length=250, unique=True)
+    email = models.EmailField(max_length=250, default="")
+    age = models.IntegerField(default=0)
+    created_by = models.ForeignKey(MyUser, on_delete=models.PROTECT, null=True)
