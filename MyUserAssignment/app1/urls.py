@@ -8,6 +8,7 @@ router.register(r'user', UserViewSet, basename="user")
 router.register(r'role', RoleViewset, basename="role")
 router.register(r'permission', PermissionViewSet, basename="permission")
 router.register(r'api', ApiViewSet, basename="api")
+router.register(r'person', PersonViewSet, basename="person")
 
 urlpatterns = [
     path("login/", LoginAPI.as_view()), 

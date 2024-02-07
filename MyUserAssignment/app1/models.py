@@ -24,6 +24,7 @@ class MyUser(AbstractUser):
     role = models.ForeignKey(Role, on_delete=models.PROTECT, default=1)
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs)
+    
      
 
 class Permissions(models.Model):
@@ -33,6 +34,13 @@ class Permissions(models.Model):
     has_post = models.BooleanField(default=False)
     has_put = models.BooleanField(default=False)
     has_delete = models.BooleanField(default=False)
+
+
+class Person(models.Model):
+    name = models.CharField(max_length=250)
+    age = models.IntegerField()
+
+
 
 
 

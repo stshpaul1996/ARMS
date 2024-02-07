@@ -9,9 +9,8 @@ from rest_framework import status
 from django.conf import settings
 from django.contrib.auth import authenticate
 
-from app1.models import Role, MyUser, Permissions, Api
-from app1.serializers import UserSerializer,RoleSerializer,PermissionsSerializer, ApiSerializer
-                              
+from app1.models import Role, MyUser, Permissions, Api, Person
+from app1.serializers import UserSerializer,RoleSerializer,PermissionsSerializer, ApiSerializer, PersonSerializer
 import jwt
 
 class LoginAPI(APIView):
@@ -57,5 +56,10 @@ class PermissionViewSet(viewsets.ModelViewSet):
 class ApiViewSet(viewsets.ModelViewSet):
     queryset = Api.objects.all()
     serializer_class = ApiSerializer
+
+
+class PersonViewSet(viewsets.ModelViewSet):
+    queryset = Person.objects.all()
+    serializer_class = PersonSerializer
  
   

@@ -11,6 +11,9 @@ from .serializers import *
 from .models import *
 from .authentication import users
 
+
+
+
 class TripView(viewsets.ModelViewSet):
     queryset = Trip.objects.all()
     serializer_class = TripSerializer
@@ -64,8 +67,10 @@ class ExpensesView(viewsets.ModelViewSet):
         data = Member.objects.filter(trip=id)
         total_members = len(data)
         mem_id = 0
+        mem_name = ''
         for i in data:
             mem_id = i.id
+            mem_name = i.name
             break
         print(mem_id)
         expenses = Expenses.objects.filter(member=mem_id).aggregate(Sum('spent'))
@@ -77,9 +82,12 @@ class ExpensesView(viewsets.ModelViewSet):
         members = []
         for i in data:
             members.append(i.name)
+
+        res_data= {'trip':id,'members':members, 'total':expenses['spent__sum'], 
+                   'spent_by':mem_name, 'each_person_expenses':each_person_expenses}
        
 
-        return Response({'trip':id,'members':members, 'total':expenses['spent__sum'], 'each_person_expenses':each_person_expenses})
+        return Response(res_data)
 
 
 
