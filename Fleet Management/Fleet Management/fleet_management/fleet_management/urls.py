@@ -20,12 +20,15 @@ from app import views
 from rest_framework.routers import DefaultRouter
 router = DefaultRouter()
 router.register(r'vehicle_cat', views.VehicleCategoryViewSet,basename='vehicle_cat')
+router.register(r'all_vehicle', views.AllocateVehicleViewSet,basename='all_vehicle')
+router.register(r'available', views.AvailableVehiclesViewSet,basename='available')
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include(router.urls)),
-    path('available/', views.AvailableVehiclesAPIView.as_view(), name='available-vehicles'),
-    path('all_vehicle/', views.AllocateVehicleAPIView.as_view(), name='allocate-vehicle'),
-    path('all_vehicle/<int:pk>', views.AllocateVehicleAPIView.as_view(), name='allocate-vehicle'),
+    # path('available/', views.AvailableVehiclesAPIView.as_view(), name='available-vehicles'),
+    # path('all_vehicle/', views.AllocateVehicleAPIView.as_view(), name='allocate-vehicle'),
+    # path('all_vehicle/', views.AllocateVehicleViewSet.as_view(), name='allocate-vehicle'),
+    # path('all_vehicle/<int:pk>', views.AllocateVehicleAPIView.as_view(), name='allocate-vehicle'),
     path('register_vehicle/', views.RegisterVehicleAPIView.as_view(), name='register-vehicle'),
     path('register_vehicle/<int:pk>', views.RegisterVehicleAPIView.as_view(), name='register-vehicle'),
 ]

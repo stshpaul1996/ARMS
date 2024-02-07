@@ -1,3 +1,11 @@
+1) create UserProfile model add role field. add Userprofile when the user registered with /user API
+2) create MyUser model, this has to overide the existing user table. add role column to it.
+    develop /role and /user APIs
+3) Add signal for User.save method to create user profile. 
+	while creating the user, the user profile has to add in the db.
+        while updating the user, check whether the userprofile exist for the user, if not create it.
+
+
 create one django project(IAM)
 add configuration of django restframework
 create one application
@@ -11,6 +19,28 @@ open new tab in postman call POST: http://127.0.0.1:8000/  body{} headers  {Auth
 
 
 add user instance in the payload of jwt
+
+Use viewsets.ModelViewset to do operations on person table
+Add status column in the person: Active/InActive
+ we will not delete record from table when the user send delete: request.
+instead we will change the status(InActive)
+
+Authorization.
+4 APIS:
+product: POST, GET,
+
+
+
+user can add to group.
+Product: Add, Change, Delete, Get
+group has permissions.
+user1: group1
+
+API: product: POST
+group1: Product: Add,
+         ProductCost: Add,
+        Productstock: Add,
+	
 
 
 

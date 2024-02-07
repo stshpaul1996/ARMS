@@ -18,11 +18,11 @@ class CommonAbstract(models.Model):
 class Vehicle_category(CommonAbstract):
     no_of_seats = models.IntegerField()
 
-    def save(self, *args, **kwargs):
-        if not self.created_by:
-            # If created_by is not set, set it to the current user
-            self.created_by = self._request.user
-        super().save(*args, **kwargs)
+    # def save(self, *args, **kwargs):
+    #     if not self.created_by:
+    #         # If created_by is not set, set it to the current user
+    #         self.created_by = self._request.user
+    #     super().save(*args, **kwargs)
 
     def __str__(self):
         return self.name

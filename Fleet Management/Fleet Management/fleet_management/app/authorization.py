@@ -3,29 +3,16 @@ import jwt
 from rest_framework import HTTP_HEADER_ENCODING, exceptions
 from fleet_management.settings import SECRET_KEY
 from django.utils.translation import gettext_lazy as _
+from rest_framework.permissions import BasePermission
+from rest_framework import HTTP_HEADER_ENCODING, exceptions
 
+import requests
 
-def get_authorization_header(request):
-    """
-    Return request's 'Authorization:' header, as a bytestring.
-
-    Hide some test client ickyness where the header can be unicode.
-    """
-    auth = request.META.get('HTTP_AUTHORIZATION', b'')
-    if isinstance(auth, str):
-        # Work around django test client oddness
-        auth = auth.encode(HTTP_HEADER_ENCODING)
-    return auth
 
 class CustomAuthentication(TokenAuthentication):
     keyword = 'Token'
     model = None
 
-    def get_model(self):
-        if self.model is not None:
-            return self.model
-        from rest_framework.authtoken.models import Token
-        return Token
     def authenticate_credentials(self, key):
         try:
             user = jwt.decode(key,SECRET_KEY,algorithms="HS256")
@@ -41,5 +28,44 @@ class CustomAuthentication(TokenAuthentication):
 
         return (user, key)
 
-    def authenticate_header(self, request):
-        return self.keyword
+# class CheckPermission(BasePermission):
+#     """
+#     Allows access only to authenticated users.
+#     """
+#
+#     # def has_permission(self, request, view):
+#     #     given_api = request.META["PATH_INFO"]
+#     #     role_inst = request.user.role
+#     #     api=Api.objects.get(name=given_api)
+#     #     permissons=Permissions.objects.get(role=role_inst,api=api)
+#         # if given_api=="/person/":
+#         #     pass
+#         # else:
+#         #     return bool(request.user and request.user.is_authenticated)
+
+
+
+
+class CheckPermission(BasePermission):
+    IAM_API_URL = "http://127.0.0.1:9000/signin"
+
+    def has_permission(self, request, view):
+        user_role = request.user.role.name
+        requested_api = request.META["PATH_INFO"]
+
+        payload = {
+            "role": user_role,
+            "api": requested_api,
+            'method':request.method
+        }
+        try:
+            response = requests.post(self.IAM_API_URL, json=payload)
+            response_data = response.json()
+            if response.status_code == 200 and response_data.get("has_permission"):
+                return True
+            else:
+                return False
+        except requests.exceptions.RequestException as e:
+
+            print(f"Error fetching permissions from IAM project: {e}")
+            return False

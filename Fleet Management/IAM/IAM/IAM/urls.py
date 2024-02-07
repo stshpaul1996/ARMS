@@ -18,9 +18,17 @@ from django.contrib import admin
 from django.urls import path
 from app import views
 
+from rest_framework.routers import DefaultRouter
+router = DefaultRouter()
+router.register(r'apis', views.ApiViewSet)
+router.register(r'permissions', views.PermissionsViewSet)
+router.register(r'roles', views.RoleViewSet)
+
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('signup',views.SignUpView.as_view(),name='signup'),
     path('signin',views.LoginApi.as_view(),name='signin'),
-]
+    path('getpr',views.GetPermission.as_view(),name='getpr'),
+]+router.urls

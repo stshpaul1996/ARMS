@@ -1,9 +1,10 @@
 from django.conf import settings
 #from django.contrib.auth.models import User
 from app1.models import MyUser
-
+from app1.models import Permissions
 
 from rest_framework.authentication import TokenAuthentication, get_authorization_header
+from rest_framework.permissions import BasePermission
 from rest_framework import exceptions
 import jwt
 class JWTAuth(TokenAuthentication):
@@ -23,5 +24,22 @@ class JWTAuth(TokenAuthentication):
             raise exceptions.AuthenticationFailed('User inactive or deleted.')
 
         return (user_inst, key)
+    
+class CheckPermission(BasePermission):
+    """
+    Allows access only to authenticated users.
+    """
+
+    def has_permission(self, request, view):
+        given_api = request.META["PATH_INFO"]
+        role_inst = request.user.role
+        if given_api=="/person/":
+            if Permissions.role == role_inst:
+                Permissions.has_get = True
+                Permissions.has_put= True
+                Permissions.has_post =True
+            return bool()
+        else:
+            return bool(request.user and request.user.is_authenticated)
 
 

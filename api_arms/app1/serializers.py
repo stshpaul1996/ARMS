@@ -1,5 +1,8 @@
+from django.contrib.auth import get_user_model
 from rest_framework import serializers 
+
 from app1.models import Person, Product, Category,OpeningStock,ProductCost,UserProfile
+from app1.models import Person, Product, Category, Api
 from django.core.exceptions import ValidationError
 from app1.models import Role, MyUser
 class RoleSerializer(serializers.ModelSerializer):
@@ -12,7 +15,7 @@ class UserSerializer(serializers.ModelSerializer):
     #role = serializers.IntegerField()
 
     class Meta:
-        model = MyUser
+        model = get_user_model()
         fields = ["username", "password","email", "role"]
 
 class CategoryModelSerializer(serializers.ModelSerializer):
@@ -53,6 +56,13 @@ class ProductModelSerializer(serializers.ModelSerializer):
         model = Product
         fields = ("name", "product_unque_number", "category",
                   "cost","openingstock")
+        
+
+
+class ApiSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Api
+        fields = "__all__"
 
 class PersonSerializer(serializers.ModelSerializer):
     class Meta:
