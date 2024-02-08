@@ -24,8 +24,19 @@ class JWTAuth(TokenAuthentication):
 
 class CustomPermission(BasePermission):
     def has_permission(self, request, view):
-        give_api = request.META["PATH_INFO"]
-        get_api = Api.objects.get(name=give_api)
+        given_api = request.META["PATH_INFO"]
+
+        c = 0
+        path = ''
+       
+        for i in given_api:
+            path += i
+            if i == '/':
+                c += 1
+            if c == 2:
+                break
+
+        get_api = Api.objects.get(name=path)
         role_id = request.user.role.id
         get_permissions = Permissions.objects.get(role=role_id, api=get_api.id)  
 
@@ -35,9 +46,9 @@ class CustomPermission(BasePermission):
             "PUT": get_permissions.has_put,
             "DELETE": get_permissions.has_delete
 
-        }    
-       
-        if methods[request.method]:
+        }  
+        # import pdb;pdb.set_trace()
+        if given_api.startswith(str(get_api.name)) and methods[request.method]:
             return True
         
         return False
