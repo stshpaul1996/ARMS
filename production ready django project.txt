@@ -1,0 +1,4 @@
+add requirements.txt
+add release notes
+settings:
+ Debug=False

@@ -82,6 +82,10 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
+    },
+    "read": {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db_read.sqlite3',
     }
 }
 
@@ -142,3 +146,5 @@ REST_FRAMEWORK = {
 }
 
 AUTH_USER_MODEL = "app1.MyUser"
+
+DATABASE_ROUTERS = ['app1.dbrouters.MyRouter']
