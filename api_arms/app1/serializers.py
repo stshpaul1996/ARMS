@@ -6,7 +6,7 @@ from app1.models import Role, MyUser
 class RoleSerializer(serializers.ModelSerializer):
      class Meta:
         model = Role
-        fields = ["name"]
+        fields = ["name", "id"]
 
 
 class UserSerializer(serializers.ModelSerializer):
@@ -14,7 +14,7 @@ class UserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = get_user_model()
-        fields = ["username", "password","email", "role"]
+        fields = ["username", "password","email", "role", "id"]
 
 class CategoryModelSerializer(serializers.ModelSerializer):
     class Meta:
@@ -28,9 +28,7 @@ class ProductSerializer(serializers.Serializer):
     category = serializers.IntegerField()
     product_unque_number = serializers.IntegerField()
 
-    def save():
-        model_instance
-        save()
+   
     
 class ProductModelSerializer(serializers.ModelSerializer):
     cost = serializers.DecimalField(max_digits=10, decimal_places=2)

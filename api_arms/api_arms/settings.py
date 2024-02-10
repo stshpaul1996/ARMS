@@ -147,4 +147,4 @@ REST_FRAMEWORK = {
 
 AUTH_USER_MODEL = "app1.MyUser"
 
-DATABASE_ROUTERS = ['app1.dbrouters.MyRouter']
+#DATABASE_ROUTERS = ['app1.dbrouters.MyRouter']
