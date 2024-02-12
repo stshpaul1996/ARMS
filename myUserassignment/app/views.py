@@ -31,11 +31,34 @@ class LoginAPI(APIView):
 class RoleViewset(viewsets.ModelViewSet):
     queryset = Role.objects.all()
     serializer_class = RoleSerializer 
+    # def get_queryset(self):
+        
+    #     return Role.objects.using('read_db').all()
+
+    # def perform_create(self, serializer):
+    #     serializer.save()
+
+    # def perform_update(self, serializer):
+    #     serializer.save()
+
+    # def perform_destroy(self, instance):
+    #     instance.delete()
 
 class PersonModelViewset(viewsets.ModelViewSet):
     queryset = Person.objects.all()
     serializer_class = PersonSerializer
+    # def get_queryset(self):
+        
+    #     return Person.objects.using('read_db').all()
 
+    # def perform_create(self, serializer):
+    #     serializer.save()
+
+    # def perform_update(self, serializer):
+    #     serializer.save()
+
+    # def perform_destroy(self, instance):
+    #     instance.delete()
 
 
 
@@ -44,18 +67,56 @@ class UserViewSet(viewsets.ModelViewSet):
     permission_classes = []
     queryset = get_user_model().objects.all()
     serializer_class = MyUserSerializer
- 
+    
+    # def get_queryset(self):
+        
+    #     return get_user_model().objects.using('read_db').all()
+
+    # # def perform_create(self, serializer):
+    # #     serializer.save()
+
+    # def perform_update(self, serializer):
+    #     serializer.save()
+
+    # def perform_destroy(self, instance):
+    #     instance.delete()
     def perform_create(self, serializer):
         data = serializer.data
         role_id = data.pop("role")
         role_inst = Role.objects.get(id=role_id)
         data['role'] = role_inst
         user1 = get_user_model().objects.create_user(**data)
+        #serializer.save()
 
 class ApiModelViewset(viewsets.ModelViewSet):
     queryset = API.objects.all()
     serializer_class = ApiSerializer
+    # def get_queryset(self):
+        
+    #     return API.objects.using('read_db').all()
+
+    # def perform_create(self, serializer):
+    #     serializer.save()
+
+    # def perform_update(self, serializer):
+    #     serializer.save()
+
+    # def perform_destroy(self, instance):
+    #     instance.delete()
 
 class permissionViewset(viewsets.ModelViewSet):
     queryset = Permissions.objects.all()
     serializer_class =permissionSerializer
+
+    # def get_queryset(self):
+        
+    #     return Permissions.objects.using('read_db').all()
+
+    # def perform_create(self, serializer):
+    #     serializer.save()
+
+    # def perform_update(self, serializer):
+    #     serializer.save()
+
+    # def perform_destroy(self, instance):
+    #     instance.delete()

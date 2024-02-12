@@ -32,7 +32,7 @@ class LoginApi(APIView):
        
     def post(self, request):
         data = request.data
-        #import pdb;pdb.set_trace()
+        import pdb;pdb.set_trace()
         resp_data = {"token": None, "message": ""}
         user = authenticate(**data)
         if user:
