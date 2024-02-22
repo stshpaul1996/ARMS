@@ -79,6 +79,11 @@ DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.sqlite3",
         "NAME": BASE_DIR / "db.sqlite3",
+    },
+
+    "read": {
+        "ENGINE": "django.db.backends.sqlite3",
+        "NAME": BASE_DIR / "db_read.sqlite3",
     }
 }
 
@@ -125,11 +130,15 @@ STATIC_URL = "static/"
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 
-REST_FRAMEWORK = {
-    "DEFAULT_AUTHENTICATION_CLASSES":[
-        "TripApp.authentication.JWTAuth"
-    ],
-    "DEFAULT_PERMISSION_CLASSES":[
-        # "rest_framework.permissions.IsAuthenticated",
-    ]
-}
+# REST_FRAMEWORK = {
+#     "DEFAULT_AUTHENTICATION_CLASSES":[
+#         "TripApp.authentication.JWTAuth"
+#     ],
+#     "DEFAULT_PERMISSION_CLASSES":[
+#         # "rest_framework.permissions.IsAuthenticated",
+#     ]
+
+# }
+
+
+DATABASE_ROUTERS = ['TripApp.dbrouters.MyRouter']

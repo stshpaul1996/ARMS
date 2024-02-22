@@ -23,8 +23,9 @@ class LoginAPIView(APIView):
             return Response(res, status=status.HTTP_201_CREATED)
         res["msg"] = "Invalid Details"
         return Response(res, status=status.HTTP_401_UNAUTHORIZED)
-    
 
+
+    
 class MyUserView(viewsets.ModelViewSet):
     queryset = MyUser.objects.all()
     serializer_class = MyUserSerializer
