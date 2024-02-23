@@ -1,3 +1,21 @@
+write documentation for django filters.
+it should have all types of columns filter.
+
+each column internally has some fuctions. note down all the functions available for field type
+
+try .values function after filter, observe the output
+
+
+
+inherited models and proxy models
+create project
+create application
+create UserProfile model by ineriting User model and add two columns in it.
+observe the User Profile table 
+Add some users and user profiles. we need to develop some APIs
+
+Create application2 in models Design one proxy model for UserProfile in app1
+
 1) create UserProfile model add role field. add Userprofile when the user registered with /user API
 2) create MyUser model, this has to overide the existing user table. add role column to it.
     develop /role and /user APIs

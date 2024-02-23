@@ -1,0 +1,8 @@
+create vm server
+copy code to vm
+install required python version
+install setuptools: yum install python3-setuptools
+yum install python3-pip
+install dependencies: pip3 install -r requirements.txt
+
+run server: python manage.py migrate; python manage.py test; python manage.py runserver

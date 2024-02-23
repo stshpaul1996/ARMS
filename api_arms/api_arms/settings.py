@@ -23,9 +23,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-lwx$-k97&epw=#!oo=t8r3h(6rv7pbk2-_9qv#0al9a(x-nhh8'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
@@ -148,3 +148,21 @@ REST_FRAMEWORK = {
 AUTH_USER_MODEL = "app1.MyUser"
 
 #DATABASE_ROUTERS = ['app1.dbrouters.MyRouter']
+LOGGING = {
+    "version": 1,
+    "disable_existing_loggers": False,
+    "handlers": {
+        "file": {
+            "level": "INFO",
+            "class": "logging.FileHandler",
+            "filename": BASE_DIR / "log_file.log",
+        },
+    },
+    "loggers": {
+        "django": {
+            "handlers": ["file"],
+            "level": "INFO",
+            "propagate": True,
+        },
+    },
+}

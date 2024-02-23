@@ -8,6 +8,8 @@ from app1.models import Person, Role, MyUser, Api
 from app1.serializers import (PersonSerializer, UserSerializer,
                               RoleSerializer, ApiSerializer
                               )
+import logging 
+logger = logging.getLogger(__name__)
 
 class RoleModelViewset(viewsets.ModelViewSet):
     authentication_classes = []
@@ -43,11 +45,14 @@ class UserViewSet(viewsets.ModelViewSet):
     serializer_class = UserSerializer
  
     def perform_create(self, serializer):
+        logger.info("user creation started")
         data = serializer.data
+        logger.debug(f"user {data.get('username')} creating")
         role_id = data.pop("role")
         role_inst = Role.objects.get(id=role_id)
         data['role'] = role_inst
         user1 = get_user_model().objects.create_user(**data)
+        logger.info("user created")
         # role_inst = Role.objects.get(id=role_id)
         # user1.role = role_inst
         # user1.save()

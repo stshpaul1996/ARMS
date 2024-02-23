@@ -19,7 +19,7 @@ class UserTest(TestCase):
         resp = self.client.post("/user/", data={"username": "admin", "password": "password", 
                                                 "role": self.role_id,"email": "admin@example.com"})
         self.assertEqual(resp.status_code, 201)
-        resp = self.client.delete(f"/user/{resp.json().get("id")}")
+        resp = self.client.delete(f"/user/{resp.json().get('id')}")
         self.assertEqual(resp.status_code, 301)
         
         
