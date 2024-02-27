@@ -23,9 +23,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-&z680u5&02783v&plfrfzw*n3kurlc$59z8yn5&1*uh&%x+z5b'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
@@ -125,13 +125,13 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
-REST_FRAMEWORK = {
-    'DEFAULT_AUTHENTICATION_CLASSES': [
-        'api.auth.CustomAuthentication'   
-    ],
-    'DEFAULT_PERMISSION_CLASSES': [
-    'api.auth.CheckPermission'
-]
-}
+# REST_FRAMEWORK = {
+#     'DEFAULT_AUTHENTICATION_CLASSES': [
+#         'api.auth.CustomAuthentication'   
+#     ],
+#     'DEFAULT_PERMISSION_CLASSES': [
+#     'api.auth.CheckPermission'
+# ]
+# }
 
 AUTH_USER_MODEL = 'api.MyUser'

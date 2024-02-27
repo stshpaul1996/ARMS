@@ -5,7 +5,7 @@ from .models import Person, Api,Role,Permissions
 class RoleSerializer(serializers.ModelSerializer):
      class Meta:
         model = Role
-        fields = ["name"]
+        fields = ["id","name"]
 
 
 class UserSerializer(serializers.ModelSerializer):
@@ -13,7 +13,7 @@ class UserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = get_user_model()
-        fields = ["username", "password","email", "role"]
+        fields = ["id","username", "password","email", "role"]
 
 
 

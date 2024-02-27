@@ -1,7 +1,6 @@
 
 from rest_framework.authentication import TokenAuthentication
 from rest_framework import exceptions
-from django.contrib.auth.models import User
 from django.conf import settings
 from django.utils.translation import gettext as _
 import jwt
@@ -23,7 +22,6 @@ from .models import Api,Permissions,MyUser
 
 class CustomAuthentication(TokenAuthentication):
     def authenticate_credentials(self,key):
-        model=self.get_model()
         #import pdb; pdb.set_trace()
         try:
             user=jwt.decode(key,settings.SECRET_KEY,algorithms='HS256')
@@ -34,16 +32,11 @@ class CustomAuthentication(TokenAuthentication):
             raise exceptions.AuthenticationFailed(_('User inactive or deleted.'))
         return(user_inst,key)
     
-    def authenticate_header(self,request):
-        return self.keyword
-    
 class CheckPermission(BasePermission):
-     
-     
      def has_permission(self, request, view):
         #import pdb;pdb.set_trace()
         given_api = request.META["PATH_INFO"]
-        
+        print(given_api)
         str = ""
         if given_api.count("/")  == 3:
  
@@ -52,7 +45,7 @@ class CheckPermission(BasePermission):
                 if given_api[i] == "/":
                     str = "/" + str
                     given_api = str
-                    
+                    print(given_api)
                     break
         role_id = request.user.role.id
         print(role_id)

@@ -23,9 +23,7 @@ class LoginAPIView(APIView):
         user=authenticate(username=data.get('username'),password=data.get('password'))
         response={'jwt_token':"","status":''}
         # data['secrete_key']=settings.SECRET_KEY
-
         if user:
-            
             jwt_token=jwt.encode(data,'django-insecure-&z680u5&02783v&plfrfzw*n3kurlc$59z8yn5&1*uh&%x+z5b',algorithm='HS256')
             response['jwt_token']=jwt_token
             response['status']='ok'
@@ -34,7 +32,6 @@ class LoginAPIView(APIView):
             response['jwt_token']="No token genarated"
             response['status']='invalid user credentials'
             status_code=status.HTTP_401_UNAUTHORIZED
-
         return Response(response,status=status_code)
 
 
@@ -44,7 +41,6 @@ class RoleModelViewset(viewsets.ModelViewSet):
     # permission_classes = []
     queryset = Role.objects.all()
     serializer_class = RoleSerializer
-
 
 
 class PersonModelViewset(viewsets.ModelViewSet):
@@ -68,7 +64,7 @@ class UserViewSet(viewsets.ModelViewSet):
         role_id = data.pop("role")
         role_inst = Role.objects.get(id=role_id)
         data['role'] = role_inst
-        user1 = get_user_model().objects.create_user(**data)
+        get_user_model().objects.create_user(**data)
 
 class PermissionsViewSet(viewsets.ModelViewSet):
     queryset=Permissions.objects.all()
