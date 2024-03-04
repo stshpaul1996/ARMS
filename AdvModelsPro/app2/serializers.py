@@ -6,8 +6,10 @@ class ProxySerializer(serializers.ModelSerializer):
         model = ProxyUserProfile
         fields = ["username", "pancard"]
 
-        def username(self,value):
-            return value.username_with_username
+        def retrieve(self,value):
+            un = value.get("username")
+            value["username"] = "MRS"+ un
+
 
 class VisitsSerializer(serializers.ModelSerializer):
     class Meta:

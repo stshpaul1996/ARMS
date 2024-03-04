@@ -7,11 +7,7 @@ class ProxyUserProfile(UserProfile):
     class Meta:
         proxy = True
     
-    def username_with_username(self):
-        return "MR "+self.username
     
-    def pancard_update(self):
-        return "IND "+self.pancard
 
 '''
 INPUT
@@ -42,15 +38,6 @@ class Visits(models.Model):
     floor = models.IntegerField()
     resources = models.CharField(max_length=100,)
 
-    def clean(self):
-        # Clean or validate the entire form
-        cleaned_data = super().clean()
-        # Perform additional validation or cleaning logic
-        return cleaned_data
-
-    def clean_resources(self):
-        a = self.cleaned_data["resources"]
-        return a.upper()
     
    
     
