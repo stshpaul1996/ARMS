@@ -1,0 +1,11 @@
+1. Salesorders.objects.filter(product_id__name = 'p1')
+2. Purchaseorders.objects.filter(product_id__name = 'p2')
+3. Purchaseorders.objects.filter(product_id__name='p1').aggregate(Sum('quantity'))
+
+
+
+
+
+
+
+

@@ -1,0 +1,72 @@
+version: "3"
+ 
+services:
+  app1:
+    container_name: iam1
+    build:
+      context: .
+    ports:
+      - "8001:8000"
+    
+ 
+
+  app2:
+    container_name: iam2
+    build:
+      context: .
+    ports:
+      - "8002:8000"
+    
+ 
+  app3:
+    container_name: iam3
+    build:
+      context: .
+    ports:
+      - "8003:8000"
+    
+ 
+  app4:
+    container_name: iam4
+    build:
+      context: .
+    ports:
+      - "8004:8000"
+    
+        
+ 
+  app5:
+    container_name: iam5
+    build:
+      context: .
+    ports:
+      - "8005:8000"
+
+  
+  kong:
+    image: kong:latest
+    volumes:
+      - ./kong.yml:/etc/kong/kong.yml
+    ports:
+      - "8000:8000"  # Kong Proxy
+      - "8006:8001"  # Kong Admin API
+      # Mount Kong configuration file
+    environment:
+      KONG_DATABASE: "off" # Set database mode to SQLite
+      KONG_DECLARATIVE_CONFIG: /etc/kong/kong.yml
+    
+
+  nginx:
+    image: nginx:latest
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro 
+    ports:
+      - "80:80"  
+    depends_on:
+      - app1 
+      - app2
+      - app3
+      - app4
+      - app5
+      - kong
+

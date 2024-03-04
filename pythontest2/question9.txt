@@ -1,0 +1,13 @@
+# What are all the ways we have to develop an API with django restframework. Talk about different classes we can use to develop an  API
+
+the different types of ways :
+
+1. APIView 
+2. viewset
+3. Modelviewset
+4. generics
+
+1. in APIView this is one way to develop api in this we need to write functions 
+   for all methods get,post,put,patch,delete 
+2  If we use modelviewset,viewset internally it call all http methods like create,retrive,update,delete 
+   we no need to define methods again 

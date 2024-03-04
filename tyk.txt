@@ -1,0 +1,32 @@
+#!/bin/bash
+
+cat > /opt/tyk-gateway/tyk_conf/tyk.conf << EOF
+{
+    "listen_port": 8080,
+    "secret": "your-tyk-secret",
+    "template_path": "/opt/tyk-gateway/templates",
+    "tyk_js_path": "/opt/tyk-gateway/js/tyk.js",
+    "middleware_path": "/opt/tyk-gateway/middleware",
+    
+    "apis": [
+        {
+            "name": "App 1 API",
+            "slug": "app1-api",
+            "api_id": "1",
+            "org_id": "default",
+            "use_keyless": true,
+            "enable_jwt": false,
+            "proxy": {
+                "listen_path": "${TYK_LISTEN_PATH}",
+                "target_url": "${TYK_TARGET_URL}",
+                "strip_listen_path": true
+            },
+            "active": true
+        },
+        # Add configurations for other Django applications here
+    ]
+}
+EOF
+
+# Start Tyk Gateway
+/opt/tyk-gateway/tyk --conf=/opt/tyk-gateway/tyk_conf/tyk.conf

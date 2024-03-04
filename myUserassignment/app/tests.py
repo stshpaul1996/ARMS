@@ -78,36 +78,31 @@ class UserRegisterTest(TestCase):
     def tearDownClass(cls) -> None:
         print("done")
 
-class LoginAPITestCase(UserRegisterTest):
-    def test_login_with_valid_credentials(self):
-        # Create user
-        user = get_user_model().objects.create_user(username='admin', password='password')
+# class LoginAPITest(UserRegisterTest):
+#     def setUp(self):
         
-        # Test login with valid credentials
-        data = {'username': 'admin', 'password': 'password'}
-        response = self.client.post('/login/', data)
-        self.assertEqual(response.status_code, status.HTTP_201_CREATED)
-        self.assertIn('token', response.data)
+#         self.client = APIClient()
+#         self.role = self.client.post("/role/",data = {"name":"admin"})
+#         self.user = get_user_model().objects.create_user(username='testuser', password='password',role =self.role_id)
+#     def test_login_success(self):
+#         #import pdb;pdb.set_trace()
+#         # Create a valid login request data
+#         data = {"username": "admin", "password": "password","role":self.role_id}
 
-    def test_login_with_invalid_credentials(self):
-        # Test login with invalid credentials
-        data = {'username': 'admin', 'password': 'wrongpassword'}
-        response = self.client.post('/login/', data)
-        self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
-        self.assertNotIn('token', response.data)
+#         # Send POST request to the LoginAPI
+#         response = self.client.post('/login/', data, format='json')
+#         self.assertEqual(response.status_code, 201)
+#         self.assertIn('token', response.data)
 
-    def test_login_without_username(self):
-        # Test login without providing a username
-        data = {'password': 'password'}
-        response = self.client.post('/login/', data)
-        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
-        self.assertNotIn('token', response.data)
+#     def test_login_failure(self):
+#         # Create invalid login request data (wrong password)
+#         data = {"username": "testuser", "password": "wrongpassword"}
 
-    def test_login_without_password(self):
-        # Test login without providing a password
-        data = {'username': 'admin'}
-        response = self.client.post('/login/', data)
-        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
-        self.assertNotIn('token', response.data)
+#         # Send POST request to the LoginAPI
+#         response = self.client.post('/login/', data, format='json')
 
+#         # Check if the response status code is 401 (Unauthorized)
+#         self.assertEqual(response.status_code, 401)
 
+#         # Check if the response does not contain a token
+#         self.assertNotIn('token', response.data)

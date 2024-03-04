@@ -1,0 +1,19 @@
+# Write an output for below code. 
+
+
+Output :
+
+hello
+-3
+this is finally
+HI!@H 
+20
+
+
+first it prints first line  
+thenn it will execute try block it will print -3 value 
+there is no exception so except block wont execute 
+then it will execute finally block then next line and function returns 20 value
+ 
+
+ 

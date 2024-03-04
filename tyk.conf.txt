@@ -1,0 +1,10 @@
+{
+  "listen_path": "/api/",
+  "target_url": "http://localhost:8000/",
+  "strip_listen_path": true,
+  "enable_jwt": true,
+  "jwt_source": "header",
+  "jwt_identity_base_field": "sub",
+  "jwt_identity_field": "username",
+  "auth_header_name": "Authorization"
+}

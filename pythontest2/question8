@@ -1,0 +1,11 @@
+explain how django rest framework authentication and authorization  can be override
+
+If we want to write our own authentication and authorization we can override django built   classes 
+
+Suppose we want to to override authentocation create custom class and and import built in authentication classes in that class we need to overrise authenticate_credentials method declare how to you want to override 
+
+After creating custom class include file path in authentication_classes 
+
+If we want to override authorization class we create custom permission class and import basePermission class and in that class we need to override have_permission method
+
+After writing custom class we need to include custom class path in permission_classes 

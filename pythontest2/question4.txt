@@ -1,0 +1,13 @@
+What is the best way handle the errors in djangorestapi. Marks will be considered based on the scenarios covered.  
+
+
+Answer :  there many types of errors 
+401 error unauthenticated error 
+502 error bad gateway 
+
+
+If we get get any errors 401,403,404,402 we need the errors in business logic views
+we import status from django and while sending rensponse to the clents we send status code in rensponse.
+
+if we get any errors like 500,502 errors example if we get 502 error it is a bad gateway request that means 
+we need to configure gateway properly .
