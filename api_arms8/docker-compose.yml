@@ -1,0 +1,20 @@
+version: '3'
+
+services:
+  iam:
+    build:
+      context: ./iam               # Path to the Dockerfile for iam service
+      dockerfile: Dockerfile       # Name of the Dockerfile inside the iam directory
+    container_name: iam_container  # Name of the iam container
+    ports:
+      - "8000:8000"                # Mapping port 8000 of host to port 8000 of container
+
+  nginx:
+    build:
+      context: ./nginx
+      dockerfile: Dockerfile.nginx
+    container_name: nginx
+    ports:
+      - "80:80"                   # Mapping port 80 of host to port 80 of container
+    depends_on:
+      - iam                        # Ensure iam service is started before nginx

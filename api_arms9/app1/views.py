@@ -12,14 +12,16 @@ class Personv(APIView):
     # authentication_classes = [JWTAuth]
     # permission_classes = [IsAuthenticated]
 
+    # def post(self, request):
+    #     p = Persons(data=request.data)
+    #     mess = ''
+    #     if p.is_valid():
+    #         p.save()
+    #         mess = "data is saved"
+    #         hello = status.HTTP_201_CREATED
+    #     else:
+    #         mess = "data is not saved"
+    #         hello = status.HTTP_400_BAD_REQUEST
+    #     return Response(mess, hello)
     def post(self, request):
-        p = Persons(data=request.data)
-        mess = ''
-        if p.is_valid():
-            p.save()
-            mess = "data is saved"
-            hello = status.HTTP_201_CREATED
-        else:
-            mess = "data is not saved"
-            hello = status.HTTP_400_BAD_REQUEST
-        return Response(mess, hello)
+        return Response('Hello')
