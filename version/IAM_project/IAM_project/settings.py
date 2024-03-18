@@ -85,7 +85,7 @@ WSGI_APPLICATION = 'IAM_project.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'ajadbs',
+        'NAME': 'ajadbs2',
         'USER': 'root',
         'PASSWORD': 'root',
         'HOST': 'localhost',
@@ -137,3 +137,4 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 JWT_EXPIRY_MINUTES = 600
 
+AUTH_USER_MODEL = "application.MyUser"

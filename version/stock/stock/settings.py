@@ -75,10 +75,20 @@ WSGI_APPLICATION = 'stock.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
+
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+    "default": {
+        "ENGINE": "django.db.backends.mysql",
+        "NAME": "stock_iam",
+        "USER": "root",
+        "PASSWORD": "root",
+        "PORT": 3306,
     }
 }
 
@@ -125,8 +135,8 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 REST_FRAMEWORK={
-    'DEFAULT_AUTHENTICATION_CLASSES':['application.authorization.CustomAuthentication'],
+    'DEFAULT_AUTHENTICATION_CLASSES':['application.authentication.JWTAuth'],
 
-    'DEFAULT_PERMISSION_CLASSES':['rest_framework.permissions.IsAuthenticated'],
+    # 'DEFAULT_PERMISSION_CLASSES':['rest_framework.permissions.IsAuthenticated'],
 
 }

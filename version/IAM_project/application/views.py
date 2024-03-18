@@ -5,7 +5,28 @@ from django.contrib.auth import authenticate
 from django.conf.global_settings import SECRET_KEY
 from django.conf import settings
 from datetime import datetime, timedelta
+from rest_framework import viewsets
+from . models import Role,MyUser,Api,permissions
 import jwt
+from . serializers import MyUserSerializer,RoleSerializer,ApiSerializer,permissionsSerializer
+
+class MyUserView(viewsets.ModelViewSet):
+    queryset = MyUser.objects.all()
+    serializer_class = MyUserSerializer
+
+
+class RoleView(viewsets.ModelViewSet):
+    queryset = Role.objects.all()
+    serializer_class = RoleSerializer
+
+
+class ApiView(viewsets.ModelViewSet):
+    queryset = Api.objects.all()
+    serializer_class = ApiSerializer 
+
+class PermissionsView(viewsets.ModelViewSet):
+    queryset = permissions.objects.all()
+    serializer_class = permissionsSerializer 
  
 class LoginApi(APIView):
     def post(self,request):
