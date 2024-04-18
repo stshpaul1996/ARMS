@@ -1,6 +1,16 @@
 version: "3"
  
 services:
+  # postgres:
+  #   image: postgres:latest
+  #   container_name: postgres
+  #   environment:
+  #     POSTGRES_USER: "nithisha"
+  #     POSTGRES_PASSWORD: "postgres"
+  #     POSTGRES_DB: "userdatabase"
+  #   ports:
+  #     - "5432:5432"
+
   app1:
     container_name: iam1
     build:
@@ -25,6 +35,7 @@ services:
     ports:
       - "8003:8000"
     
+    
  
   app4:
     container_name: iam4
@@ -32,6 +43,7 @@ services:
       context: .
     ports:
       - "8004:8000"
+    
     
         
  
@@ -41,20 +53,46 @@ services:
       context: .
     ports:
       - "8005:8000"
-
+    
   
   kong:
-    image: kong:latest
-    volumes:
-      - ./kong.yml:/etc/kong/kong.yml
-    ports:
-      - "8000:8000"  # Kong Proxy
-      - "8006:8001"  # Kong Admin API
-      # Mount Kong configuration file
+    image: kong/kong:latest
+    container_name: kong
     environment:
-      KONG_DATABASE: "off" # Set database mode to SQLite
-      KONG_DECLARATIVE_CONFIG: /etc/kong/kong.yml
-    
+      KONG_PROXY_ERROR_LOG: /dev/stderr
+      KONG_DATABASE: "off"  # Disabling Kong's database
+    ports:
+      - "8000:8000"  # Kong proxy port
+      - "8443:8443"  # Kong HTTPS proxy port
+      - "8006:8001"  # Kong Admin API port
+      - "8444:8444"  # Kong HTTPS Admin API port
+    depends_on:
+      - app1 
+      - app2
+      - app3
+      - app4
+      - app5 
+    volumes:
+      - ./kong.conf:/etc/kong/kong.conf:ro
+  # kong:
+  #   image: kong/kong:latest
+  #   container_name: kong
+  #   environment:
+      
+  #     KONG_DATABASE: "postgres"
+  #     KONG_PG_HOST: "postgres"
+  #     KONG_PG_USER: "nithisha"
+  #     KONG_PG_PASSWORD: "postgres"
+  #     KONG_PG_DATABASE: "userdatabase"
+  #   ports:
+  #     - "8000:8000"  # Kong proxy port
+  #     - "8443:8443"  # Kong HTTPS proxy port
+  #     - "8006:8001"  # Kong Admin API port
+  #     - "8444:8444"  # Kong HTTPS Admin API port
+  #   depends_on:
+      
+  
+  
 
   nginx:
     image: nginx:latest
