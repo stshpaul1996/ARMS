@@ -15,7 +15,7 @@ class MyUser(AbstractUser):
 
 class Person(BaseAbstarctModel):
     #name = models.CharField(max_length=250, unique=True)
-    email = models.EmailField(max_length=250, default="")
+    email = models.EmailField(max_length=250, default="abc@gmail.com")
     age = models.IntegerField(default=0)
     created_by = models.ForeignKey(MyUser, on_delete=models.PROTECT)
 

@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Execution Result</title>
+</head>
+<body>
+    <h1>Execution Result</h1>
+    {% if error %}
+        <p style="color: red;">Error:</p>
+        <pre>{{ error }}</pre>
+    {% endif %}
+    <p>Output:</p>
+    <pre>{{ output }}</pre>
+    <a href="{% url 'home' %}">Back to Editor</a>
+</body>
+</html>

@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Invoice {{ invoice.id }}</title>
+</head>
+<body>
+    <h1>Invoice {{ invoice.id }}</h1>
+    <p>Transport Record ID: {{ invoice.transport_record.id }}</p>
+    <p>Material: {{ invoice.transport_record.material.name }}</p>
+    <p>Quantity: {{ invoice.transport_record.quantity }}</p>
+    <p>Mixed Quantity: {{ invoice.transport_record.mixed_quantity }}</p>
+    <p>Total Amount: ${{ invoice.total_amount }}</p>
+    <p>Issued At: {{ invoice.issued_at }}</p>
+</body>
+</html>

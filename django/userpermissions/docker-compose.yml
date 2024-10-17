@@ -1,0 +1,36 @@
+version: '3'
+ 
+services:
+  
+  web:
+    container_name: django_app
+    build:
+      context: .
+      
+    command:
+        sh -c "python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
+
+    ports:
+      - "8001:8000"  
+    depends_on:
+      - db  
+    
+  db:
+    container_name: mysql_cont
+    image: mysql:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: root  
+      MYSQL_DATABASE: arms
+    ports:
+      - "3307:3306"
+
+
+  nginx:
+    container_name: nginx
+    image: nginx:latest
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf 
+    ports:
+      - "80:80"  
+    depends_on:
+      - web  

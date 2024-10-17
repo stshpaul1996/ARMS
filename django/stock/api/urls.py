@@ -5,10 +5,11 @@ router = DefaultRouter()
 router.register('customer', CustomerViewsets, basename="customer")
 router.register('product', ProductViewsets, basename='productViewsets')
 router.register('purchase', PurchaseViewsets, basename='purchase')
-router.register('SalesViewsets', SalesViewsets, basename="SalesViewsets")
-router.register('PurchaseorderViewsets', PurchaseorderViewsets, basename='PurchaseorderViewsets')
-router.register('salesorderViewsets', salesorderViewsets, basename='salesorderViewsets')
+router.register('sales', SalesViewsets, basename="sales")
+#router.register('purchaseorder', PurchaseorderViewsets, basename='purchaseorder')
+router.register('salesorder', SalesorderViewsets, basename='salesorder')
 
 urlpatterns = [
+    path('purchaseorder/<int:id>',PurchaseorderViewsets.as_view())
     
 ]+router.urls

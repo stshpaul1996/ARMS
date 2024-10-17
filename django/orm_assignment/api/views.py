@@ -25,7 +25,7 @@ class EmpViewsets(viewsets.ViewSet):
 
         # # Group by 'name' again to find the most visited floor for each person
         most_visited_floors = queryset.values('name').annotate(most_visited_floor=Min('floor'))
-
+        
         # # Merge the two result sets
         for item in result:
             most_visited_floor = next(filter(lambda x: x['name'] == item['name'], most_visited_floors),
